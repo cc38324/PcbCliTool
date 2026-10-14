@@ -1,0 +1,19 @@
+# 从立创拉的（C2798300）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign AP6212 <料号>
+name = "AP6212"
+description = ""
+category = ""
+symbol = "AP6212"
+footprint = "QFN-44_L12.0-W12.0-P0.90-TL_AP6212"
+datasheet = "https://cn.bing.com/search?q=datasheet%3A+%20AP6212"
+status = "draft"
+notes = [
+  "从立创拉的（C2798300，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "AMPAK(正基科技)"
+part = "AP6212"
+lcsc = "C2798300"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

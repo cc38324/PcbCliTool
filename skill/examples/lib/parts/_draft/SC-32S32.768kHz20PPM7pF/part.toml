@@ -1,0 +1,19 @@
+# 从立创拉的（C97604）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign SC-32S32.768kHz20PPM7pF <料号>
+name = "SC-32S32.768kHz20PPM7pF"
+description = ""
+category = ""
+symbol = "SC-32S32.768kHz20PPM7pF"
+footprint = "OSC-SMD_L3.2-W1.5"
+datasheet = "https://item.szlcsc.com/100222.html"
+status = "draft"
+notes = [
+  "从立创拉的（C97604，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "Seiko(精工)"
+part = "SC-32S32.768kHz20PPM7pF"
+lcsc = "C97604"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

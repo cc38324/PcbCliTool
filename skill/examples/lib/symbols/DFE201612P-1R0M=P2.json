@@ -1,0 +1,38 @@
+{
+  "name": "DFE201612P-1R0M=P2",
+  "kind": "symbol",
+  "symbolUuid": "c7410ef6faec71ab",
+  "designator": "L?",
+  "description": "",
+  "units": [
+    {
+      "id": "DFE201612P-1R0M=P2.1",
+      "name": "DFE201612P-1R0M=P2.1",
+      "title": null,
+      "pins": [
+        "2",
+        "1"
+      ]
+    }
+  ],
+  "symbolDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"SYMBOL\",\"client\":\"3757cc5b2757b9ab\",\"uuid\":\"c7410ef6faec71ab\",\"updateTime\":1791027075665,\"version\":\"1791027075665\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"CANVAS\",\"ticket\":1,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0}|",
+    "{\"type\":\"PART\",\"ticket\":2,\"id\":\"DFE201612P-1R0M=P2.1\"}||{\"BBOX\":[-17.38,-0.44,17.17,4.86],\"title\":\"DFE201612P-1R0M=P2.1\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":3,\"id\":\"e0\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":1,\"parentId\":\"\",\"key\":\"Symbol\",\"value\":\"DFE201612P-1R0M=P2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":4,\"id\":\"e1\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":2,\"parentId\":\"\",\"key\":\"Designator\",\"value\":\"L?\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ARC\",\"ticket\":5,\"id\":\"e2\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":3,\"startX\":-16.88,\"startY\":-0.07,\"referX\":-12.894,\"referY\":-4.354,\"endX\":-8.92,\"endY\":-0.06,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":6,\"id\":\"e3\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":4,\"startX\":-8.4,\"startY\":-0.07,\"referX\":-4.42,\"referY\":-4.36,\"endX\":-0.44,\"endY\":-0.07,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":7,\"id\":\"e4\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":5,\"startX\":0.07,\"startY\":-0.07,\"referX\":4.05,\"referY\":-4.36,\"endX\":8.03,\"endY\":-0.07,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":8,\"id\":\"e5\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":6,\"startX\":8.7,\"startY\":-0.07,\"referX\":12.691,\"referY\":-4.302,\"endX\":16.67,\"endY\":-0.06,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"PIN\",\"ticket\":9,\"id\":\"e6\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":7,\"display\":true,\"x\":20,\"y\":0,\"length\":3,\"rotation\":180,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":10,\"id\":\"e7\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":8,\"parentId\":\"e6\",\"key\":\"Pin Name\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":13.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":11,\"id\":\"e8\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":9,\"parentId\":\"e6\",\"key\":\"Pin Number\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":17.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":12,\"id\":\"e9\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":10,\"parentId\":\"e6\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":13,\"id\":\"e10\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":11,\"display\":true,\"x\":-20,\"y\":0,\"length\":3,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":14,\"id\":\"e11\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":12,\"parentId\":\"e10\",\"key\":\"Pin Name\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-13.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":15,\"id\":\"e12\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":13,\"parentId\":\"e10\",\"key\":\"Pin Number\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-17.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":16,\"id\":\"e13\"}||{\"partId\":\"DFE201612P-1R0M=P2.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":14,\"parentId\":\"e10\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"META\",\"ticket\":17,\"id\":\"META\"}||{\"title\":\"DFE201612P-1R0M=P2\",\"description\":\"DFE201612P-1R0M=P2\",\"tags\":[],\"docType\":2,\"source\":\"96a96b7e9b1bb74b5c013acca17af0ae|013cddc282e67fa91d6c0e12e2107c8e\"}|"
+  ]
+}

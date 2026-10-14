@@ -1,0 +1,19 @@
+# 从立创拉的（C499918）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign KLM8G1GETF-B041 <料号>
+name = "KLM8G1GETF-B041"
+description = ""
+category = ""
+symbol = "KLM8G1GETF-B041"
+footprint = "FBGA-153_L13.0-W11.5-P0.50_KLMAG1JETD-B041"
+datasheet = "https://item.szlcsc.com/512099.html?ref=editor&logined=true"
+status = "draft"
+notes = [
+  "从立创拉的（C499918，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "SAMSUNG(三星半导体)"
+part = "KLM8G1GETF-B041"
+lcsc = "C499918"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

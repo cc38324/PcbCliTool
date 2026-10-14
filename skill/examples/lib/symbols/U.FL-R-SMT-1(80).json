@@ -1,0 +1,40 @@
+{
+  "name": "U.FL-R-SMT-1(80)",
+  "kind": "symbol",
+  "symbolUuid": "3a995a9170d854c8",
+  "designator": "JP?",
+  "description": "",
+  "units": [
+    {
+      "id": "U.FL-R-SMT-1(80).1",
+      "name": "U.FL-R-SMT-1(80).1",
+      "title": null,
+      "pins": [
+        "2",
+        "1",
+        "3"
+      ]
+    }
+  ],
+  "symbolDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"SYMBOL\",\"client\":\"4628f37ebd4ba32d\",\"uuid\":\"3a995a9170d854c8\",\"updateTime\":1791024191520,\"version\":\"1791024191520\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"CANVAS\",\"ticket\":1,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0}|",
+    "{\"type\":\"PART\",\"ticket\":2,\"id\":\"U.FL-R-SMT-1(80).1\"}||{\"BBOX\":[-30,0,30,20],\"title\":\"U.FL-R-SMT-1(80).1\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":3,\"id\":\"e0\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":1,\"parentId\":\"\",\"key\":\"Symbol\",\"value\":\"U.FL-R-SMT-1(80)\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":4,\"id\":\"e1\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":2,\"parentId\":\"\",\"key\":\"Designator\",\"value\":\"JP?\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"RECT\",\"ticket\":5,\"id\":\"e2\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":3,\"dotX1\":-30,\"dotY1\":0,\"dotX2\":30,\"dotY2\":-20,\"radiusX\":0,\"radiusY\":0,\"rotation\":0,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"PIN\",\"ticket\":6,\"id\":\"e3\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":4,\"display\":true,\"x\":-50,\"y\":-10,\"length\":20,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":7,\"id\":\"e4\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":5,\"parentId\":\"e3\",\"key\":\"Pin Name\",\"value\":\"GND\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-26.3,\"y\":-4.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":8,\"id\":\"e5\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":6,\"parentId\":\"e3\",\"key\":\"Pin Number\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-30.5,\"y\":-9.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":9,\"id\":\"e6\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":7,\"parentId\":\"e3\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-50,\"y\":-10,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":10,\"id\":\"e7\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":8,\"display\":true,\"x\":0,\"y\":20,\"length\":20,\"rotation\":90,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":11,\"id\":\"e8\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":9,\"parentId\":\"e7\",\"key\":\"Pin Name\",\"value\":\"SIG\",\"keyVisible\":false,\"valueVisible\":true,\"x\":3,\"y\":-0.085,\"rotation\":90,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":12,\"id\":\"e9\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":10,\"parentId\":\"e7\",\"key\":\"Pin Number\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-1,\"y\":1.915,\"rotation\":90,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":13,\"id\":\"e10\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":11,\"parentId\":\"e7\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":0,\"y\":20,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":14,\"id\":\"e11\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":12,\"display\":true,\"x\":50,\"y\":-10,\"length\":20,\"rotation\":180,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":15,\"id\":\"e12\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":13,\"parentId\":\"e11\",\"key\":\"Pin Name\",\"value\":\"GND\",\"keyVisible\":false,\"valueVisible\":true,\"x\":26.3,\"y\":-4.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":16,\"id\":\"e13\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":14,\"parentId\":\"e11\",\"key\":\"Pin Number\",\"value\":\"3\",\"keyVisible\":false,\"valueVisible\":true,\"x\":30.5,\"y\":-9.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":17,\"id\":\"e14\"}||{\"partId\":\"U.FL-R-SMT-1(80).1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":15,\"parentId\":\"e11\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":50,\"y\":-10,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"META\",\"ticket\":18,\"id\":\"META\"}||{\"title\":\"U.FL-R-SMT-1(80)\",\"description\":\"U.FL-R-SMT-1(80)\",\"tags\":[],\"docType\":2,\"source\":\"00d1b8b8ae75b77a58cd3c7937ce8abd|2567776a2ae3dc4380780c42ec46760e\"}|"
+  ]
+}

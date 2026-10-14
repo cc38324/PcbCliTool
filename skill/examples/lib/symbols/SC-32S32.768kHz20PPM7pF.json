@@ -1,0 +1,42 @@
+{
+  "name": "SC-32S32.768kHz20PPM7pF",
+  "kind": "symbol",
+  "symbolUuid": "09292fcd7b6eb566",
+  "designator": "X?",
+  "description": "",
+  "units": [
+    {
+      "id": "SC-32S32.768kHz20PPM7pF.1",
+      "name": "SC-32S32.768kHz20PPM7pF.1",
+      "title": null,
+      "pins": [
+        "2",
+        "1"
+      ]
+    }
+  ],
+  "symbolDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"SYMBOL\",\"client\":\"2d819914328d0aac\",\"uuid\":\"09292fcd7b6eb566\",\"updateTime\":1791023475110,\"version\":\"1791023475110\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"CANVAS\",\"ticket\":1,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0}|",
+    "{\"type\":\"PART\",\"ticket\":2,\"id\":\"SC-32S32.768kHz20PPM7pF.1\"}||{\"BBOX\":[-10.5,-7.5,10.5,7.5],\"title\":\"SC-32S32.768kHz20PPM7pF.1\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":3,\"id\":\"e0\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":1,\"parentId\":\"\",\"key\":\"Symbol\",\"value\":\"SC-32S32.768kHz20PPM7pF\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":4,\"id\":\"e1\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":2,\"parentId\":\"\",\"key\":\"Designator\",\"value\":\"X?\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"POLY\",\"ticket\":5,\"id\":\"e2\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":3,\"points\":[{\"x\":4,\"y\":0},{\"x\":10,\"y\":0}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":6,\"id\":\"e3\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":4,\"points\":[{\"x\":-10,\"y\":0},{\"x\":-4,\"y\":0}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":7,\"id\":\"e4\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":5,\"points\":[{\"x\":-1,\"y\":-6},{\"x\":-1,\"y\":6}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":8,\"id\":\"e5\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":6,\"points\":[{\"x\":-1,\"y\":6},{\"x\":1,\"y\":6}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":9,\"id\":\"e6\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":7,\"points\":[{\"x\":1,\"y\":6},{\"x\":1,\"y\":-6}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":10,\"id\":\"e7\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":8,\"points\":[{\"x\":1,\"y\":-6},{\"x\":-1,\"y\":-6}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":11,\"id\":\"e8\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":9,\"points\":[{\"x\":4,\"y\":-7},{\"x\":4,\"y\":7}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"POLY\",\"ticket\":12,\"id\":\"e9\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":10,\"points\":[{\"x\":-4,\"y\":-7},{\"x\":-4,\"y\":7}],\"closed\":false,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"PIN\",\"ticket\":13,\"id\":\"e10\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":11,\"display\":true,\"x\":20,\"y\":0,\"length\":10,\"rotation\":180,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":14,\"id\":\"e11\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":12,\"parentId\":\"e10\",\"key\":\"Pin Name\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":6.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":15,\"id\":\"e12\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":13,\"parentId\":\"e10\",\"key\":\"Pin Number\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":10.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":16,\"id\":\"e13\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":14,\"parentId\":\"e10\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":17,\"id\":\"e14\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":15,\"display\":true,\"x\":-20,\"y\":0,\"length\":10,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":18,\"id\":\"e15\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":16,\"parentId\":\"e14\",\"key\":\"Pin Name\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-6.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":19,\"id\":\"e16\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":17,\"parentId\":\"e14\",\"key\":\"Pin Number\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-10.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":20,\"id\":\"e17\"}||{\"partId\":\"SC-32S32.768kHz20PPM7pF.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":18,\"parentId\":\"e14\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"META\",\"ticket\":21,\"id\":\"META\"}||{\"title\":\"SC-32S32.768kHz20PPM7pF\",\"description\":\"SC-32S32.768kHz20PPM7pF\",\"tags\":[],\"docType\":2,\"source\":\"af26fefb77dee45fa2921240acef383e|db88c10fe114d70deaff318eebf5a084\"}|"
+  ]
+}

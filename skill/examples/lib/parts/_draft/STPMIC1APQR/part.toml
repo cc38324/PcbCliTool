@@ -1,0 +1,19 @@
+# 从立创拉的（C2156052）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign STPMIC1APQR <料号>
+name = "STPMIC1APQR"
+description = ""
+category = ""
+symbol = "STPMIC1APQR"
+footprint = "WFQFN-44_L6.0-W5.0-P0.40-TL-EP"
+datasheet = "https://www.st.com/resource/en/datasheet/stpmic1.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C2156052，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "ST(意法半导体)"
+part = "STPMIC1APQR"
+lcsc = "C2156052"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

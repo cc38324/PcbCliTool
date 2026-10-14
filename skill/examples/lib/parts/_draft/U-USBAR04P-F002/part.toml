@@ -1,0 +1,19 @@
+# 从立创拉的（C386736）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign U-USBAR04P-F002 <料号>
+name = "U-USBAR04P-F002"
+description = ""
+category = ""
+symbol = "U-USBAR04P-F001"
+footprint = "USB-A-TH_USB-302-T"
+datasheet = "https://item.szlcsc.com/113689.html"
+status = "draft"
+notes = [
+  "从立创拉的（C386736，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "Ckmtw(灿科盟)"
+part = "U-USBAR04P-F002"
+lcsc = "C386736"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

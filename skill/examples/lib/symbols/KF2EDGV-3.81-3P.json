@@ -1,0 +1,41 @@
+{
+  "name": "KF2EDGV-3.81-3P",
+  "kind": "symbol",
+  "symbolUuid": "2b6eb66e5d961c1a",
+  "designator": "CN?",
+  "description": "",
+  "units": [
+    {
+      "id": "KF2EDGV-3.81-3P.1",
+      "name": "KF2EDGV-3.81-3P.1",
+      "title": null,
+      "pins": [
+        "1",
+        "2",
+        "3"
+      ]
+    }
+  ],
+  "symbolDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"SYMBOL\",\"client\":\"db93b29618313ce9\",\"uuid\":\"2b6eb66e5d961c1a\",\"updateTime\":1791023481022,\"version\":\"1791023481022\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"CANVAS\",\"ticket\":1,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0}|",
+    "{\"type\":\"PART\",\"ticket\":2,\"id\":\"KF2EDGV-3.81-3P.1\"}||{\"BBOX\":[-10,-20,10,20],\"title\":\"KF2EDGV-3.81-3P.1\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":3,\"id\":\"e0\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":1,\"parentId\":\"\",\"key\":\"Symbol\",\"value\":\"KF2EDGV-3.81-3P\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":4,\"id\":\"e1\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":2,\"parentId\":\"\",\"key\":\"Designator\",\"value\":\"CN?\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"RECT\",\"ticket\":5,\"id\":\"e2\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":3,\"dotX1\":-10,\"dotY1\":20,\"dotX2\":10,\"dotY2\":-20,\"radiusX\":0,\"radiusY\":0,\"rotation\":0,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"CIRCLE\",\"ticket\":6,\"id\":\"e3\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":4,\"centerX\":-5,\"centerY\":-15,\"radius\":1.5,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"PIN\",\"ticket\":7,\"id\":\"e4\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":5,\"display\":true,\"x\":-20,\"y\":-10,\"length\":10,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":8,\"id\":\"e5\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":6,\"parentId\":\"e4\",\"key\":\"Pin Name\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-6.3,\"y\":-4.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":9,\"id\":\"e6\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":7,\"parentId\":\"e4\",\"key\":\"Pin Number\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-10.5,\"y\":-9.085,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":10,\"id\":\"e7\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":8,\"parentId\":\"e4\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":-10,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":11,\"id\":\"e8\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":9,\"display\":true,\"x\":-20,\"y\":0,\"length\":10,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":12,\"id\":\"e9\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":10,\"parentId\":\"e8\",\"key\":\"Pin Name\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-6.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":13,\"id\":\"e10\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":11,\"parentId\":\"e8\",\"key\":\"Pin Number\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-10.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":14,\"id\":\"e11\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":12,\"parentId\":\"e8\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":15,\"id\":\"e12\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":13,\"display\":true,\"x\":-20,\"y\":10,\"length\":10,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":16,\"id\":\"e13\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":14,\"parentId\":\"e12\",\"key\":\"Pin Name\",\"value\":\"3\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-6.3,\"y\":15.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":17,\"id\":\"e14\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":15,\"parentId\":\"e12\",\"key\":\"Pin Number\",\"value\":\"3\",\"keyVisible\":false,\"valueVisible\":true,\"x\":-10.5,\"y\":10.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":18,\"id\":\"e15\"}||{\"partId\":\"KF2EDGV-3.81-3P.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":16,\"parentId\":\"e12\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":10,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"META\",\"ticket\":19,\"id\":\"META\"}||{\"title\":\"KF2EDGV-3.81-3P\",\"description\":\"KF2EDGV-3.81-3P\",\"tags\":[],\"docType\":2,\"source\":\"fdaf0d8d81d02670aa90c13f29cf335f|2defcde0e695ce5dd2034b097cc771d6\"}|"
+  ]
+}

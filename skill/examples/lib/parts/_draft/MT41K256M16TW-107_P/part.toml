@@ -1,0 +1,19 @@
+# 从立创拉的（C253882）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign MT41K256M16TW-107_P <料号>
+name = "MT41K256M16TW-107:P"
+description = ""
+category = ""
+symbol = "MT41K256M16TW-107_P"
+footprint = "FBGA-96_L14.0-W8.0-R16-C6-P0.80-TL"
+datasheet = "https://lcsc.com/product-detail/SDRAM_Micron-Tech-MT41K256M16TW-107-P_C426883.html"
+status = "draft"
+notes = [
+  "从立创拉的（C253882，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "micron(美光)"
+part = "MT41K256M16TW-107:P"
+lcsc = "C253882"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

@@ -1,0 +1,19 @@
+# 从立创拉的（C19398）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign SWPA3015S4R7MT <料号>
+name = "SWPA3015S4R7MT"
+description = ""
+category = ""
+symbol = "SWPA3015S4R7MT"
+footprint = "IND-SMD_L3.0-W3.0_FNR30XXS"
+datasheet = "https://item.szlcsc.com/179118.html"
+status = "draft"
+notes = [
+  "从立创拉的（C19398，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "Sunlord(顺络)"
+part = "SWPA3015S4R7MT"
+lcsc = "C19398"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

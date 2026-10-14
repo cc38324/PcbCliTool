@@ -1,0 +1,19 @@
+# 从立创拉的（C5124634）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign 2.54-2_20P <料号>
+name = "2.54-2*20P"
+description = ""
+category = ""
+symbol = "2.54-2_20P"
+footprint = "HDR-TH_40P-P2.54-V-F-R2-C20-S2.54-2"
+datasheet = "https://atta.szlcsc.com/upload/public/pdf/source/20151109/1457707557259.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C5124634，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "BOOMELE(博穆精密)"
+part = "2.54-2*20P"
+lcsc = "C5124634"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

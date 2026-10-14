@@ -1,0 +1,19 @@
+# 从立创拉的（C165948）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TYPE-C-31-M-12 <料号>
+name = "TYPE-C-31-M-12"
+description = ""
+category = ""
+symbol = "TYPE-C-31-M-12"
+footprint = "USB-C_SMD-TYPE-C-31-M-12_1"
+datasheet = "https://item.szlcsc.com/datasheet/TYPE-C-31-M-12/177331.html?spm=sc.gbn.xds.a___sc.gbn.hd.ss&lcsc_vid=RgMNUVYEQARbV1xTElVcVwIAFFBXVwBfEQdfX1UCRAcxVlNTQFBcUlFXT1hYVTsOAxUeFF5JWA0NAgAHWQIASA%3D%3D"
+status = "draft"
+notes = [
+  "从立创拉的（C165948，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "韩国韩荣"
+part = "TYPE-C-31-M-12"
+lcsc = "C165948"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

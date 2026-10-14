@@ -1,0 +1,19 @@
+# 从立创拉的（C318884）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TS-1187A-B-A-B <料号>
+name = "TS-1187A-B-A-B"
+description = ""
+category = ""
+symbol = "TS-1187A-B-A-B"
+footprint = "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5"
+datasheet = "https://item.szlcsc.com/datasheet/TS-1187A-C-6.0-B/299982.html"
+status = "draft"
+notes = [
+  "从立创拉的（C318884，Basic Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "XKB Connection(中国星坤)"
+part = "TS-1187A-B-A-B"
+lcsc = "C318884"
+
+[attributes]
+"JLCPCB Part Class" = "Basic Part"

@@ -1,0 +1,19 @@
+# 从立创拉的（C7529394）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign 1.0mm-15P LT <料号>
+name = "1.0mm-15P LT"
+description = ""
+category = ""
+symbol = "1.0MM-15P LT"
+footprint = "CONN-SMD_15P-P1.00_SHOU-HAN_1.0MM-15P-LT"
+datasheet = "https://atta.szlcsc.com/upload/public/pdf/source/20230818/C7579E7B8FB5764B20FE47A063E632D4.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C7529394，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "SHOU HAN(首韩)"
+part = "1.0mm-15P LT"
+lcsc = "C7529394"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

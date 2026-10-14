@@ -1,0 +1,19 @@
+# 从立创拉的（C164058）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TAXM24M4RFBCCT2T <料号>
+name = "TAXM24M4RFBCCT2T"
+description = ""
+category = ""
+symbol = "SMD-3225_4P24MHZ12PF10PPM-40~+85℃"
+footprint = "CRYSTAL-SMD_4P-L3.2-W2.5-BL"
+datasheet = "https://item.szlcsc.com/15866.html"
+status = "draft"
+notes = [
+  "从立创拉的（C164058，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "YJX(雅晶鑫)"
+part = "TAXM24M4RFBCCT2T"
+lcsc = "C164058"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

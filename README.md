@@ -85,7 +85,7 @@ brew install easyedatool
 | `skill/examples/mp157demo.rules.toml` | 布线、DRC、核对的规则 |
 | `skill/examples/mp157demo.constraints.toml` | 差分对（USB、MIPI DSI、网口、DDR） |
 
-设计文件里的 STM32MP157D、DDR、PMIC、eMMC 等写的是元件库料号（`part = "STM32MP157DAB1"` 这一类）。生成前在设计文件旁边放 `easyedatool.toml`，把库的路径写进去。没有库时，用已经生成好的工程文件夹跑下面的查看和检查命令。
+设计文件里有 23 个元件库器件（`part = "STM32MP157DAB1"` 这一类）。它们的符号和封装在 `skill/examples/lib`（23 个符号、21 个封装，有的件共用一个封装），`skill/examples/easyedatool.toml` 指向这个库，`gen` 不用再另找元件库。
 
 下面把工程文件夹写成 `<工程>`。`route` 会改写板子；这条规则里有 `keep = ["*"]`，已有走线留着，只补还没连上的。先提交 git，不满意就回滚。嘉立创开着这个工程时，先关掉 PCB 页再写文件，写完再打开。
 

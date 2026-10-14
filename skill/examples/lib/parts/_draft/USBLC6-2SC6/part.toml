@@ -1,0 +1,19 @@
+# 从立创拉的（C2827654）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign USBLC6-2SC6 <料号>
+name = "USBLC6-2SC6"
+description = ""
+category = ""
+symbol = "USBLC6-2SC6_C2827654"
+footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL"
+datasheet = "https://item.szlcsc.com/169042.html"
+status = "draft"
+notes = [
+  "从立创拉的（C2827654，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TECH PUBLIC(台舟)"
+part = "USBLC6-2SC6"
+lcsc = "C2827654"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

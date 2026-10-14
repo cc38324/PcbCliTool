@@ -1,0 +1,19 @@
+# 从立创拉的（C70573）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign X322526MQB4SI <料号>
+name = "X322526MQB4SI"
+description = ""
+category = ""
+symbol = "X322526MQB4SI"
+footprint = "CRYSTAL-SMD_4P-L3.2-W2.5-BL"
+datasheet = "https://item.szlcsc.com/15866.html"
+status = "draft"
+notes = [
+  "从立创拉的（C70573，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "YXC(扬兴晶振)"
+part = "X322526MQB4SI"
+lcsc = "C70573"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

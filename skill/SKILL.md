@@ -179,4 +179,4 @@ easyedatool route <目录>/MP157Demo --rules examples/mp157demo.rules.toml
 easyedatool drc <目录>/MP157Demo --rules examples/mp157demo.rules.toml
 ```
 
-应当：`gen` 打出工程路径，原理图自检「出图框 0，压标题栏 0，重叠 0」；`check` 「全部通过」。设计文件里的芯片是元件库料号（`part = "STM32MP157DAB1"` 这一类），旁边要有 `easyedatool.toml` 指向库，不然 `gen` 找不到这些件。`route` 用的规则写了 `keep = ["*"]`，已有走线留着，只补没连上的。
+应当：`gen` 打出工程路径，原理图自检「出图框 0，压标题栏 0，重叠 0」；`check` 「全部通过」。23 个元件库器件的符号和封装在 `examples/lib`，`examples/easyedatool.toml` 指向它。`route` 用的规则写了 `keep = ["*"]`，已有走线留着，只补没连上的。

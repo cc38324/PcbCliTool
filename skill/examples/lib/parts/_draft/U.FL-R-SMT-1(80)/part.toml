@@ -1,0 +1,19 @@
+# 从立创拉的（C88374）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign U.FL-R-SMT-1(80) <料号>
+name = "U.FL-R-SMT-1(80)"
+description = ""
+category = ""
+symbol = "U.FL-R-SMT-1(80)"
+footprint = "RF-SMD_FRF05002-JSS103M"
+datasheet = "https://atta.szlcsc.com/upload/public/pdf/source/20210518/C2834409_AD8449F4C312B9B9971CC712CA9E2040.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C88374，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "HRS(广濑)"
+part = "U.FL-R-SMT-1(80)"
+lcsc = "C88374"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

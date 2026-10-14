@@ -1,0 +1,32 @@
+# 从立创拉的（C1236721）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign STM32MP157DAB1 <料号>
+name = "STM32MP157DAB1"
+description = ""
+category = ""
+symbol = "STM32MP157DAB1"
+footprint = "LFBGA-354_L16.0-W16.0-P0.80-BL_STM32F151-AB3"
+datasheet = "https://atta.szlcsc.com/upload/public/pdf/source/20210618/C1236723_2FF9FFD5F33A0531FCE9434440938439.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C1236721，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "ST(意法半导体)"
+part = "STM32MP157DAB1"
+lcsc = "C1236721"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"
+
+[sim]
+# ST 的 IBIS（st.com stm32mp1x-ibis.zip 里的 stm32mp157xab_lfbga354.ibs，STM32MP157 的 LFBGA354 封装）；焊盘号就是 IBIS 的脚名
+ibis = "sim/STM32MP157DAB1/stm32mp157xab_lfbga354.ibs"
+ibis_component = "stm32mp157xab_lfbga354"
+
+[sim.ibis_models]
+# DDR 电源网络叫 VDD_DDR、看不出电压，按 DDR3L（1.35 V）指定；驱动 40 Ω（ST 的默认），接收的 ODT 在 si 规则的 rx_model 里选
+"DDR_DQS*" = "MSD_D3RF3L_40"
+"DDR_CLK*" = "MSD_D3RF3L_40"
+"DDR_*" = "MSD_D3RP3L_40"
+# GPIO：3.3 V、高速档（SDMMC、RMII 这类）
+"P*" = "io8_ft_hs_3v3"
