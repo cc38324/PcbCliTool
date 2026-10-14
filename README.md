@@ -87,6 +87,8 @@ brew install easyedatool
 
 设计文件里有 23 种元件库器件（30 处，`part = "STM32MP157DAB1"` 这一类）。每种都写了立创料号（`lcsc = "C1236721"` 这一类）。符号和封装在 `skill/examples/lib`（23 个符号、21 个封装，有的件共用一个封装），`skill/examples/easyedatool.toml` 指向这个库。
 
+核心电路的参考布局是 `skill/build/st/board.PcbDoc`。它来自意法半导体 AN5122 的布线例程包 `stm32mp15x-series-ddr-memory-routing-guidelines-examples.zip`，里面 `STM32MP15XXAB/STM32MP15XXAB_1DDR3Lx16` 的 Altium 板文件，抽出来后改叫这个名字。设计文件的 `[[reuse]]` 用相对路径 `../build/st/board.PcbDoc` 指着它。
+
 下面把工程文件夹写成 `<工程>`。`route` 会改写板子；这条规则里有 `keep = ["*"]`，已有走线留着，只补还没连上的。先提交 git，不满意就回滚。嘉立创开着这个工程时，先关掉 PCB 页再写文件，写完再打开。
 
 ```bash

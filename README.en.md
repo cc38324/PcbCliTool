@@ -87,6 +87,8 @@ The example is an STM32MP157 single-board computer, 100 × 80 mm, four layers, s
 
 The design names 23 library parts, placed 30 times (`part = "STM32MP157DAB1"` and the rest). Each one has its LCSC number (`lcsc = "C1236721"` and the rest). Symbols and footprints are in `skill/examples/lib` (23 symbols, 21 footprints; some parts share a footprint). `skill/examples/easyedatool.toml` points at that library.
 
+The core layout copied by `[[reuse]]` is `skill/build/st/board.PcbDoc`. It is the Altium board `STM32MP15XXAB/STM32MP15XXAB_1DDR3Lx16` from ST's AN5122 package `stm32mp15x-series-ddr-memory-routing-guidelines-examples.zip`, saved under this name. The design file points at it with `../build/st/board.PcbDoc`.
+
 `<project>` below is the project folder. `route` rewrites the board. This rules file sets `keep = ["*"]`, so existing tracks stay and only open connections are added. Commit first, and roll back with git if the result is wrong. If EasyEDA has this project open, close the PCB page before a command that writes the board, then open it again.
 
 ```bash
