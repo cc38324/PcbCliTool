@@ -12,8 +12,8 @@
 |---|---|
 | Windows | `winget install --id Miyue.PcbCliTool --version 0.2.0` |
 | macOS（Apple 芯片） | `brew install cc38324/pcbclitool/easyedatool` |
-| Ubuntu 22.04 / 24.04 / 26.04 | `sudo apt-get install easyedatool`，或 `dpkg -i` 这一版的 deb |
-| Debian 12 / 13 | 同一份 deb，命令和 Ubuntu 一样 |
+| Ubuntu 22.04 / 24.04 / 26.04 | 加上 `www.miyue.asia` 的源后 `sudo apt-get install easyedatool` |
+| Debian 12 / 13 | 同一个源，命令和 Ubuntu 一样 |
 | 鸿蒙电脑 | 0.2.0 还没有鸿蒙安装包 |
 
 ### Windows
@@ -39,37 +39,33 @@ easyedatool --version
 
 ### Ubuntu
 
-22.04、24.04、26.04，amd64。程序链的 glibc 最高是 2.35。
-
-加过 apt 源之后，以后升级也用这两行：
+22.04、24.04、26.04，amd64。程序链的 glibc 最高是 2.35。源是 `https://www.miyue.asia/apt`，和 rtsp-ai 同一个。第一次先加上公钥和源：
 
 ```bash
+sudo mkdir -p /usr/share/keyrings
+curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 sudo apt-get install easyedatool
 easyedatool --version
 ```
 
-0.2.0 的源还没公开。这一版直接装 Release 里的 deb（6.1 MB，SHA256 `d5d94789278dcf6c71e51b60414bc54d39e7a1cad5d14e7e53a6b38281e61e40`）：
-
-```bash
-wget -O easyedatool_0.2.0-1_amd64.deb \
-  https://github.com/cc38324/PcbCliTool/releases/download/v0.2.0/easyedatool_0.2.0-1_amd64.deb
-sudo dpkg -i easyedatool_0.2.0-1_amd64.deb
-easyedatool --version
-```
-
-装好后程序在 `/usr/bin/easyedatool`。
+已经加过这个源（例如装过 rtsp-ai）就只要后两行。装好后程序在 `/usr/bin/easyedatool`。升级也是 `sudo apt-get update && sudo apt-get install easyedatool`。
 
 ### Debian
 
-12 和 13，amd64。和 Ubuntu 是同一份 deb，不要另下一个包。
+12 和 13，amd64。和 Ubuntu 是同一份 deb、同一个源。第一次：
 
 ```bash
+sudo mkdir -p /usr/share/keyrings
+curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 sudo apt-get install easyedatool
+easyedatool --version
 ```
 
-源还没公开时，用上面 Ubuntu 那一节的 `wget` 和 `dpkg -i`，文件名同样是 `easyedatool_0.2.0-1_amd64.deb`。
+已经加过这个源就只要 `sudo apt-get update && sudo apt-get install easyedatool`。
 
 ### 鸿蒙电脑
 

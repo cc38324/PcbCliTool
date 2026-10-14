@@ -12,8 +12,8 @@ The repository is [cc38324/PcbCliTool](https://github.com/cc38324/PcbCliTool). A
 |---|---|
 | Windows | `winget install --id Miyue.PcbCliTool --version 0.2.0` |
 | macOS (Apple silicon) | `brew install cc38324/pcbclitool/easyedatool` |
-| Ubuntu 22.04 / 24.04 / 26.04 | `sudo apt-get install easyedatool`, or `dpkg -i` this version's deb |
-| Debian 12 / 13 | The same deb, same commands as Ubuntu |
+| Ubuntu 22.04 / 24.04 / 26.04 | Add the `www.miyue.asia` source, then `sudo apt-get install easyedatool` |
+| Debian 12 / 13 | The same source and the same commands as Ubuntu |
 | HarmonyOS PC | No HarmonyOS build in 0.2.0 |
 
 ### Windows
@@ -39,37 +39,33 @@ The formula is `Formula/easyedatool.rb`. It downloads `easyedatool-0.2.0-macos-a
 
 ### Ubuntu
 
-22.04, 24.04, and 26.04, amd64. The binary uses glibc symbols up to 2.35.
-
-After the apt source is configured, upgrades use the same two lines:
+22.04, 24.04, and 26.04, amd64. The binary uses glibc symbols up to 2.35. The source is `https://www.miyue.asia/apt`, the same one used by rtsp-ai. Add it once:
 
 ```bash
+sudo mkdir -p /usr/share/keyrings
+curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 sudo apt-get install easyedatool
 easyedatool --version
 ```
 
-The 0.2.0 apt source is not public yet. Install this version's deb from the Release (6.1 MB, SHA256 `d5d94789278dcf6c71e51b60414bc54d39e7a1cad5d14e7e53a6b38281e61e40`):
-
-```bash
-wget -O easyedatool_0.2.0-1_amd64.deb \
-  https://github.com/cc38324/PcbCliTool/releases/download/v0.2.0/easyedatool_0.2.0-1_amd64.deb
-sudo dpkg -i easyedatool_0.2.0-1_amd64.deb
-easyedatool --version
-```
-
-The program is at `/usr/bin/easyedatool`.
+If that source is already configured, only the last two commands are needed. The program is at `/usr/bin/easyedatool`. Upgrades are `sudo apt-get update && sudo apt-get install easyedatool`.
 
 ### Debian
 
-Debian 12 and 13, amd64. This is the same deb as Ubuntu. Do not look for a second package.
+Debian 12 and 13, amd64. Same deb and the same source as Ubuntu. Add it once:
 
 ```bash
+sudo mkdir -p /usr/share/keyrings
+curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 sudo apt-get install easyedatool
+easyedatool --version
 ```
 
-Until the apt source is public, use the `wget` and `dpkg -i` commands in the Ubuntu section. The file name is `easyedatool_0.2.0-1_amd64.deb`.
+If that source is already configured, run `sudo apt-get update && sudo apt-get install easyedatool`.
 
 ### HarmonyOS PC
 

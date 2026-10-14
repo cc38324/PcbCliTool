@@ -8,8 +8,8 @@
 
 - Windows：`winget install --id Miyue.PcbCliTool --version 0.2.0`。还没进 winget 源时，用 Release 里的 `easyedatool-0.2.0-windows-x64.zip`，或双击 `easyedatool-0.2.0-windows-x64-setup.exe`（装到 `%USERPROFILE%\.claude\skills\easyedatool`；没有签名，第一次运行选「更多信息」→「仍要运行」）。
 - macOS（Apple 芯片）：`brew tap cc38324/pcbclitool https://github.com/cc38324/PcbCliTool.git`，然后 `brew install cc38324/pcbclitool/easyedatool`。
-- Ubuntu 22.04 / 24.04 / 26.04：`sudo apt-get update && sudo apt-get install easyedatool`。源还没公开时，`dpkg -i easyedatool_0.2.0-1_amd64.deb`。
-- Debian 12 / 13：和 Ubuntu 同一份 deb，命令相同。
+- Ubuntu 22.04 / 24.04 / 26.04：源是 `https://www.miyue.asia/apt`。第一次把 `https://www.miyue.asia/apt/miyue.gpg` 放到 `/usr/share/keyrings/miyue.gpg`，再写 `deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main`，然后 `sudo apt-get update && sudo apt-get install easyedatool`。
+- Debian 12 / 13：和 Ubuntu 同一个源、同一份 deb，命令相同。
 - 鸿蒙电脑：0.2.0 没有安装包。
 
 也可以用同名的 zip：解压到任意位置就能用，解压出来就是下面这些文件。
