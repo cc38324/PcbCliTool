@@ -85,7 +85,7 @@ The example is an STM32MP157 single-board computer, 100 × 80 mm, four layers, s
 | `skill/examples/mp157demo.rules.toml` | Rules for routing, DRC, and the net check |
 | `skill/examples/mp157demo.constraints.toml` | Differential pairs (USB, MIPI DSI, Ethernet, DDR) |
 
-The design names 23 library parts (`part = "STM32MP157DAB1"` and the rest). Their symbols and footprints are in `skill/examples/lib` (23 symbols, 21 footprints; some parts share a footprint). `skill/examples/easyedatool.toml` points at that library, so `gen` does not need another parts library.
+The design names 23 library parts, placed 30 times (`part = "STM32MP157DAB1"` and the rest). Each one has its LCSC number (`lcsc = "C1236721"` and the rest). Symbols and footprints are in `skill/examples/lib` (23 symbols, 21 footprints; some parts share a footprint). `skill/examples/easyedatool.toml` points at that library.
 
 `<project>` below is the project folder. `route` rewrites the board. This rules file sets `keep = ["*"]`, so existing tracks stay and only open connections are added. Commit first, and roll back with git if the result is wrong. If EasyEDA has this project open, close the PCB page before a command that writes the board, then open it again.
 

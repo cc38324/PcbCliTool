@@ -1003,6 +1003,7 @@ group = "CORE"
 [[parts]]
 ref = "L1"
 part = "DFE201612P-1R0M=P2"
+lcsc = "C337894"
 fp = "ST_L2016"
 value = "1uH"
 nets = { 1 = "NetL1_1", 2 = "VDD_CORE" }
@@ -1011,6 +1012,7 @@ group = "PMIC"
 [[parts]]
 ref = "L2"
 part = "DFE201612P-1R0M=P2"
+lcsc = "C337894"
 fp = "ST_L2016"
 value = "1uH"
 nets = { 1 = "NetL2_1", 2 = "VDD_DDR" }
@@ -1019,6 +1021,7 @@ group = "PMIC"
 [[parts]]
 ref = "L3"
 part = "DFE201612P-1R0M=P2"
+lcsc = "C337894"
 fp = "ST_L2016"
 value = "1uH"
 nets = { 1 = "NetL3_1", 2 = "VDD" }
@@ -1027,6 +1030,7 @@ group = "PMIC"
 [[parts]]
 ref = "L4"
 part = "DFE201612P-1R0M=P2"
+lcsc = "C337894"
 fp = "ST_L2016"
 value = "1uH"
 nets = { 2 = "3V3", 1 = "NetL4_1" }
@@ -1331,6 +1335,7 @@ group = "PMIC"
 [[parts]]
 ref = "U1"
 part = "STM32MP157DAB1"
+lcsc = "C1236721"
 value = "STM32MP157DAB1"
 nets = { H18 = "DDR_A0", M17 = "DDR_A1", M19 = "DDR_A10", M18 = "DDR_A11", L17 = "DDR_A12", F17 = "DDR_A13", N18 = "DDR_A14", L16 = "DDR_A15", G18 = "DDR_A2", F19 = "DDR_A3", P17 = "DDR_A4", H17 = "DDR_A5", N16 = "DDR_A6", E17 = "DDR_A7", R17 = "DDR_A8", G17 = "DDR_A9", G19 = "DDR_BA0", N17 = "DDR_BA1", J16 = "DDR_BA2", K17 = "DDR_CASN", P19 = "DDR_CKE", K19 = "DDR_CLK_N", L19 = "DDR_CLK_P", J18 = "DDR_CSN", A17 = "DDR_DQ0", A18 = "DDR_DQ1", R18 = "DDR_DQ10", V19 = "DDR_DQ11", W18 = "DDR_DQ12", T18 = "DDR_DQ13", V18 = "DDR_DQ14", W17 = "DDR_DQ15", D18 = "DDR_DQ2", B17 = "DDR_DQ3", E18 = "DDR_DQ4", D17 = "DDR_DQ5", D19 = "DDR_DQ6", B18 = "DDR_DQ7", P18 = "DDR_DQ8", T17 = "DDR_DQ9", C18 = "DDR_DQM0", U18 = "DDR_DQM1", B19 = "DDR_DQS0_N", C19 = "DDR_DQS0_P", T19 = "DDR_DQS1_N", U19 = "DDR_DQS1_P", H19 = "DDR_ODT", L18 = "DDR_RASN", G16 = "DDR_RESETN", J17 = "DDR_WEN", T15 = "GND", U12 = "I2C4_SDA", J1 = "NRST", F18 = "NetR27_1", R3 = "PMIC_INTN", L1 = "PWR_ON", A5 = "SDMMC2_CK", A6 = "SDMMC2_CMD", C9 = "SDMMC2_D0", A8 = "SDMMC2_D1", A7 = "SDMMC2_D2", B9 = "SDMMC2_D3", B8 = "SDMMC2_D4", D9 = "SDMMC2_D5", B7 = "SDMMC2_D6", A9 = "SDMMC2_D7", W16 = "VREF_DDR", A1 = "GND", A19 = "GND", B2 = "GND", B6 = "GND", C12 = "GND", C13 = "GND", C14 = "GND", C15 = "GND", C16 = "GND", C17 = "GND", C3 = "GND", D1 = "GND", D4 = "GND", D5 = "GND", D8 = "GND", E10 = "GND", E12 = "GND", E14 = "GND", E16 = "GND", E2 = "GND", E4 = "GND", E5 = "GND", E6 = "GND", E8 = "GND", F11 = "GND", F13 = "GND", F15 = "GND", F5 = "GND", F7 = "GND", F9 = "GND", G10 = "GND", G12 = "GND", G14 = "GND", G2 = "GND", G4 = "GND", G6 = "GND", G8 = "GND", H11 = "GND", H13 = "GND", H15 = "GND", H5 = "GND", H7 = "GND", H9 = "GND", J10 = "GND", J12 = "GND", J14 = "GND", J3 = "GND", J4 = "GND", J6 = "GND", J8 = "GND", K11 = "GND", K13 = "GND", K15 = "GND", K2 = "GND", K5 = "GND", K7 = "GND", K9 = "GND", L10 = "GND", L12 = "GND", L14 = "GND", L4 = "GND", L6 = "GND", L8 = "GND", M11 = "GND", M13 = "GND", M15 = "GND", M3 = "GND", M5 = "GND", M7 = "GND", M9 = "GND", N10 = "GND", N12 = "GND", N14 = "GND", N4 = "GND", N6 = "GND", N8 = "GND", P11 = "GND", P13 = "GND", P15 = "GND", P5 = "GND", P7 = "GND", P9 = "GND", R10 = "GND", R12 = "GND", R14 = "GND", R16 = "GND", R2 = "GND", R5 = "GND", R6 = "GND", R8 = "GND", T4 = "GND", U13 = "GND", U14 = "GND", U17 = "GND", U3 = "GND", U6 = "GND", U8 = "GND", V12 = "GND", V15 = "GND", W1 = "GND", W19 = "GND", H3 = "VDD", A16 = "NetC68_2", B16 = "NetC68_2", W11 = "NetC69_2", M4 = "NetC70_2", A12 = "VDD", G13 = "VDD", J5 = "VDD", K6 = "VDD", L3 = "VDD", L5 = "VDD", L7 = "VDD", M6 = "VDD", M8 = "VDD", N5 = "VDD", N7 = "VDD", N9 = "VDD", P10 = "VDD", P6 = "VDD", P8 = "VDD", R11 = "VDD", R7 = "VDD", R9 = "VDD", B12 = "VDDA_1V8", V11 = "VDDA_1V8", E11 = "VDD_CORE", E13 = "VDD_CORE", E7 = "VDD_CORE", E9 = "VDD_CORE", F10 = "VDD_CORE", F12 = "VDD_CORE", F4 = "VDD_CORE", F6 = "VDD_CORE", F8 = "VDD_CORE", G11 = "VDD_CORE", G5 = "VDD_CORE", G7 = "VDD_CORE", G9 = "VDD_CORE", H10 = "VDD_CORE", H12 = "VDD_CORE", H4 = "VDD_CORE", H6 = "VDD_CORE", H8 = "VDD_CORE", J11 = "VDD_CORE", J13 = "VDD_CORE", J7 = "VDD_CORE", J9 = "VDD_CORE", K10 = "VDD_CORE", K12 = "VDD_CORE", K8 = "VDD_CORE", L11 = "VDD_CORE", L13 = "VDD_CORE", L9 = "VDD_CORE", M10 = "VDD_CORE", M12 = "VDD_CORE", N11 = "VDD_CORE", N13 = "VDD_CORE", P12 = "VDD_CORE", R13 = "VDD_CORE", E15 = "VDD_DDR", F14 = "VDD_DDR", G15 = "VDD_DDR", H14 = "VDD_DDR", J15 = "VDD_DDR", K14 = "VDD_DDR", L15 = "VDD_DDR", M14 = "VDD_DDR", N15 = "VDD_DDR", P14 = "VDD_DDR", R15 = "VDD_DDR", W12 = "VDD_USB", W15 = "VDD_USB", N3 = "VREF+", K1 = "BOOT0", K4 = "BOOT1", L2 = "BOOT2", J2 = "NRST_CORE", N2 = "VDD", N1 = "VDD", M1 = "HSE_IN", M2 = "HSE_OUT", H1 = "LSE_IN", H2 = "LSE_OUT", A4 = "PMIC_SCL", A3 = "PMIC_SDA", W13 = "OTG_DP", V13 = "OTG_DM", V14 = "USBH_DP", W14 = "USBH_DM", V16 = "USB_RREF", U4 = "ETH_REF_CLK", W2 = "ETH_MDIO", V2 = "ETH_MDC", T6 = "ETH_CRS_DV", W4 = "ETH_RXD0", V4 = "ETH_RXD1", V1 = "ETH_TX_EN", U2 = "ETH_TXD0", U1 = "ETH_TXD1", U5 = "ETH_NRST", C11 = "SDIO_D0", A10 = "SDIO_D1", D11 = "SDIO_D2", A11 = "SDIO_D3", C10 = "SDIO_CK", B10 = "SDIO_CMD", B11 = "WL_REG_ON", B3 = "WL_HOST_WAKE", D10 = "BT_RST_N", C5 = "BT_WAKE", E1 = "BT_HOST_WAKE", P2 = "WL_LPO", D7 = "USART2_TX", E3 = "USART2_RX", C6 = "USART2_CTS", D6 = "USART2_RTS", B13 = "DSI_D0_P", A13 = "DSI_D0_N", B14 = "DSI_CK_P", A14 = "DSI_CK_N", B15 = "DSI_D1_P", A15 = "DSI_D1_N", B4 = "DSI_SCL", A2 = "DSI_SDA", W5 = "USART3_TX", V5 = "USART3_RX", U7 = "RS485_DE", U16 = "FDCAN1_TX", V17 = "FDCAN1_RX", V6 = "UART4_TX", W6 = "UART4_RX", G1 = "LED_HB", F2 = "LED_USR", R1 = "USER_BTN", T1 = "I2C4_SCL", T9 = "UART5_TX", T8 = "UART5_RX", W8 = "SPI5_SCK", W9 = "SPI5_MOSI", U10 = "SPI5_MISO", V9 = "SPI5_NSS", W3 = "PB0", W7 = "PE9", W10 = "PG7", V3 = "PB1", V7 = "PG10", V8 = "PD11", V10 = "PE10", T2 = "PC2", T3 = "PC3", T5 = "PA6", T7 = "PC0", T10 = "PE7", R4 = "PA4", P3 = "PA3", P4 = "PA5", T16 = "PA10", U9 = "PF10", T14 = "PG9" }
 group = "CORE"
@@ -1339,6 +1344,7 @@ nc = ["B1", "B5", "C1", "C2", "C4", "C7", "C8", "D2", "D3", "F1", "F3", "G3", "K
 [[parts]]
 ref = "U2"
 part = "MT41K256M16TW-107_P"
+lcsc = "C253882"
 value = "MT41K256M16TW-107:P"
 nets = { N3 = "DDR_A0", P7 = "DDR_A1", L7 = "DDR_A10", R7 = "DDR_A11", N7 = "DDR_A12", T3 = "DDR_A13", T7 = "DDR_A14", M7 = "DDR_A15", P3 = "DDR_A2", N2 = "DDR_A3", P8 = "DDR_A4", P2 = "DDR_A5", R8 = "DDR_A6", R2 = "DDR_A7", T8 = "DDR_A8", R3 = "DDR_A9", M2 = "DDR_BA0", N8 = "DDR_BA1", M3 = "DDR_BA2", K3 = "DDR_CASN", K9 = "DDR_CKE", K7 = "DDR_CLK_N", J7 = "DDR_CLK_P", L2 = "DDR_CSN", B8 = "DDR_DQ0", A7 = "DDR_DQ1", H3 = "DDR_DQ10", H8 = "DDR_DQ11", F8 = "DDR_DQ12", F2 = "DDR_DQ13", H7 = "DDR_DQ14", F7 = "DDR_DQ15", C2 = "DDR_DQ2", C8 = "DDR_DQ3", A3 = "DDR_DQ4", C3 = "DDR_DQ5", A2 = "DDR_DQ6", D7 = "DDR_DQ7", G2 = "DDR_DQ8", E3 = "DDR_DQ9", D3 = "DDR_DQM0", E7 = "DDR_DQM1", B7 = "DDR_DQS0_N", C7 = "DDR_DQS0_P", G3 = "DDR_DQS1_N", F3 = "DDR_DQS1_P", K1 = "DDR_ODT", J3 = "DDR_RASN", T2 = "DDR_RESETN", L3 = "DDR_WEN", A9 = "GND", B1 = "GND", B3 = "GND", B9 = "GND", D1 = "GND", D8 = "GND", E1 = "GND", E2 = "GND", E8 = "GND", F9 = "GND", G1 = "GND", G8 = "GND", G9 = "GND", J2 = "GND", J8 = "GND", M1 = "GND", M9 = "GND", P1 = "GND", P9 = "GND", T1 = "GND", T9 = "GND", L8 = "NetR26_2", A1 = "VDD_DDR", A8 = "VDD_DDR", B2 = "VDD_DDR", C1 = "VDD_DDR", C9 = "VDD_DDR", D2 = "VDD_DDR", D9 = "VDD_DDR", E9 = "VDD_DDR", F1 = "VDD_DDR", G7 = "VDD_DDR", H2 = "VDD_DDR", H9 = "VDD_DDR", K2 = "VDD_DDR", K8 = "VDD_DDR", N1 = "VDD_DDR", N9 = "VDD_DDR", R1 = "VDD_DDR", R9 = "VDD_DDR", H1 = "VREF_DDR", M8 = "VREF_DDR" }
 group = "CORE"
@@ -1347,6 +1353,7 @@ nc = ["J1", "J9", "L1", "L9"]
 [[parts]]
 ref = "U4"
 part = "STPMIC1APQR"
+lcsc = "C2156052"
 value = "STPMIC1APQR"
 nets = { 22 = "3V3", 27 = "3V3", 12 = "5V_VIN", 19 = "5V_VIN", 24 = "5V_VIN", 28 = "5V_VIN", 36 = "5V_VIN", 37 = "5V_VIN", 8 = "5V_VIN", 10 = "GND", 15 = "GND", 26 = "GND", 30 = "GND", 32 = "GND", 41 = "GND", 6 = "GND", 17 = "PONKEY", 40 = "NetC43_2", 7 = "NetL1_1", 11 = "NetL2_1", 29 = "NetL3_1", 25 = "NetL4_1", 33 = "NetR43_1", 1 = "NRST", 3 = "PMIC_SDA", 4 = "PMIC_SCL", 43 = "PMIC_INTN", 44 = "PWR_ON", 31 = "VDD", 42 = "VDD", 20 = "VDDA", 5 = "VDD_CORE", 13 = "VDD_DDR", 9 = "VDD_DDR", 39 = "VDD_USB", 16 = "VREF_DDR", 14 = "VTT_DDR", 45 = "GND", 38 = "VBUS_HOST" }
 group = "PMIC"
@@ -1355,6 +1362,7 @@ nc = ["2", "18", "21", "23", "34", "35"]
 [[parts]]
 ref = "U5"
 part = "KLM8G1GETF-B041"
+lcsc = "C499918"
 fp = "ST_EMMC153"
 value = "KLM8G1GETF-B041"
 nets = { E6 = "3V3", F5 = "3V3", J10 = "3V3", K9 = "3V3", A6 = "GND", C4 = "GND", E7 = "GND", G5 = "GND", H10 = "GND", J5 = "GND", K8 = "GND", N2 = "GND", N5 = "GND", P4 = "GND", P6 = "GND", C2 = "NetC82_2", K5 = "NetR40_1", M5 = "SDMMC2_CMD", M6 = "SDMMC2_CK", C6 = "VDD", M4 = "VDD", N4 = "VDD", P3 = "VDD", P5 = "VDD", A3 = "SDMMC2_D0", A4 = "SDMMC2_D1", A5 = "SDMMC2_D2", B2 = "SDMMC2_D3", B3 = "SDMMC2_D4", B4 = "SDMMC2_D5", B5 = "SDMMC2_D6", B6 = "SDMMC2_D7" }
@@ -1364,6 +1372,7 @@ nc = ["A1", "A2", "A7", "A8", "A9", "B1", "B7", "B8", "B9", "C1", "C3", "C5", "C
 [[parts]]
 ref = "Y1"
 part = "TAXM24M4RFBCCT2T"
+lcsc = "C164058"
 value = "24MHz"
 nets = { 1 = "HSE_IN", 3 = "HSE_OUT", 2 = "GND", 4 = "GND" }
 group = "SYS"
@@ -1392,6 +1401,7 @@ angle = 270
 [[parts]]
 ref = "Y4"
 part = "SC-32S32.768kHz20PPM7pF"
+lcsc = "C97604"
 value = "32.768kHz"
 nets = { 1 = "LSE_IN", 2 = "LSE_OUT" }
 group = "SYS"
@@ -1470,6 +1480,7 @@ pcb = [44.0, 4.0]
 [[parts]]
 ref = "SW1"
 part = "TS-1187A-B-A-B"
+lcsc = "C318884"
 value = "RESET"
 nets = { 1 = "NRST", 2 = "NRST", 3 = "GND", 4 = "GND" }
 group = "SYS"
@@ -1478,6 +1489,7 @@ pcb = [29.0, 4.0]
 [[parts]]
 ref = "SW2"
 part = "TS-1187A-B-A-B"
+lcsc = "C318884"
 value = "USER"
 nets = { 1 = "USER_BTN", 2 = "USER_BTN", 3 = "GND", 4 = "GND" }
 group = "SYS"
@@ -1494,6 +1506,7 @@ group = "SYS"
 [[parts]]
 ref = "B1"
 part = "TS-1187A-B-A-B"
+lcsc = "C318884"
 value = "POWER"
 nets = { 1 = "GND", 2 = "GND", 3 = "PONKEY", 4 = "PONKEY" }
 group = "PMIC"
@@ -1550,6 +1563,7 @@ group = "LED"
 [[parts]]
 ref = "J1"
 part = "TYPE-C-31-M-12"
+lcsc = "C165948"
 value = "USB-C"
 nets = { A4B9 = "5V_VIN", B4A9 = "5V_VIN", A1B12 = "GND", B1A12 = "GND", A5 = "CC1", B5 = "CC2", A6 = "OTG_C_DP", B6 = "OTG_C_DP", A7 = "OTG_C_DM", B7 = "OTG_C_DM", 1 = "GND", 2 = "GND", 3 = "GND", 4 = "GND" }
 nc = ["A8", "B8"]
@@ -1578,6 +1592,7 @@ angle = 90
 [[parts]]
 ref = "U10"
 part = "USBLC6-2SC6"
+lcsc = "C2827654"
 value = "USBLC6-2SC6"
 nets = { 1 = "OTG_DM", 6 = "OTG_C_DM", 3 = "OTG_DP", 4 = "OTG_C_DP", 5 = "5V_VIN", 2 = "GND" }
 group = "USBC"
@@ -1606,6 +1621,7 @@ side = "bottom"
 [[parts]]
 ref = "J2"
 part = "U-USBAR04P-F002"
+lcsc = "C386736"
 value = "USB-A"
 nets = { 1 = "VBUS_HOST", 2 = "USBH_A_DM", 3 = "USBH_A_DP", 4 = "GND", 5 = "GND", 6 = "GND" }
 group = "USBA"
@@ -1615,6 +1631,7 @@ angle = 180
 [[parts]]
 ref = "U11"
 part = "USBLC6-2SC6"
+lcsc = "C2827654"
 value = "USBLC6-2SC6"
 nets = { 6 = "USBH_DM", 1 = "USBH_A_DM", 4 = "USBH_DP", 3 = "USBH_A_DP", 5 = "VBUS_HOST", 2 = "GND" }
 group = "USBA"
@@ -1640,6 +1657,7 @@ group = "USBA"
 [[parts]]
 ref = "U12"
 part = "LAN8742A-CZ-TR"
+lcsc = "C621424"
 value = "LAN8742A"
 nets = { 1 = "VDDA_PHY", 19 = "VDDA_PHY", 9 = "3V3", 6 = "PHY_VDDCR", 25 = "GND", 4 = "PHY_XO", 5 = "PHY_XI", 7 = "ETH_RXD1", 8 = "ETH_RXD0", 11 = "ETH_CRS_DV", 12 = "ETH_MDIO", 13 = "ETH_MDC", 14 = "PHY_REFCLK", 15 = "ETH_NRST", 16 = "ETH_TX_EN", 17 = "ETH_TXD0", 18 = "ETH_TXD1", 20 = "ETH_TXN", 21 = "ETH_TXP", 22 = "ETH_RXN", 23 = "ETH_RXP", 24 = "PHY_RBIAS", 2 = "PHY_LED2", 3 = "PHY_LED1" }
 nc = ["10"]
@@ -1650,6 +1668,7 @@ angle = 180
 [[parts]]
 ref = "Y2"
 part = "X322525MOB4SI"
+lcsc = "C9006"
 value = "25MHz"
 nets = { 1 = "PHY_XI", 3 = "PHY_XO", 2 = "GND", 4 = "GND" }
 group = "ETH"
@@ -1850,6 +1869,7 @@ pcb = [66.1, 23.7]
 [[parts]]
 ref = "J3"
 part = "HR911130A"
+lcsc = "C54408"
 value = "HR911130A"
 nets = { P2 = "ETH_TXP", P3 = "ETH_TXN", P4 = "ETH_RXP", P7 = "ETH_RXN", P1 = "VDDA_PHY", P10 = "GND", SHIELD0 = "GND", SHIELD1 = "GND", 11 = "ETH_LEDG_A", 12 = "GND", 14 = "ETH_LEDY_A", 13 = "GND" }
 nc = ["P5", "P6", "P8", "P9"]
@@ -1860,6 +1880,7 @@ angle = 180
 [[parts]]
 ref = "U13"
 part = "AP6212"
+lcsc = "C2798300"
 value = "AP6212"
 nets = { 9 = "3V3", 22 = "VDD", 21 = "WL_LDO_SW", 23 = "WL_VIN_LDO", 10 = "WL_XI", 11 = "WL_XOUT", 12 = "WL_REG_ON", 13 = "WL_HOST_WAKE", 14 = "SDIO_D2", 15 = "SDIO_D3", 16 = "SDIO_CMD", 17 = "SDIO_CK", 18 = "SDIO_D0", 19 = "SDIO_D1", 24 = "WL_LPO", 6 = "BT_WAKE", 7 = "BT_HOST_WAKE", 34 = "BT_RST_N", 41 = "USART2_CTS", 42 = "USART2_RX", 43 = "USART2_TX", 44 = "USART2_RTS", 2 = "WL_ANT", 1 = "GND", 3 = "GND", 20 = "GND", 31 = "GND", 33 = "GND", 36 = "GND" }
 group = "WIFI"
@@ -1870,6 +1891,7 @@ nc = ["4", "5", "8", "25", "26", "27", "28", "29", "30", "32", "35", "37", "38",
 [[parts]]
 ref = "L101"
 part = "SWPA3015S4R7MT"
+lcsc = "C19398"
 value = "4.7uH"
 nets = { 1 = "WL_LDO_SW", 2 = "WL_VIN_LDO" }
 group = "WIFI"
@@ -1917,6 +1939,7 @@ group = "WIFI"
 [[parts]]
 ref = "Y3"
 part = "X322526MQB4SI"
+lcsc = "C70573"
 value = "26MHz"
 nets = { 1 = "WL_XI", 3 = "WL_XO", 2 = "GND", 4 = "GND" }
 group = "WIFI"
@@ -1956,6 +1979,7 @@ group = "WIFI"
 [[parts]]
 ref = "J4"
 part = "U.FL-R-SMT-1(80)"
+lcsc = "C88374"
 value = "U.FL"
 nets = { 1 = "WL_RF", 2 = "GND", 3 = "GND" }
 group = "WIFI"
@@ -2005,6 +2029,7 @@ group = "WIFI"
 [[parts]]
 ref = "J6"
 part = "1.0mm-15P LT"
+lcsc = "C7529394"
 value = "DSI"
 nets = { 1 = "GND", 2 = "DSI_D1_N", 3 = "DSI_D1_P", 4 = "GND", 5 = "DSI_CK_N", 6 = "DSI_CK_P", 7 = "GND", 8 = "DSI_D0_N", 9 = "DSI_D0_P", 10 = "GND", 11 = "DSI_SCL", 12 = "DSI_SDA", 13 = "GND", 14 = "3V3", 15 = "3V3", 16 = "GND", 17 = "GND" }
 group = "DSI"
@@ -2038,6 +2063,7 @@ group = "DSI"
 [[parts]]
 ref = "U14"
 part = "SP3485EN-L_TR"
+lcsc = "C8963"
 value = "SP3485EN"
 nets = { 1 = "USART3_RX", 2 = "RS485_DE", 3 = "RS485_DE", 4 = "USART3_TX", 5 = "GND", 6 = "RS485_A", 7 = "RS485_B", 8 = "3V3" }
 group = "RS485"
@@ -2070,6 +2096,7 @@ group = "RS485"
 [[parts]]
 ref = "J7"
 part = "KF2EDGV-3.81-3P"
+lcsc = "C441333"
 value = "RS485"
 nets = { 1 = "RS485_A", 2 = "RS485_B", 3 = "GND" }
 group = "RS485"
@@ -2078,6 +2105,7 @@ pcb = [78.2, 4.0]
 [[parts]]
 ref = "U15"
 part = "TJA1051T_3_1J"
+lcsc = "C38695"
 value = "TJA1051T/3"
 nets = { 1 = "FDCAN1_TX", 2 = "GND", 3 = "5V_VIN", 4 = "FDCAN1_RX", 5 = "3V3", 6 = "CANL", 7 = "CANH", 8 = "GND" }
 group = "CAN"
@@ -2110,6 +2138,7 @@ group = "CAN"
 [[parts]]
 ref = "J8"
 part = "KF2EDGV-3.81-3P"
+lcsc = "C441333"
 value = "CAN"
 nets = { 1 = "CANH", 2 = "CANL", 3 = "GND" }
 group = "CAN"
@@ -2128,6 +2157,7 @@ pcb = [88.7, 4.0]
 [[parts]]
 ref = "J11"
 part = "2.54-2_20P"
+lcsc = "C5124634"
 value = "GPIO"
 nets = { 1 = "3V3", 2 = "5V_VIN", 3 = "I2C4_SCL", 4 = "5V_VIN", 5 = "I2C4_SDA", 6 = "GND", 7 = "UART5_TX", 8 = "UART5_RX", 9 = "GND", 10 = "SPI5_SCK", 11 = "SPI5_MOSI", 12 = "SPI5_MISO", 13 = "SPI5_NSS", 14 = "GND", 15 = "PB0", 16 = "PE9", 17 = "3V3", 18 = "PG7", 19 = "PB1", 20 = "GND", 21 = "PG10", 22 = "PD11", 23 = "PE10", 24 = "PC2", 25 = "GND", 26 = "PC3", 27 = "PA6", 28 = "PC0", 29 = "PE7", 30 = "GND", 31 = "PA4", 32 = "PA3", 33 = "PA5", 34 = "GND", 39 = "GND" }
 group = "IO"
