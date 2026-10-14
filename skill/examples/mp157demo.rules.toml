@@ -1,0 +1,33 @@
+# MP157Demo: rules of route / drc / check (easyedatool … --rules rules/mp157demo.rules.toml)
+# ST's core keeps its own copper ([nets] keep: every net); the router adds the peripherals' tracks.
+grid = 0.1
+clearance = 0.1
+track = 0.1
+power_track = 0.3
+via_diameter = 0.4
+via_drill = 0.2
+via_spacing = 0.6
+edge = 0.4
+# more rip-up rounds: each attempt keeps its best round (16: 527 against 525 with 8 on the old placement)
+rip_passes = 16
+# a net may be ripped this often per attempt (8: FDCAN1_RX was left blocked by VDD_DDR, ripped 8 times): 529 -> 532
+rip_max = 16
+# one more whole round with the unrouted first (the three more of the default gave nothing on this board, 22 min)
+restarts = 1
+# signals on inner 2 too (the 3V3 pour fills round them; ST's power islands there stay whole, vias pass them);
+# inner 1 stays a whole ground plane
+layers = ["top", "inner2", "bottom"]
+
+[nets]
+# the other nets ST joins through copper areas (inner-2 islands, switch nodes) the router joins the same way
+pour = ["GND", "3V3"]
+power = ["5V_VIN", "VDD", "VBUS_HOST", "VDDA_PHY", "WL_VIN_LDO", "WL_LDO_SW"]
+keep = ["*"]
+# the long lines across the board first (USB, CAN, the debug UART, RS485): they take the clear ways
+first = ["FDCAN1_RX", "PA10", "WL_LPO", "USBH_DP", "USBH_DM", "OTG_DP", "OTG_DM", "FDCAN1_TX", "UART4_TX", "UART4_RX", "USART3_TX", "USART3_RX", "RS485_DE"]
+
+[check]
+allow_outside = ["J1", "J2", "J3"]
+# the placement review leaves ST's parts (AN5122, one- and two-digit designators) where ST has them: the DDR's
+# terminations at the end of their lines, the PMIC's parts by its pins
+layout_skip = ["R?", "R??", "C?", "C??", "L?", "U?"]

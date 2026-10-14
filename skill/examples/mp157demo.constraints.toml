@@ -1,0 +1,126 @@
+# Differential pairs of the MP157 demo board (easyedatool constraints --from ... --write; pair; tune; drc).
+# Stack-up JLC04161H-3313 (as ST's board: 0.0994 mm prepreg of Dk 4.1 under the outer layers, inner 1 a solid GND
+# plane under the top layer): the widths come from the impedance as EasyEDA's calculator works them out.
+
+# USB 2.0 (high speed), the MPU to the ESD parts: 90 ohm
+[[pair_rule]]
+name = "USB_90"
+impedance = 90
+gap = 0.15
+# necked down at the MPU's balls and the ESD / connector pads
+width_min = 0.1
+gap_min = 0.1
+skew = 0.15
+
+# MIPI DSI: 100 ohm
+[[pair_rule]]
+name = "DIFF_100"
+impedance = 100
+gap = 0.15
+width_min = 0.1
+gap_min = 0.1
+skew = 0.15
+
+# the USB lines from the ESD parts to the connectors: a few millimetres the router lays (too tight for the pair
+# router between the USBLC6 and the connector's pads); the USB-C's D+ / D- on both rows of pins, so the nets' lengths
+# carry the second row's stub
+[[pair_rule]]
+name = "USB_ESD"
+width = 0.1
+width_min = 0.1
+width_max = 0.18
+gap = 0.15
+gap_min = 0.1
+skew = 2.0
+
+# 100BASE-TX between the PHY and the RJ45's magnetics: 6 mm the router lays, each line with its termination to
+# VDDA_PHY hanging on (the nets' lengths carry that branch); at 100 Mbit the skew of a few millimetres is nothing
+[[pair_rule]]
+name = "ETH_100M"
+width = 0.1
+width_min = 0.1
+width_max = 0.15
+gap = 0.15
+gap_min = 0.1
+skew = 6.0
+
+# ST's DDR pairs as ST routed them (0.1 / 0.13 mm; ST's own lengths, 0.4 mm apart in the DQS pairs)
+[[pair_rule]]
+name = "DDR_ST"
+width = 0.1
+width_min = 0.09
+gap = 0.13
+gap_min = 0.12
+skew = 0.5
+
+[[pair]]
+name = "USBH"
+positive = "USBH_DP"
+negative = "USBH_DM"
+rule = "USB_90"
+
+[[pair]]
+name = "OTG"
+positive = "OTG_DP"
+negative = "OTG_DM"
+rule = "USB_90"
+
+[[pair]]
+name = "OTG_C"
+positive = "OTG_C_DP"
+negative = "OTG_C_DM"
+rule = "USB_ESD"
+
+[[pair]]
+name = "USBH_A"
+positive = "USBH_A_DP"
+negative = "USBH_A_DM"
+rule = "USB_ESD"
+
+[[pair]]
+name = "DSI_CK"
+positive = "DSI_CK_P"
+negative = "DSI_CK_N"
+rule = "DIFF_100"
+
+[[pair]]
+name = "DSI_D0"
+positive = "DSI_D0_P"
+negative = "DSI_D0_N"
+rule = "DIFF_100"
+
+[[pair]]
+name = "DSI_D1"
+positive = "DSI_D1_P"
+negative = "DSI_D1_N"
+rule = "DIFF_100"
+
+[[pair]]
+name = "ETH_TX"
+positive = "ETH_TXP"
+negative = "ETH_TXN"
+rule = "ETH_100M"
+
+[[pair]]
+name = "ETH_RX"
+positive = "ETH_RXP"
+negative = "ETH_RXN"
+rule = "ETH_100M"
+
+[[pair]]
+name = "DDR_CLK"
+positive = "DDR_CLK_P"
+negative = "DDR_CLK_N"
+rule = "DDR_ST"
+
+[[pair]]
+name = "DDR_DQS0"
+positive = "DDR_DQS0_P"
+negative = "DDR_DQS0_N"
+rule = "DDR_ST"
+
+[[pair]]
+name = "DDR_DQS1"
+positive = "DDR_DQS1_P"
+negative = "DDR_DQS1_N"
+rule = "DDR_ST"
