@@ -44,7 +44,7 @@ easyedatool/
   viewer/               窗口及运行文件；不要单独移动里面的 exe 或 app
   SKILL.md              给 AI 的使用说明
   references/           全部命令参数、设计格式、规则格式、与 EDA 配合
-  examples/             MP157 示例、规则及所需元件库
+  examples/             简单自测、MP157 参考示例、规则及所需元件库
   build/st/board.PcbDoc  MP157 示例引用的 AN5122 参考板
   AGENTS.md             引导 AI 先读 SKILL.md
   README.md             人看的安装和使用说明

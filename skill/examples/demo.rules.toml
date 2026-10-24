@@ -1,0 +1,10 @@
+# examples/demo.toml 生成的板子的布线 / DRC 规则。通用参数用默认值（见 src/route/rules.rs）。
+
+[nets]
+pour = ["GND"]
+power = ["VIN", "+3V3"]
+
+# 和设计文件里的禁布区同一块（布线器按这里的规则避让）
+[[keepout]]
+name = "CORNER_KEEPOUT"
+rect = [26.0, 16.0, 30.0, 20.0]

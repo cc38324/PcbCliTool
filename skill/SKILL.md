@@ -195,7 +195,7 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 - **把 OrCAD 原理图搬进嘉立创**（原厂参考设计、老图纸）：`easyedatool orcad X.DSN` 先看摘要（「读不了的：0 处」才算读全，新格式和 16.2 老格式都认；报「no pages to import」说明给的是库文件或读不懂的版本，把摘要原样告诉用户）→ `easyedatool orcad X.DSN --out <空文件夹>`（文件夹名就是工程名，嘉立创按文件夹名认工程，别另给不一样的 `--name`）。看输出的「连接自检」：「断开的网络 0，短到一起的 0」才算对；「注意」里的重复位号、符号改过的器件、隐藏电源脚照实转告用户。再 `render <工程> --view sch` 出图看，用户手上有 OrCAD 导出的 PDF 就对着看。
 - **查功率器件发热、走线载流**（开关电源、大功率驱动板）：在规则文件里写 `[thermal]`（格式见 `references/rules-format.md`）。器件参数照数据手册抄（常用件放进元件库 part.toml 的 `[thermal]`，以后不用再抄），工况（电流有效值、开关频率、关断电压电流……）问用户或按电路算，**别编**，估的数在结果里照实说是估的。大电流网络写 `from` / `to`（电流从哪个脚进、哪个脚出），工具把走线、过孔、铺铜当电阻网解出每段电流；只给电流的网络是按整网电流的保守估算。看结果：器件「超」的看是哪项损耗大（导通 / 开关 / Coss）和热阻怎么取的；网络「超」的照报出的位置加宽走线、加铜、多打过孔，改完再跑。要看整块板哪里热、器件挤在一起互相加热多少：加 `--map 热分布.png`（能看图就看图；预览窗口开着时温度直接叠在板上），器件有 ψJB 的写 `psi_jb` 才有板温 + ψJB 的结温；板面换热系数默认静止空气，装在密闭小壳里、有风扇的要问用户再改 `h_top` / `h_bottom`，结果照实说是估算。
 - **查开关电源的版图**（DC-DC、PMIC、反激）：先 `easyedatool smps <工程> --suggest --png 电源.png`。看认出来的每路电源（芯片、电感、开关节点、回路里的电容）对不对，不对就把 `--suggest` 打出来的那段贴进规则文件的 `[smps]` 改，再加 `--rules` 跑。看结果：热回路「超」的看那几段——「绕远了：直线只有 x mm，中间隔着 …」说的就是挡住回流的铜（顶层被开关节点隔开、底层的地被别的线切开），建议把输入电容挪到芯片的 VIN 和 GND 脚边上、地平面别让走线切断；开关节点「过孔 / 多层」的能不跨层就不跨；安静网络挨太近的把 FB 走线挪开或换到隔着地平面的层；去耦不合格的就近加电容或把地打到最近的地平面。能看图就看 `电源.png` 和每路的放大图。数值是版图几何，不是仿真，照实说。
-- **查高速线的反射和串扰**（DDR、SDIO / eMMC、SPI、时钟……）：先 `easyedatool impedance <工程>` 看叠层像不像真的（导入的板子常是默认叠层：每层介质一样厚）。问用户要板厂的叠层单（叠层阻抗表），照抄进规则文件 `[stackup]`；介电常数没写就拿阻抗表的一行反推（`impedance --stackup 规则.toml --layer 1 --field --width …` 对上它的阻抗）。驱动参数照芯片手册（上升时间、驱动强度 / 输出阻抗、片内端接、脚电容；差分接口的接收端差分端接写 `r_diff`，比如 MIPI / LVDS 100 Ω，USB 高速每根 45 Ω 写 `odt`），按网络分组写进规则文件 `[[si.group]]`（格式见 `references/rules-format.md`），没有就照实说用的是通用值。跑 `easyedatool si <工程> --rules 规则.toml --xtalk --png 波形.png`，看驱动脚对不对（输出里写了按什么定的），能看图就看图。过冲超的：加串联电阻（驱动端）或端接、减小线长 / 残桩、让阻抗连续（看「阻抗和主体差 15 % 以上的段」）；串扰超的：拉开间距（3 倍线宽以上）、缩短并排长度、换到带状线层、中间加地。用户要核对仿真本身时加 `--spice 文件夹` 再跑 `python tools/verify_si/compare.py 文件夹`（要装 KiCad）。没有 IBIS 时结果是线性通用模型、无损线，照实说。
+- **查高速线的反射和串扰**（DDR、SDIO / eMMC、SPI、时钟……）：先 `easyedatool impedance <工程>` 看叠层像不像真的（导入的板子常是默认叠层：每层介质一样厚）。问用户要板厂的叠层单（叠层阻抗表），照抄进规则文件 `[stackup]`；介电常数没写就拿阻抗表的一行反推（`impedance --stackup 规则.toml --layer 1 --field --width …` 对上它的阻抗）。驱动参数照芯片手册（上升时间、驱动强度 / 输出阻抗、片内端接、脚电容；差分接口的接收端差分端接写 `r_diff`，比如 MIPI / LVDS 100 Ω，USB 高速每根 45 Ω 写 `odt`），按网络分组写进规则文件 `[[si.group]]`（格式见 `references/rules-format.md`），没有就照实说用的是通用值。跑 `easyedatool si <工程> --rules 规则.toml --xtalk --png 波形.png`，看驱动脚对不对（输出里写了按什么定的），能看图就看图。过冲超的：加串联电阻（驱动端）或端接、减小线长 / 残桩、让阻抗连续（看「阻抗和主体差 15 % 以上的段」）；串扰超的：拉开间距（3 倍线宽以上）、缩短并排长度、换到带状线层、中间加地。用户要核对仿真本身时加 `--spice 文件夹` 导出电路和波形，供外部 SPICE 工具复算；帮助里提到的 `tools/verify_si/compare.py` 是维护者的验证脚本，不随安装包提供，不能要求用户直接运行包内不存在的文件。没有 IBIS 时结果是线性通用模型、无损线，照实说。
 - **用 IBIS 仿真**：芯片厂给的 .ibs 先 `easyedatool ibis 文件.ibs` 看器件名、脚、模型、波形重算差（> 1 % 先别用）。绑进元件库：文件放 `<库>/sim/<型号>/`，part.toml 加 `[sim] ibis = "sim/<型号>/x.ibs"`、`ibis_component = "<[Component] 名>"`（封装焊盘号和 IBIS 脚名不一样时 `[sim.ibis_pins]` 焊盘 = 脚名），`easyedatool lib check <件>` 看「IBIS …：[Component] …，N 个信号脚有模型」和焊盘对不对得上。板子上的器件要能认回库里的件（gen 用库件生成的自带料号 / Manufacturer Part / 立创编号属性；别的板子没有就在规则 `[si.parts.U1] part = "料号"` 或直接 `ibis = "文件"`）。`si` 自动找库（`--lib`、环境变量、工程旁边的 `easyedatool.toml`）。DDR 这类 I/O 脚：驱动强度写分组 `model`，片内端接（ODT）写 `rx_model`（都是 IBIS 里 `[Model Selector]` 的模型名）。IBIS 文件一般有保密协议：放公司元件库，不进别的仓库。
 - **找某个器件 / 网络**：`pads --part U3`；`render --view layers --net SPI_MOSI --window x0,y0,x1,y1 --ppmm 60`。
 
@@ -216,13 +216,15 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 
 ## 快速自测（第一次用、或怀疑环境有问题时）
 
-在一个临时文件夹里跑（`<目录>` 换成真实路径，`examples/` 在本目录下）：
+使用包内简单示例 `examples/demo.toml`（电源、LDO 和 LED），输出到临时文件夹。当前目录应是安装包的 `easyedatool/`；`<目录>` 换成真实路径，`easyedatool` 换成程序完整路径或已配置在 PATH 中的命令。
 
-```
-easyedatool gen examples/mp157demo.toml --out <目录>/MP157Demo
-easyedatool check <目录>/MP157Demo --rules examples/mp157demo.rules.toml
-easyedatool route <目录>/MP157Demo --rules examples/mp157demo.rules.toml
-easyedatool drc <目录>/MP157Demo --rules examples/mp157demo.rules.toml
+```text
+easyedatool gen examples/demo.toml --out <目录>/Demo
+easyedatool check <目录>/Demo --rules examples/demo.rules.toml
+easyedatool route <目录>/Demo --rules examples/demo.rules.toml
+easyedatool drc <目录>/Demo --rules examples/demo.rules.toml
 ```
 
-应当：`gen` 打出工程路径，原理图自检「出图框 0，压标题栏 0，重叠 0」；`check` 「全部通过」。23 个元件库器件的符号和封装在 `examples/lib`，`examples/easyedatool.toml` 指向它。`route` 用的规则写了 `keep = ["*"]`，已有走线留着，只补没连上的。
+应当：`gen` 写出工程；`check` 报「逐脚差异 0」；`route` 报「连接 5，布通 5，没布通 0」；最后 `drc` 电气检查全部通过，包括间距、板边、禁布区、连通和悬空检查。该简单示例可能仍有原有的 6 项丝印字高警告，这与电气检查通过分开记录，不能称为所有工艺项零警告；用于生产前仍须处理。
+
+`examples/mp157demo.toml` 是复杂的 STM32MP157 参考示例，不用它判断安装是否成功，也不保证它的 `check` / `route` / `drc` 全部通过。它的 23 个元件库器件在 `examples/lib`，`examples/easyedatool.toml` 指向该库，参考布局在 `build/st/board.PcbDoc`。MP157 规则中的 `keep = ["*"]` 保留已有走线，仅补未连接项；运行后按实际报告处理未布通、布局或规则问题，不能把参考布局当成已验收成品。

@@ -1,0 +1,127 @@
+# easyedatool gen 的小例子：5 V 进、LDO 出 3.3 V、点一个灯。
+#   easyedatool gen examples\demo.toml --out <文件夹>\Demo
+#   easyedatool check <文件夹>\Demo
+#   easyedatool route <文件夹>\Demo --rules examples\demo.rules.toml
+#   easyedatool drc <文件夹>\Demo --rules examples\demo.rules.toml
+#   easyedatool render <文件夹>\Demo --view top
+# 板子坐标 mm（y 向上），原理图坐标是 EDA 的图纸单位（10 mil）。
+
+[project]
+name = "Demo"
+time = "2026-09-25 12:00:00"      # 固定时间：同一份设计每次生成一模一样的文件
+
+[board]
+outline = [[0, 0], [30, 0], [30, 20], [0, 20]]
+
+# 自建符号：left / right 两列引脚（连接点在 x = -50 / +50，间距 10）；ic = true 的在原理图块里靠左竖排
+[[symbols]]
+name = "LDO3"
+designator = "U"
+description = "3-pin LDO (1 GND, 2 OUT, 3 IN)"
+ic = true
+left = [["3", "IN"], ["1", "GND"]]
+right = [["2", "OUT"]]
+
+[[symbols]]
+name = "PWR2"
+designator = "J"
+description = "2-pin power input"
+ic = true
+left = [["1", "VIN"], ["2", "GND"]]
+
+# 自建封装：焊盘 [脚号, x, y, 宽, 高] 或带钻孔 [脚号, x, y, 宽, 高, 孔径]，外形 [x, y, 宽, 高]（左下角和尺寸）
+[[footprints]]
+name = "SOT23_3"
+designator = "U"
+description = "SOT-23"
+pads = [["1", -0.95, -1.0, 0.9, 1.1], ["2", 0.95, -1.0, 0.9, 1.1], ["3", 0, 1.0, 0.9, 1.1]]
+outline = [-1.7, -1.85, 3.4, 3.7]   # 画成丝印：离焊盘阻焊开窗留 0.15 mm（drc 的丝印检查）
+
+[[footprints]]
+name = "HDR2_2R54"
+designator = "J"
+description = "2-pin header 2.54"
+pads = [["1", 0, 0, 1.7, 1.7, 1.0], ["2", 2.54, 0, 1.7, 1.7, 1.0]]
+outline = [-1.27, -1.27, 5.08, 2.54]
+
+# 功能块：原理图按块分框排版；没给板上位置的器件按块的区域 [x0, y0, x1, y1] 自动排
+[[blocks]]
+name = "PWR"
+title = "5V in -> LDO 3V3 -> LED"
+regions = [[13, 4, 28, 16]]
+
+# 器件：RES / CAP / LED 符号和 R0603 / C0603 / LED0603 封装是内置的
+[[parts]]
+ref = "J1"
+sym = "PWR2"
+fp = "HDR2_2R54"
+value = "5V in"
+nets = { 1 = "VIN", 2 = "GND" }
+group = "PWR"
+pcb = [3.5, 8.7]
+angle = 90
+
+[[parts]]
+ref = "U1"
+sym = "LDO3"
+fp = "SOT23_3"
+value = "AMS1117-3.3"
+nets = { 3 = "VIN", 1 = "GND", 2 = "+3V3" }
+group = "PWR"
+pcb = [9, 10]
+
+[[parts]]
+ref = "C1"
+sym = "CAP"
+fp = "C0603"
+value = "1uF"
+nets = { 1 = "VIN", 2 = "GND" }
+group = "PWR"
+
+[[parts]]
+ref = "C2"
+sym = "CAP"
+fp = "C0603"
+value = "10uF"
+nets = { 1 = "+3V3", 2 = "GND" }
+group = "PWR"
+
+[[parts]]
+ref = "R1"
+sym = "RES"
+fp = "R0603"
+value = "1k"
+nets = { 1 = "+3V3", 2 = "LEDA" }
+group = "PWR"
+
+[[parts]]
+ref = "LED1"
+sym = "LED"
+fp = "LED0603"
+value = "green"
+nets = { 1 = "LEDA", 2 = "GND" }     # LED：1 = 阳极，2 = 阴极
+group = "PWR"
+
+# 铺铜：多边形（自动写成顺时针并闭合，EDA 要求）或矩形 [x, y, 宽, 高]
+[[pours]]
+net = "GND"
+layer = 1
+polygon = [[0.5, 0.5], [29.5, 0.5], [29.5, 19.5], [0.5, 19.5]]
+
+[[pours]]
+net = "GND"
+layer = 2
+rect = [0.5, 0.5, 29, 19]
+
+# 禁布区 [x0, y0, x1, y1]
+[[regions]]
+name = "CORNER_KEEPOUT"
+layer = 1
+rect = [26, 16, 30, 20]
+prohibit = ["TRACK", "VIA"]
+
+# 丝印字：中心位置和字高（mm）
+[[texts]]
+text = "DEMO 3V3"
+at = [20, 18]
+size = 1.5
