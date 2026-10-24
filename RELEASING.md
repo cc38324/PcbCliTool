@@ -1,9 +1,9 @@
 # 维护者发布步骤
 
-本仓库只发布用户文档、示例、Homebrew Formula 和编译好的安装包。构建使用的源码仓库与本仓库分别提交；开始升级前先提交已有改动，记录用于本次发布的源码提交和文档提交。
+本仓库只发布用户文档、示例、Homebrew Formula 和编译好的安装包。构建使用的源码仓库与本仓库分别提交；开始升级前先提交已有改动，分别记录用于本次发布的 CLI、窗口和文档提交。
 
-1. 确定版本和产物清单。Windows 完整 ZIP、安装程序，macOS Apple 芯片完整 ZIP、仅 CLI 的 tar.gz，Linux amd64 DEB 应来自同一个源码提交。不要把构建目录、源码归档、内部路径或凭据作为 Release 附件。
-2. 完成该提交的 Rust 测试；有窗口的包完成 Flutter 分析、测试、平台构建和窗口启动检查。解开最终安装包，使用包内程序跑 `--version`、`--help`，按 `skill/SKILL.md` 的快速自测在临时目录验证。记录实际结果，不沿用旧版测试数字。
+1. 确定版本和产物清单。Windows 完整 ZIP、安装程序，macOS Apple 芯片完整 ZIP、仅 CLI 的 tar.gz，Linux amd64 DEB / 完整 tar.gz 的每个组件均固定到明确提交，并在包内记录 `CLI_SOURCE`、`VIEWER_SOURCE` 和文档来源。各平台相同组件使用相同提交；若仅窗口变更而 Rust 源码及依赖未变，可保留已验证 CLI，单独重建窗口，并在发布说明中解释两个来源的差异。仅文档变化不要求重新编译 CLI，但要重新组装受影响的包并计算校验和。不要把构建目录、源码归档、内部路径或凭据作为 Release 附件。
+2. 对 CLI 来源提交完成 Rust 测试；对窗口来源提交完成 Flutter 分析、测试、各平台构建和窗口启动检查，并记录 Flutter / Dart 版本和依赖锁文件状态。解开最终安装包，使用包内程序跑 `--version`、`--help`，按 `skill/SKILL.md` 的简单 Demo 快速自测在临时目录验证。实际打开 PCB 和带 `--page` 的原理图窗口，查看截图及异常日志；Windows 安装程序与 ZIP 核对安装文件，Linux 验证旧版升级并记录系统及 glibc。记录组件测试和最终成品验证各自的实际结果，不能把重建前旧包的通过记录当作最终包验证。
 3. 同步本仓库中英文 README、`skill/INSTALL.md`、通用 SKILL 内容和命令 / 格式参考。保留公开 MP157 教程、`skill/examples/lib`、`skill/build/st/board.PcbDoc` 及它们的相对路径。检查命令参考确实由本次程序生成。
 4. 组装完整包时使用公开文档和示例；检查压缩包内没有源码仓库说明、内部地址或本机路径。macOS CLI tar.gz 的根目录必须直接包含 `easyedatool`，与 Formula 的安装逻辑一致。
 5. 为最终附件计算 SHA256，验证 ZIP、tar.gz、DEB 可解包，核对包内版本。将 macOS CLI tar.gz 的实际 SHA256 写入 `Formula/easyedatool.rb`，同时更新 URL、版本和 Formula 的版本测试。禁止填写占位校验值。
