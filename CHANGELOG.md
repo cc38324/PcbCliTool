@@ -12,7 +12,7 @@
 - 修复使用 `--page` 打开原理图时，页面列表尚未异步加载完成导致的越界；增加两个窗口回归测试，覆盖指定第 1 页和第 99 页、页面列表尚未到达时的加载状态。
 - 设计文件支持贴片焊盘间专用间距和本工程的库封装修孔；共享库保持原样。
 
-完整 Windows 和 macOS ZIP、Linux DEB 带桌面预览；另附 [Linux x64 完整 tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-linux-x64.tar.gz)，同样包含 CLI、窗口及使用文档。macOS Homebrew / tar.gz 只提供 CLI。winget 官方源尚未确认收录本版，直接下载 [v0.2.1 附件](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)。APT 源的本版发布状态仍须在发布后单独验证，不属于下面的安装包验证结果。
+完整 Windows 和 macOS ZIP、Linux DEB 带桌面预览；另附 [Linux x64 完整 tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-linux-x64.tar.gz)，同样包含 CLI、窗口及使用文档。macOS Homebrew / tar.gz 只提供 CLI。winget 官方源尚未确认收录本版，直接下载 [v0.2.1 附件](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)。APT 源已完成发布后核验：公网 `0.2.1-1` 包 SHA256 与发布产物一致，`InRelease` 和 `Release.gpg` 签名、索引哈希均通过；干净 Ubuntu 22.04 环境中 `apt-get update` 成功，候选版本为 `0.2.1-1`，依赖模拟安装可以解析。
 
 ### 验证记录
 
@@ -26,6 +26,8 @@
 | Windows x64 | 最终安装程序安装后的文件与 ZIP 逐文件一致；PCB 和原理图实际窗口截图已查看，显示正常，日志无 Dart 异常 |
 | macOS arm64 | 最终 ZIP 的 Demo 自测通过；实际打开 PCB 和原理图窗口核对正常 |
 | Linux x64 | 在 Ubuntu 22.04 / glibc 2.35 容器中，从 `0.2.0-2` 升级到 `0.2.1-1` 后完成同样自测；Xvfb 下 PCB 和原理图窗口正常，只有环境 ATK 提示 |
+| Homebrew | macOS Homebrew 7.0.9 使用独立缓存 `brew fetch` 下载 0.2.1，SHA256 匹配；Formula Ruby 语法检查通过；未改动本机已安装版本 |
+| GitHub Release 附件 | 全部 8 个公开附件已重新下载，逐个哈希核验通过 |
 
 简单 Demo 的电气检查通过与原有 6 项丝印字高警告分开记录。不能把测试通过或示例布通等同于任意工程已经具备生产条件。
 
@@ -43,10 +45,12 @@ This release improves general PCB routing cleanup, checks, and the desktop viewe
 - Opening a schematic with `--page` no longer indexes a page list before its asynchronous load completes. Two widget regression tests cover the loading state for requested pages 1 and 99 before the list arrives.
 - Design files can override SMD pad-to-pad clearance and patch a footprint hole in the project without changing its shared library.
 
-Full Windows/macOS ZIPs, the Linux DEB, and the additional `easyedatool-0.2.1-linux-x64.tar.gz` include the viewer; the macOS Homebrew/tar.gz package is CLI-only. Official winget availability is unconfirmed; use the [Release assets](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1). Availability of this version through APT still requires separate verification after publication.
+Full Windows/macOS ZIPs, the Linux DEB, and the additional `easyedatool-0.2.1-linux-x64.tar.gz` include the viewer; the macOS Homebrew/tar.gz package is CLI-only. Official winget availability is unconfirmed; use the [Release assets](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1). Post-publication APT checks passed: the public `0.2.1-1` package SHA256 matches the release artifact, both `InRelease` and `Release.gpg` signatures verify, and index hashes match. In a clean Ubuntu 22.04 environment, `apt-get update` succeeds, the candidate is `0.2.1-1`, and a simulated installation resolves its dependencies.
 
 The CLI is built from `c573fe9`; the viewer is built from `518c439`; bundled public documentation is from `4219a05`. Their Rust source trees are identical; the later source commit adds only the viewer fix, its tests, and related documentation. All viewer builds use Flutter 3.41.9 / Dart 3.11.5 with the dependency lock unchanged. Each platform has 332 passing Rust tests (2 ignored), clean Flutter analysis, and 27 passing widget tests.
 
 Final packages passed the small Demo check: 13 pins with no netlist differences, all 5 connections routed, and no electrical DRC violations. Six existing silkscreen-height warnings remain separate. Windows installer files match the ZIP file for file; PCB and schematic window captures were inspected and logs contained no Dart exceptions. The final macOS ZIP passed the same Demo and both window checks. The Linux DEB was upgraded from `0.2.0-2` to `0.2.1-1` in an Ubuntu 22.04 / glibc 2.35 container; the same Demo and both windows passed under Xvfb, with only environment ATK notices.
+
+Homebrew 7.0.9 on macOS fetched 0.2.1 using an isolated cache and verified its SHA256; the formula passed Ruby syntax validation. This check did not alter the installed version. All 8 public GitHub Release attachments were downloaded again and their hashes verified individually.
 
 The MP157 example demonstrates import and layout reuse. Only generation and `check` were verified: its 1111-pin net comparison passes with 14 layout-distance notices, while generation reports 10 schematic overlaps and automatic DRC reports open connections on the un-routed board. Complete routing was not validated. Use the small Demo for installation checks; the MP157 reference is not a finished board with zero DRC findings.
