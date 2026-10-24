@@ -6,7 +6,7 @@
 
 ## 安装
 
-当前版本 **0.2.1**。安装包在 [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)，改动见 [发布说明](CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
+当前版本 **0.2.1**。安装包在 [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
 
 | 系统 | 0.2.1 安装包 | PCB / 原理图窗口 |
 |---|---|---|
@@ -49,7 +49,7 @@ brew install cc38324/pcbclitool/easyedatool
 easyedatool --version
 ```
 
-已装过则用 `brew upgrade cc38324/pcbclitool/easyedatool`。公式位于 [Formula/easyedatool.rb](Formula/easyedatool.rb)，仅安装 CLI；版本以 `easyedatool --version` 为准。手动安装 CLI 时解开 tar.gz，根目录的 `easyedatool` 就是程序。
+已装过则用 `brew upgrade cc38324/pcbclitool/easyedatool`。公式位于 [Formula/easyedatool.rb](https://github.com/cc38324/PcbCliTool/blob/main/Formula/easyedatool.rb)，仅安装 CLI；版本以 `easyedatool --version` 为准。手动安装 CLI 时解开 tar.gz，根目录的 `easyedatool` 就是程序。
 
 ### Ubuntu / Debian
 
@@ -61,7 +61,7 @@ easyedatool --version
 easyedatool view <工程>
 ```
 
-DEB 面向 amd64 的 Ubuntu / Debian。窗口需要图形桌面；无图形环境仍可使用 CLI。各平台实际验证范围见 [发布说明](CHANGELOG.md)。
+DEB 面向 amd64 的 Ubuntu / Debian。窗口需要图形桌面；无图形环境仍可使用 CLI。各平台实际验证范围见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。
 
 也可使用现有 APT 源。它的更新进度可能晚于 GitHub Release，安装前检查候选版本：
 

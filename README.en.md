@@ -6,7 +6,7 @@ Offline command-line tool for EasyEDA Pro folder projects. It builds the schemat
 
 ## Install
 
-The current version is **0.2.1**. Download it from [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1), and see the [release notes](CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.2.1**. Download it from [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
 | System | 0.2.1 package | PCB / schematic viewer |
 |---|---|---|
@@ -49,7 +49,7 @@ brew install cc38324/pcbclitool/easyedatool
 easyedatool --version
 ```
 
-For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`. The [formula](Formula/easyedatool.rb) installs only the CLI; confirm the version with `easyedatool --version`. For a manual CLI installation, extract the tar.gz: its top-level `easyedatool` file is the executable.
+For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`. The [formula](https://github.com/cc38324/PcbCliTool/blob/main/Formula/easyedatool.rb) installs only the CLI; confirm the version with `easyedatool --version`. For a manual CLI installation, extract the tar.gz: its top-level `easyedatool` file is the executable.
 
 ### Ubuntu / Debian
 
@@ -61,7 +61,7 @@ easyedatool --version
 easyedatool view <project>
 ```
 
-The DEB targets amd64 Ubuntu / Debian systems. The viewer needs a graphical desktop; the CLI also works without one. See the [release notes](CHANGELOG.md) for the actual platform validation scope.
+The DEB targets amd64 Ubuntu / Debian systems. The viewer needs a graphical desktop; the CLI also works without one. See the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md) for the actual platform validation scope.
 
 The existing APT source is also available. It may update after GitHub Release, so inspect its available versions first:
 
