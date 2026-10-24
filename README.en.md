@@ -6,76 +6,80 @@ Offline command-line tool for EasyEDA Pro folder projects. It builds the schemat
 
 ## Install
 
-The repository is [cc38324/PcbCliTool](https://github.com/cc38324/PcbCliTool). After installation the command is `easyedatool` on every system. Release files for this version are at `https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.0`.
+The current version is **0.2.1**. Download it from [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1), and see the [release notes](CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.2.0 |
-|---|---|
-| Windows | `winget install --id Miyue.PcbCliTool --version 0.2.0` |
-| macOS (Apple silicon) | `brew install cc38324/pcbclitool/easyedatool` |
-| Ubuntu 22.04 / 24.04 / 26.04 | Add the `www.miyue.asia` source, then `sudo apt-get install easyedatool` |
-| Debian 12 / 13 | The same source and the same commands as Ubuntu |
-| HarmonyOS PC | No HarmonyOS build in 0.2.0 |
+| System | 0.2.1 package | PCB / schematic viewer |
+|---|---|---|
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool_0.2.1-1_amd64.deb) | Included |
+| Intel Mac / HarmonyOS PC | No package in this version | — |
+
+Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
 
 ### Windows
 
-After the manifest is in the winget source:
+Download the installer, or extract the ZIP and run:
 
 ```powershell
-winget install --id Miyue.PcbCliTool --version 0.2.0
-easyedatool --version
+.\easyedatool\bin\easyedatool.exe --version
+.\easyedatool\bin\easyedatool.exe view <project>
 ```
 
-Until then, download `easyedatool-0.2.0-windows-x64.zip` from the Release and run `easyedatool\bin\easyedatool.exe`. `easyedatool-0.2.0-windows-x64-setup.exe` installs into `%USERPROFILE%\.claude\skills\easyedatool`. The installer is unsigned; Windows may ask for More info, then Run anyway.
+The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **Availability of 0.2.1 in the official winget source has not been confirmed.** Use the Release downloads above; winget is not listed as a verified installation channel for this version.
 
 ### macOS (Apple silicon)
 
+For the desktop viewer, download the full ZIP, extract it, and run:
+
+```bash
+./easyedatool/bin/easyedatool --version
+./easyedatool/bin/easyedatool view <project>
+```
+
+The viewer is `easyedatool/viewer/easyeda_view.app`; preserve its relative location next to `bin/`. The package is not notarized by Apple. If macOS blocks it, verify its source and checksum before allowing it in the system security settings.
+
+For the CLI only, use Homebrew:
+
 ```bash
 brew tap cc38324/pcbclitool https://github.com/cc38324/PcbCliTool.git
+brew update
 brew install cc38324/pcbclitool/easyedatool
 easyedatool --version
 ```
 
-The formula is `Formula/easyedatool.rb`. It downloads `easyedatool-0.2.0-macos-arm64.tar.gz`. SHA256: `70f2eff5ff7128aacb2eee2653167b967632004df2680625ce76d1449b475e38`. There is no Intel build in this version.
+For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`. The [formula](Formula/easyedatool.rb) installs only the CLI; confirm the version with `easyedatool --version`. For a manual CLI installation, extract the tar.gz: its top-level `easyedatool` file is the executable.
 
-### Ubuntu
+### Ubuntu / Debian
 
-22.04, 24.04, and 26.04, amd64. The binary uses glibc symbols up to 2.35. The source is `https://www.miyue.asia/apt`, the same one used by rtsp-ai. Add it once:
+Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
+
+```bash
+sudo apt install ./easyedatool_0.2.1-1_amd64.deb
+easyedatool --version
+easyedatool view <project>
+```
+
+The DEB targets amd64 Ubuntu / Debian systems. The viewer needs a graphical desktop; the CLI also works without one. See the [release notes](CHANGELOG.md) for the actual platform validation scope.
+
+The existing APT source is also available. It may update after GitHub Release, so inspect its available versions first:
 
 ```bash
 sudo mkdir -p /usr/share/keyrings
 curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
-sudo apt-get install easyedatool
+apt-cache policy easyedatool
+sudo apt-get install easyedatool=0.2.1-1
 easyedatool --version
 ```
 
-If that source is already configured, only the last two commands are needed. The program is at `/usr/bin/easyedatool`. Upgrades are `sudo apt-get update && sudo apt-get install easyedatool`.
-
-### Debian
-
-Debian 12 and 13, amd64. Same deb and the same source as Ubuntu. Add it once:
-
-```bash
-sudo mkdir -p /usr/share/keyrings
-curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
-sudo apt-get update
-sudo apt-get install easyedatool
-easyedatool --version
-```
-
-If that source is already configured, run `sudo apt-get update && sudo apt-get install easyedatool`.
-
-### HarmonyOS PC
-
-0.2.0 has no binary that runs in HiShell, so this does not install yet. When a HarmonyOS build exists, install [Harmonybrew](https://harmonybrew.atomgit.com), then:
-
-```bash
-brew install easyedatool
-```
+If `0.2.1-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
 
 ## Example: STM32MP157
+
+Paths below are relative to this repository's root. Full ZIPs place the contents of `skill/` directly inside the extracted `easyedatool/` directory. When running from that directory, omit the `skill/` prefix; for example, `easyedatool gen examples/mp157demo.toml --out MP157Demo`.
 
 The example is an STM32MP157 single-board computer, 100 × 80 mm, four layers, stack-up `JLC04161H-3313`. The generated board has about 238 parts (130 on top, 108 on the bottom), 1307 pads, 851 vias, and 210 nets.
 

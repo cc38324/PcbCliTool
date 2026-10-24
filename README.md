@@ -6,76 +6,80 @@
 
 ## 安装
 
-仓库是 [cc38324/PcbCliTool](https://github.com/cc38324/PcbCliTool)。装好以后命令都是 `easyedatool`。下面按系统写 0.2.0 的装法。发布附件在 `https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.0`。
+当前版本 **0.2.1**。安装包在 [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)，改动见 [发布说明](CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
 
-| 系统 | 0.2.0 |
-|---|---|
-| Windows | `winget install --id Miyue.PcbCliTool --version 0.2.0` |
-| macOS（Apple 芯片） | `brew install cc38324/pcbclitool/easyedatool` |
-| Ubuntu 22.04 / 24.04 / 26.04 | 加上 `www.miyue.asia` 的源后 `sudo apt-get install easyedatool` |
-| Debian 12 / 13 | 同一个源，命令和 Ubuntu 一样 |
-| 鸿蒙电脑 | 0.2.0 还没有鸿蒙安装包 |
+| 系统 | 0.2.1 安装包 | PCB / 原理图窗口 |
+|---|---|---|
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64-setup.exe) | 包含 |
+| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.zip) | 包含 |
+| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.tar.gz) / Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool_0.2.1-1_amd64.deb) | 包含 |
+| Intel Mac / 鸿蒙电脑 | 本版没有安装包 | — |
+
+完整包包含命令行工具和桌面预览；`easyedatool view <工程>` 打开窗口。项目的线宽、间距、孔径和等长要求由设计文件或规则文件配置，升级不会替用户确认电气设计或生产可行性。
 
 ### Windows
 
-清单进了 winget 源之后：
+推荐下载安装程序，或把 ZIP 解压到任意位置：
 
 ```powershell
-winget install --id Miyue.PcbCliTool --version 0.2.0
-easyedatool --version
+.\easyedatool\bin\easyedatool.exe --version
+.\easyedatool\bin\easyedatool.exe view <工程>
 ```
 
-这一版还没进 winget 源时，下载 Release 里的 `easyedatool-0.2.0-windows-x64.zip`，解压后运行 `easyedatool\bin\easyedatool.exe`。`easyedatool-0.2.0-windows-x64-setup.exe` 双击安装，默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，第一次运行时 Windows 可能要选「更多信息」→「仍要运行」。
+安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，Windows 可能显示 SmartScreen 提示。**尚未确认 0.2.1 已进入 winget 官方源**，请使用上面的 Release 附件；本页不把 winget 作为本版已可用的安装渠道。
 
 ### macOS（Apple 芯片）
 
+需要窗口时下载完整 ZIP，解压后运行：
+
+```bash
+./easyedatool/bin/easyedatool --version
+./easyedatool/bin/easyedatool view <工程>
+```
+
+窗口位于 `easyedatool/viewer/easyeda_view.app`，应与 `bin/` 保持原有相对位置。安装包未经 Apple 公证；若系统阻止启动，先核对下载来源及校验和，再按 macOS 的安全设置允许打开。
+
+只用命令行时可使用 Homebrew：
+
 ```bash
 brew tap cc38324/pcbclitool https://github.com/cc38324/PcbCliTool.git
+brew update
 brew install cc38324/pcbclitool/easyedatool
 easyedatool --version
 ```
 
-公式是 `Formula/easyedatool.rb`，下载 `easyedatool-0.2.0-macos-arm64.tar.gz`。SHA256：`70f2eff5ff7128aacb2eee2653167b967632004df2680625ce76d1449b475e38`。Intel 的 Mac 这一版没有包。
+已装过则用 `brew upgrade cc38324/pcbclitool/easyedatool`。公式位于 [Formula/easyedatool.rb](Formula/easyedatool.rb)，仅安装 CLI；版本以 `easyedatool --version` 为准。手动安装 CLI 时解开 tar.gz，根目录的 `easyedatool` 就是程序。
 
-### Ubuntu
+### Ubuntu / Debian
 
-22.04、24.04、26.04，amd64。程序链的 glibc 最高是 2.35。源是 `https://www.miyue.asia/apt`，和 rtsp-ai 同一个。第一次先加上公钥和源：
+下载本版 DEB 后，在下载目录安装；`apt` 会处理窗口所需的系统依赖：
+
+```bash
+sudo apt install ./easyedatool_0.2.1-1_amd64.deb
+easyedatool --version
+easyedatool view <工程>
+```
+
+DEB 面向 amd64 的 Ubuntu / Debian。窗口需要图形桌面；无图形环境仍可使用 CLI。各平台实际验证范围见 [发布说明](CHANGELOG.md)。
+
+也可使用现有 APT 源。它的更新进度可能晚于 GitHub Release，安装前检查候选版本：
 
 ```bash
 sudo mkdir -p /usr/share/keyrings
 curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
-sudo apt-get install easyedatool
+apt-cache policy easyedatool
+sudo apt-get install easyedatool=0.2.1-1
 easyedatool --version
 ```
 
-已经加过这个源（例如装过 rtsp-ai）就只要后两行。装好后程序在 `/usr/bin/easyedatool`。升级也是 `sudo apt-get update && sudo apt-get install easyedatool`。
-
-### Debian
-
-12 和 13，amd64。和 Ubuntu 是同一份 deb、同一个源。第一次：
-
-```bash
-sudo mkdir -p /usr/share/keyrings
-curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/miyue.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
-sudo apt-get update
-sudo apt-get install easyedatool
-easyedatool --version
-```
-
-已经加过这个源就只要 `sudo apt-get update && sudo apt-get install easyedatool`。
-
-### 鸿蒙电脑
-
-0.2.0 没有能在 HiShell 里跑的程序，下面这条现在装不上。有了鸿蒙包之后，先装 [Harmonybrew](https://harmonybrew.atomgit.com)，再：
-
-```bash
-brew install easyedatool
-```
+候选列表没有 `0.2.1-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
 
 ## 例子：STM32MP157
+
+以下文件路径以本仓库根目录为起点。完整 ZIP 将 `skill/` 里的内容放在解压目录 `easyedatool/` 下；在包内执行示例时去掉路径中的 `skill/` 前缀，例如 `easyedatool gen examples/mp157demo.toml --out MP157Demo`。
 
 例子是一块 STM32MP157 单板电脑，板框 100 × 80 mm，四层，叠层 `JLC04161H-3313`。生成出来的工程约 238 个器件（正面 130、背面 108）、1307 个焊盘、851 个过孔、210 个网络。
 

@@ -1,49 +1,70 @@
 # easyedatool 安装和使用
 
-嘉立创EDA专业版（EasyEDA Pro）文件夹工程的离线命令行工具：从设计文件生成工程、自动布线、算铺铜、DRC、核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标。
+嘉立创 EDA 专业版（EasyEDA Pro）文件夹工程的离线工具：从设计文件生成工程、自动布线、铺铜、DRC、核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标。完整安装包带 PCB / 原理图桌面预览窗口。
 
-## 安装
+## 安装 0.2.1
 
-0.2.0 每个系统的命令写在仓库根目录的 `README.md`（中文）和 `README.en.md`。装好后命令都是 `easyedatool`。
+下载入口：[GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1)。详细步骤见[中文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.md)和[英文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.en.md)。
 
-- Windows：`winget install --id Miyue.PcbCliTool --version 0.2.0`。还没进 winget 源时，用 Release 里的 `easyedatool-0.2.0-windows-x64.zip`，或双击 `easyedatool-0.2.0-windows-x64-setup.exe`（装到 `%USERPROFILE%\.claude\skills\easyedatool`；没有签名，第一次运行选「更多信息」→「仍要运行」）。
-- macOS（Apple 芯片）：`brew tap cc38324/pcbclitool https://github.com/cc38324/PcbCliTool.git`，然后 `brew install cc38324/pcbclitool/easyedatool`。
-- Ubuntu 22.04 / 24.04 / 26.04：源是 `https://www.miyue.asia/apt`。第一次把 `https://www.miyue.asia/apt/miyue.gpg` 放到 `/usr/share/keyrings/miyue.gpg`，再写 `deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main`，然后 `sudo apt-get update && sudo apt-get install easyedatool`。
-- Debian 12 / 13：和 Ubuntu 同一个源、同一份 deb，命令相同。
-- 鸿蒙电脑：0.2.0 没有安装包。
+| 平台 | 文件 | 窗口 |
+|---|---|---|
+| Windows x64 | `easyedatool-0.2.1-windows-x64.zip` 或 `easyedatool-0.2.1-windows-x64-setup.exe` | 包含 |
+| macOS Apple 芯片 | `easyedatool-0.2.1-macos-arm64.zip` | 包含 |
+| macOS Apple 芯片，仅 CLI | `easyedatool-0.2.1-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | `easyedatool_0.2.1-1_amd64.deb` | 包含 |
 
-也可以用同名的 zip：解压到任意位置就能用，解压出来就是下面这些文件。
+Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。**尚未确认本版进入 winget 官方源，请直接使用 Release 安装包。**
 
-## 文件
+macOS 完整 ZIP 的程序在 `bin/easyedatool`，窗口在 `viewer/easyeda_view.app`，保留两者的相对位置。安装包未经 Apple 公证；系统拦截时先核对来源与校验和，再从系统安全设置允许打开。
 
+Homebrew 仅安装命令行程序：
+
+```bash
+brew tap cc38324/pcbclitool https://github.com/cc38324/PcbCliTool.git
+brew update
+brew install cc38324/pcbclitool/easyedatool
+easyedatool --version
 ```
+
+已安装则用 `brew upgrade cc38324/pcbclitool/easyedatool`。Linux 在下载目录执行：
+
+```bash
+sudo apt install ./easyedatool_0.2.1-1_amd64.deb
+easyedatool --version
+easyedatool view <工程>
+```
+
+APT 源的添加方法见中文说明。先用 `apt-cache policy easyedatool` 确认有 `0.2.1-1`，没有时安装 Release 的 DEB；不能把源里的旧版当成升级成功。Linux 窗口需要图形桌面。Intel Mac 和鸿蒙电脑本版没有安装包。
+
+## 完整 ZIP 的文件
+
+```text
 easyedatool/
-  bin/easyedatool.exe   程序（Windows x64，单个文件，C 运行库编译在里面，不用装别的）
-  viewer/               实时预览窗口 easyeda_view.exe（Flutter 桌面程序，Flutter 和 VC++ 运行库都带着）：easyedatool view <工程> 打开，
-                        看 PCB / 原理图，布线进度和新画的线实时显示；和 bin/ 放在一起它们才找得到对方
-  SKILL.md              给 AI 的使用说明（也是 Claude Code 的 skill 入口）
-  references/           AI 说明书的参考：全部命令参数、设计文件、规则文件、和 EDA 客户端配合
-  examples/             设计文件和规则文件的例子
-  AGENTS.md             指给别的 AI 工具：先读 SKILL.md
-  README.md             给人看的完整说明（功能、速度、核对记录、已知限制）
-  VERSION               版本和对应的源码提交
-  LICENSE-easyeda-eprj3-skill   程序里内置的模板的许可（MIT）
+  bin/easyedatool.exe    Windows 命令行程序；macOS 对应 bin/easyedatool
+  viewer/               窗口及运行文件；不要单独移动里面的 exe 或 app
+  SKILL.md              给 AI 的使用说明
+  references/           全部命令参数、设计格式、规则格式、与 EDA 配合
+  examples/             MP157 示例、规则及所需元件库
+  build/st/board.PcbDoc  MP157 示例引用的 AN5122 参考板
+  AGENTS.md             引导 AI 先读 SKILL.md
+  README.md             人看的安装和使用说明
+  VERSION               包版本和构建来源
 ```
+
+CLI tar.gz 和 DEB 的布局不同，不要把上述 ZIP 目录结构套用到它们。
 
 ## 自己用
 
-macOS（Apple 芯片）的包：程序是 `bin/easyedatool`，窗口是 `viewer/easyeda_view.app`。从网上下载的 zip 解压后第一次运行会被 macOS 拦下（没有苹果公证），在终端里 `xattr -dr com.apple.quarantine <解压出来的 easyedatool 文件夹>` 一次就好。
+Windows ZIP 解压后运行 `bin\easyedatool.exe --help`；macOS ZIP 运行 `bin/easyedatool --help`。使用包管理器安装的 CLI 直接运行 `easyedatool --help`。每个子命令也支持 `--help`，输出为中文。
 
-解压到任意位置，在命令行里跑 `bin\easyedatool.exe --help`，每个命令也有 `--help`。上手看 `SKILL.md` 里「画一块新板」和「快速自测」。
+`easyedatool view <工程>` 打开预览，显示 PCB / 原理图、布线过程和检查结果。放大后可显示网络名，Ctrl + 单击走线、焊盘或过孔追加或取消网络高亮；Esc 清空。窗口的「开始改」会进入编辑回合，修改由工具服务写入工程；「改完了，交给 AI」后再继续命令行改板。使用前先提交工程，修改后运行检查并核对实际画面。
 
-想看着画：`bin\easyedatool.exe view <工程>` 打开预览窗口（或者直接双击 `viewer\easyeda_view.exe`，在界面里选工程文件夹）。窗口只读文件：谁改了工程（这个工具、EDA、手改）它都跟着重画；AI 跑 route、gen、pour --write、drc、check 时进度和结果实时显示。
+上手看 `SKILL.md` 的「画一块新板」和「快速自测」。MP157 示例自带元件库和参考板，应保留示例文件的相对位置。
 
-## 给 Claude Code 用（skill）
+## 给 AI 使用
 
-用安装程序装的已经在这个位置；用 zip 的话，把解压出来的 `easyedatool` 文件夹放到 `%USERPROFILE%\.claude\skills\` 下（得到 `…\.claude\skills\easyedatool\SKILL.md`）。然后重开 Claude Code。之后说「画板」「生成嘉立创工程」「布线」「出 Gerber / BOM」这类话，Claude 会自动读 SKILL.md 再用这个工具。Claude Code 换别的模型当后端（比如 DeepSeek 的 Anthropic 兼容接口）时 skill 照样列出来，但那个模型会不会按说明用，要拿「快速自测」试一下。
+Windows 安装程序会放到 Claude Code 的 skill 目录。使用完整 ZIP 时，也可把整个 `easyedatool` 文件夹放到 `%USERPROFILE%\.claude\skills\`；macOS 对应 `~/.claude/skills/`。重开客户端后，让 AI 先读 `SKILL.md`，再按说明调用工具。
 
-## 给别的 AI 用（DeepSeek、Cursor、Cline……）
+其他 AI 工具可直接指定 `SKILL.md` 路径，在规则文件中要求先读它；`references/` 按需读取。不要只复制一个 SKILL.md，遗漏命令说明、示例和元件库。
 
-这些工具不认 skill，让它**先读 `SKILL.md`**：在对话开头说「先读 <解压路径>\easyedatool\SKILL.md 再干活」，或者把 SKILL.md 的内容放进它的规则文件 / 系统提示里（Cursor 的 rules、Cline 的 .clinerules 之类），`references/` 按需让它读。
-
-对 AI 来说，这个工具比直接操作 EDA 客户端（easyeda-api 那种写 JavaScript 调几百个接口的方式）容易得多：它只需要写一个设计文件（器件、网络、位置），跑几条命令，按文字报告改。电气上对不对（引脚功能、极性、选型）工具查不出来，原理图出来以后要人看一遍。
+工具可以检查文件结构、铜连接和配置规则，器件引脚功能、极性、选型及实际电气设计仍须核对。不能把布通或 DRC 通过等同于已具备生产条件。
