@@ -18,6 +18,7 @@ Commands:
   repair       修工程文件：换行改回 LF（CRLF 嘉立创读不了，PCB / 原理图打开是空的）、去掉 BOM、补回索引里丢掉的版本号、删掉没写完的空临时文件；先在嘉立创里关掉这个工程
   gen          从设计文件（TOML / JSON）生成嘉立创EDA专业版工程：原理图、PCB（器件摆放、铺铜、禁布区、丝印、位号）
   render       出 PNG 效果图
+  render3d     整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片或GLB模型；不改工程
   pdf          原理图出 PDF：每页一页（矢量），文字嵌入字体子集、能搜索和复制
   netlist      原理图网表：Protel 格式（.net，Altium 等大多数 EDA 能导入）或 CSV（每个引脚一行）
   place        整理摆放：器件原点吸附到网格，间距不够的推开（只动没连走线、没锁定、不带孔的器件，--all 全动）；默认只列出怎么挪，--write 写回、重算铺铜、自动 DRC
@@ -39,7 +40,7 @@ Commands:
   label        成品板加丝印：照标注文件（TOML）往布好线的板子上加丝印字——自由文字、器件旁边的名字（接口是干什么的）、每个脚旁边的信号名（排针、端子）；只加丝印字，铜皮和别的都不动，不用重新生成、重新布线；字自己找不压焊盘、不压别的丝印、不出板边的地方，放不下就缩小（不小于 min_size）或换一边，还放不下的报出来；再跑一遍替换上次加的（记在工程的 .easyedatool/labels.json）；有 [designators] 时连器件位号一起整理：原地不挡着的留下，压焊盘（板厂会削掉）或压别的丝印的挪到器件旁最近的空处、放不下缩小、再不行不印（hide = false 则照旧并报出来），挪过去的位号必须离自己的器件最近，免得认错；默认只报告，--write 写回
   widen        电源线加粗：布线后把电源网络逐段加到放得下的最粗（先试目标线宽，再 0.4、0.3 mm），细间距焊盘旁边放不下的保持原样（颈缩）；按工程间距规则查别的网络，默认只报告，--write 写回（之后 pour --write 重算铺铜）
   clean        整理普通网络的直角和连续小台阶；可补齐位于过孔铜环内的偏心引线
-  escape-vias  将普通网络过孔移出贴片焊盘，联合重接各层引线并检查；差分/等长和锁定网络保留
+  escape-vias  修复普通网络焊盘内过孔：先删无须换层的冗余孔，其余移孔并重接各层引线；差分/等长和锁定网络保留
   tune         绕等长：在网络的直线段上加蛇形线补长度——差分对里短的那根补到另一根、等长组里超出容差的补到最长那根、一根网络补到指定长度；只在按工程间距规则放得下的地方绕，默认只报告，--write 写回
   impedance    阻抗：按工程的叠层（层管理器里的厚度、介电常数）照嘉立创阻抗计算器的公式和取法算（和它算的逐位一致）：列叠层，每层单端 / 差分要多宽的线、给定线宽的阻抗，每对差分线按实际走线的差分阻抗
   constraints  差分对、等长组、网络类和它们的规则：列出工程里的（每对的走线长度和对内长度差、每组的长度差），--auto 按网络名认差分对（规则按已布走线量出的线宽和间距），--from 从约束文件加，--write 写进工程
@@ -232,6 +233,29 @@ Options:
   -h, --help             Print help
 ```
 
+## render3d
+
+```
+整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片或GLB模型；不改工程
+
+Usage: easyedatool render3d [OPTIONS] <INPUT>
+
+Arguments:
+  <INPUT>  工程、板子文件；元件模型从工程配置的元件库读取
+
+Options:
+      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -o, --out <OUT>        输出 .png 或 .glb（默认 <板名>_3d.png）
+      --json <JSON>      同时输出供查看器读取的3D场景JSON
+      --lib <LIB>        元件库路径，默认按工程 easyedatool.toml 查找
+      --download-models  下载缺失的EasyEDA模型到工程缓存；默认离线使用已有模型
+      --width <WIDTH>    图片宽度，像素 [default: 1600]
+      --height <HEIGHT>  图片高度，像素 [default: 1100]
+      --yaw <YAW>        绕板面转动的角度 [default: -25]
+      --pitch <PITCH>    俯仰角：0正面，180背面，-90从插口方向平视 [default: -55]
+  -h, --help             Print help
+```
+
 ## pdf
 
 ```
@@ -277,15 +301,17 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹
 
 Options:
-      --no-drc             改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-      --rules <RULES>      规则文件（TOML，和 drc 的同一份）：元件间距、网格取 [drc.placement]（工程文件 OTHER 规则的器件间距不为 0 时用它）
-      --grid <GRID>        网格（mm；默认 [drc.placement] 的 0.5；0 = 不吸附）
-      --spacing <SPACING>  元件间距（mm；默认规则里的）
-      --all                连了走线、锁定、带孔（连接器、安装孔）的器件也动（会扯断走线、对不上外壳）
-      --arrange            不是推开，而是把能动的器件在它们现在占的范围里（或 --area 给的矩形里）按 gen 的整齐摆法重新排成行
-      --area <AREA>        重新排时用的矩形（mm，y 向上）：x0,y0,x1,y1
-      --write              写回工程（先 git 提交）
-  -h, --help               Print help
+      --no-drc                         改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --rules <RULES>                  规则文件（TOML，和 drc 的同一份）：元件间距、网格取 [drc.placement]（工程文件 OTHER 规则的器件间距不为 0 时用它）
+      --grid <GRID>                    网格（mm；默认 [drc.placement] 的 0.5；0 = 不吸附）
+      --spacing <SPACING>              元件间距（mm；默认规则里的）
+      --only <ONLY>                    仅整理匹配位号（可重复，如 --only R* --only C*）；与 --search-radius 合用
+      --search-radius <SEARCH_RADIUS>  局部找空位的最大移动半径（mm）；避让完整丝印外框、其他元件、原走线和过孔，默认0沿用原推开算法 [default: 0]
+      --all                            连了走线、锁定、带孔（连接器、安装孔）的器件也动（会扯断走线、对不上外壳）
+      --arrange                        不是推开，而是把能动的器件在它们现在占的范围里（或 --area 给的矩形里）按 gen 的整齐摆法重新排成行
+      --area <AREA>                    重新排时用的矩形（mm，y 向上）：x0,y0,x1,y1
+      --write                          写回工程（先 git 提交）
+  -h, --help                           Print help
 ```
 
 ## layout
@@ -428,6 +454,7 @@ Options:
       --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --page <PAGE>  先显示原理图第几页（从 1 数；不给就先显示 PCB）
       --find <FIND>  打开后找这个位号或网络给人看：在 PCB 上（器件框出焊盘、网络高亮），带 --page 时在原理图上
+      --3d           直接打开整板 3D 视图
   -h, --help         Print help
 ```
 
@@ -644,7 +671,7 @@ Options:
 ## escape-vias
 
 ```
-将普通网络过孔移出贴片焊盘，联合重接各层引线并检查；差分/等长和锁定网络保留
+修复普通网络焊盘内过孔：先删无须换层的冗余孔，其余移孔并重接各层引线；差分/等长和锁定网络保留
 
 Usage: easyedatool escape-vias [OPTIONS] --rules <RULES> <INPUT>
 

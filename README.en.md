@@ -6,14 +6,14 @@ Offline command-line tool for EasyEDA Pro folder projects. It builds the schemat
 
 ## Install
 
-The current version is **0.2.1**. Download it from [GitHub Release v0.2.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.1), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.2.2**. Download it from [GitHub Release v0.2.2](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.2), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.2.1 package | PCB / schematic viewer |
+| System | 0.2.2 package | PCB / schematic viewer |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-windows-x64-setup.exe) | Included |
-| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.zip) | Included |
-| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool-0.2.1-macos-arm64.tar.gz) / Homebrew | Not included |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.1/easyedatool_0.2.1-1_amd64.deb) | Included |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool_0.2.2-1_amd64.deb) | Included |
 | Intel Mac / HarmonyOS PC | No package in this version | — |
 
 Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
@@ -27,7 +27,7 @@ Download the installer, or extract the ZIP and run:
 .\easyedatool\bin\easyedatool.exe view <project>
 ```
 
-The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **Availability of 0.2.1 in the official winget source has not been confirmed.** Use the Release downloads above; winget is not listed as a verified installation channel for this version.
+The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official winget source on 2026-10-28, no EasyEdaTool package was found.** Use the Release downloads. Local-manifest validation does not establish official source availability.
 
 ### macOS (Apple silicon)
 
@@ -56,7 +56,7 @@ For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`.
 Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
 
 ```bash
-sudo apt install ./easyedatool_0.2.1-1_amd64.deb
+sudo apt install ./easyedatool_0.2.2-1_amd64.deb
 easyedatool --version
 easyedatool view <project>
 ```
@@ -71,11 +71,19 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.1-1
+sudo apt-get install easyedatool=0.2.2-1
 easyedatool --version
 ```
 
-If `0.2.1-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+If `0.2.2-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+
+## 0.2.2: component silkscreen, placement and board 3D
+
+New layouts and footprint changes must preserve component body outlines, pin-1 marks and diode/LED polarity marks. Inventory every component first. Resolve conflicts by moving or rotating parts and reconnecting affected copper; do not delete or trim outlines or hide layers to suppress findings. Check silkscreen and component spacing, then inspect the actual top/bottom Gerbers and current preview. Reference text may be hidden when the user permits it; body and orientation marks remain, and the BOM, placement file and assembly drawing keep every reference. See the [silkscreen workflow](skill/references/silkscreen.md).
+
+`render3d <project> -o board.glb` exports a self-contained model, and `-o board.png` exports an image. `view <project> --3d` opens the viewer's 3D tab. Real models and estimated shapes are identified separately. Model alignment never moves PCB copper. There is no model-collision check, and estimates cannot validate enclosure dimensions. Add `--download-models` to fetch library models, then reuse the cache offline.
+
+The release also includes mounting holes, complete outline/orientation checks, power-neck checks across pads and vias, preservation of native record identities, project-specific preview checks and configurable routing search budgets. Board dimensions and routing/process parameters remain in project design and rule files.
 
 ## Example: STM32MP157
 
