@@ -2,18 +2,20 @@
 
 [English](README.en.md)
 
-离线命令行工具，读写嘉立创 EDA 专业版（EasyEDA Pro）的文件夹工程。从设计文件生成原理图和 PCB，自动布线，按 EDA 的规则算铺铜，做 DRC 和逐脚核对，并导出原理图 PDF、网表、BOM、Gerber、钻孔和贴片坐标。不依赖浏览器，也不依赖 EDA 客户端。
+离线命令行工具，读写嘉立创 EDA 专业版（EasyEDA Pro）的文件夹工程。从设计文件生成原理图和 PCB，自动布线，按 EDA 的规则算铺铜，做 DRC 和逐脚核对，并导出原理图 PDF、网表、BOM、Gerber、钻孔和贴片坐标。嘉立创工程与已导出的 PADS ASCII 无需浏览器或 EDA 客户端。原生 PADS 二进制 `.pcb` 导入需 Windows 和本机已授权的 PADS Layout。
+
+0.2.3 合入 PADS 原生 `.pcb` 导入及混合公英制封装修正，并修复 3D 板体漏掉独立安装孔的问题。安装孔和槽孔真实挖穿并生成孔壁；支持 PNG、GLB 及 STL，Flutter 窗口可分别导出两种模型。完整元件丝印与避让约束继续保留。
 
 ## 安装
 
-当前版本 **0.2.2**。安装包在 [GitHub Release v0.2.2](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.2)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
+当前版本 **0.2.3**。安装包在 [GitHub Release v0.2.3](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.3)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
 
-| 系统 | 0.2.2 安装包 | PCB / 原理图窗口 |
+| 系统 | 0.2.3 安装包 | PCB / 原理图窗口 |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64-setup.exe) | 包含 |
-| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.zip) | 包含 |
-| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.tar.gz) / Homebrew | 不包含 |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool_0.2.2-1_amd64.deb) | 包含 |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64-setup.exe) | 包含 |
+| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.zip) | 包含 |
+| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.tar.gz) / Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool_0.2.3-1_amd64.deb) | 包含 |
 | Intel Mac / 鸿蒙电脑 | 本版没有安装包 | — |
 
 完整包包含命令行工具和桌面预览；`easyedatool view <工程>` 打开窗口。项目的线宽、间距、孔径和等长要求由设计文件或规则文件配置，升级不会替用户确认电气设计或生产可行性。
@@ -27,7 +29,7 @@
 .\easyedatool\bin\easyedatool.exe view <工程>
 ```
 
-安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，Windows 可能显示 SmartScreen 提示。**2026-10-28 刷新官方源后，未查到 `Miyue.PcbCliTool`**。[0.2.0 收录申请 #452460](https://github.com/microsoft/winget-pkgs/pull/452460) 已通过自动验证，仍待维护者审核合入。0.2.2 的清单见 [winget/](winget/README.md)，已通过本地格式验证；这不代表官方源已可安装。当前请使用 Release 附件。
+安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，Windows 可能显示 SmartScreen 提示。**2026-10-28 刷新官方源后，未查到 `Miyue.PcbCliTool`**。[0.2.0 收录申请 #452460](https://github.com/microsoft/winget-pkgs/pull/452460) 已通过自动验证，仍待维护者审核合入。0.2.3 的清单见 [winget/](winget/README.md)，已通过本地格式验证；这不代表官方源已可安装。当前请使用 Release 附件。
 
 ### macOS（Apple 芯片）
 
@@ -56,7 +58,7 @@ easyedatool --version
 下载本版 DEB 后，在下载目录安装；`apt` 会处理窗口所需的系统依赖：
 
 ```bash
-sudo apt install ./easyedatool_0.2.2-1_amd64.deb
+sudo apt install ./easyedatool_0.2.3-1_amd64.deb
 easyedatool --version
 easyedatool view <工程>
 ```
@@ -71,17 +73,17 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.2-1
+sudo apt-get install easyedatool=0.2.3-1
 easyedatool --version
 ```
 
-候选列表没有 `0.2.2-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
+候选列表没有 `0.2.3-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
 
-## 0.2.2：本体丝印、布局与整板3D
+## 0.2.3：本体丝印、布局与整板3D
 
 新画板、重新布局和修改封装时，必须保留元件本体轮廓、芯片1脚及二极管/LED负极标记。先列出全板丝印清单，冲突通过移动或转向元件并重接线路解决，不能删框、裁短或隐藏图层来消除报错。完成后检查丝印/元件间距DRC，并实际查看顶底层Gerber和最新预览。位号文字经用户允许可不印，本体与方向标记仍保留，BOM、坐标和装配图继续保留全部位号。通用配置与完整步骤见 [丝印与布局约束](skill/references/silkscreen.md)。
 
-`render3d <工程> -o board.glb` 导出自包含模型，`-o board.png` 导出图片；`view <工程> --3d` 打开窗口3D页签。真实模型与外形估算分别标明，按焊盘对齐模型时不移动PCB铜。无模型碰撞检查，估算外形不能用于外壳尺寸验收。需要下载库模型时加 `--download-models`，之后可离线复用缓存。
+`render3d <工程> -o board.glb` 导出自包含彩色模型，`-o board.stl` 导出无颜色STL毫米网格（导入时选毫米），`-o board.png` 导出图片；`view <工程> --3d` 打开窗口3D页签。真实模型与外形估算分别标明，按焊盘对齐模型时不移动PCB铜。无模型碰撞检查，估算外形不能用于外壳尺寸验收。需要下载库模型时加 `--download-models`，之后可离线复用缓存。
 
 本版还包括机械安装孔、完整外框/方向标记检查、跨焊盘及过孔的电源细颈复核、原生记录身份保护、项目预览规则读取，以及可配置的布线搜索预算。所有板尺寸、线宽、孔径、间距和筛查阈值仍来自项目设计/规则。
 

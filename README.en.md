@@ -2,18 +2,20 @@
 
 [中文](README.md)
 
-Offline command-line tool for EasyEDA Pro folder projects. It builds the schematic and PCB from a design file, autoroutes, pours copper with the EDA rules, runs DRC and a pin-by-pin net check, and exports a schematic PDF, netlist, BOM, Gerber, drill files, and a pick-and-place file. It does not need a browser or the EDA client.
+Offline command-line tool for EasyEDA Pro folder projects. It builds the schematic and PCB from a design file, autoroutes, pours copper with the EDA rules, runs DRC and a pin-by-pin net check, and exports a schematic PDF, netlist, BOM, Gerber, drill files, and a pick-and-place file. EasyEDA projects and exported PADS ASCII files need neither a browser nor an EDA client. Native PADS binary `.pcb` import requires Windows and a locally licensed PADS Layout installation.
+
+Version 0.2.3 includes native PADS `.pcb` import, mixed metric/imperial footprint fixes, and real mounting-hole and slot cutouts. PNG, GLB and STL share the same geometry; the Flutter viewer exports both model formats. Complete body silkscreen and conflict checks remain required.
 
 ## Install
 
-The current version is **0.2.2**. Download it from [GitHub Release v0.2.2](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.2), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.2.3**. Download it from [GitHub Release v0.2.3](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.3), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.2.2 package | PCB / schematic viewer |
+| System | 0.2.3 package | PCB / schematic viewer |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64-setup.exe) | Included |
-| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.zip) | Included |
-| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-macos-arm64.tar.gz) / Homebrew | Not included |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool_0.2.2-1_amd64.deb) | Included |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool_0.2.3-1_amd64.deb) | Included |
 | Intel Mac / HarmonyOS PC | No package in this version | — |
 
 Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
@@ -27,7 +29,7 @@ Download the installer, or extract the ZIP and run:
 .\easyedatool\bin\easyedatool.exe view <project>
 ```
 
-The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official source on 2026-10-28, `Miyue.PcbCliTool` was not found.** The [0.2.0 submission, #452460](https://github.com/microsoft/winget-pkgs/pull/452460), passed automated validation and still awaits maintainer approval. The [0.2.2 manifests](winget/README.md) pass local schema validation; this does not establish official source availability. Use the Release downloads.
+The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official source on 2026-10-28, `Miyue.PcbCliTool` was not found.** The [0.2.0 submission, #452460](https://github.com/microsoft/winget-pkgs/pull/452460), passed automated validation and still awaits maintainer approval. The [0.2.3 manifests](winget/README.md) pass local schema validation; this does not establish official source availability. Use the Release downloads.
 
 ### macOS (Apple silicon)
 
@@ -56,7 +58,7 @@ For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`.
 Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
 
 ```bash
-sudo apt install ./easyedatool_0.2.2-1_amd64.deb
+sudo apt install ./easyedatool_0.2.3-1_amd64.deb
 easyedatool --version
 easyedatool view <project>
 ```
@@ -71,17 +73,17 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.2-1
+sudo apt-get install easyedatool=0.2.3-1
 easyedatool --version
 ```
 
-If `0.2.2-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+If `0.2.3-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
 
-## 0.2.2: component silkscreen, placement and board 3D
+## 0.2.3: component silkscreen, placement and board 3D
 
 New layouts and footprint changes must preserve component body outlines, pin-1 marks and diode/LED polarity marks. Inventory every component first. Resolve conflicts by moving or rotating parts and reconnecting affected copper; do not delete or trim outlines or hide layers to suppress findings. Check silkscreen and component spacing, then inspect the actual top/bottom Gerbers and current preview. Reference text may be hidden when the user permits it; body and orientation marks remain, and the BOM, placement file and assembly drawing keep every reference. See the [silkscreen workflow](skill/references/silkscreen.md).
 
-`render3d <project> -o board.glb` exports a self-contained model, and `-o board.png` exports an image. `view <project> --3d` opens the viewer's 3D tab. Real models and estimated shapes are identified separately. Model alignment never moves PCB copper. There is no model-collision check, and estimates cannot validate enclosure dimensions. Add `--download-models` to fetch library models, then reuse the cache offline.
+`render3d <project> -o board.glb` exports a self-contained coloured model, `-o board.stl` exports colourless millimetre STL geometry (import as mm), and `-o board.png` exports an image. `view <project> --3d` opens the viewer's 3D tab. Real models and estimated shapes are identified separately. Model alignment never moves PCB copper. There is no model-collision check, and estimates cannot validate enclosure dimensions. Add `--download-models` to fetch library models, then reuse the cache offline.
 
 The release also includes mounting holes, complete outline/orientation checks, power-neck checks across pads and vias, preservation of native record identities, project-specific preview checks and configurable routing search budgets. Board dimensions and routing/process parameters remain in project design and rule files.
 

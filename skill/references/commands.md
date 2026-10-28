@@ -18,7 +18,7 @@ Commands:
   repair       修工程文件：换行改回 LF（CRLF 嘉立创读不了，PCB / 原理图打开是空的）、去掉 BOM、补回索引里丢掉的版本号、删掉没写完的空临时文件；先在嘉立创里关掉这个工程
   gen          从设计文件（TOML / JSON）生成嘉立创EDA专业版工程：原理图、PCB（器件摆放、铺铜、禁布区、丝印、位号）
   render       出 PNG 效果图
-  render3d     整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片或GLB模型；不改工程
+  render3d     整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片、GLB彩色模型或STL毫米网格；不改工程
   pdf          原理图出 PDF：每页一页（矢量），文字嵌入字体子集、能搜索和复制
   netlist      原理图网表：Protel 格式（.net，Altium 等大多数 EDA 能导入）或 CSV（每个引脚一行）
   place        整理摆放：器件原点吸附到网格，间距不够的推开（只动没连走线、没锁定、不带孔的器件，--all 全动）；默认只列出怎么挪，--write 写回、重算铺铜、自动 DRC
@@ -31,7 +31,7 @@ Commands:
   footprint    画封装：按封装类型和数据手册推荐焊盘图的尺寸（脚数、间距、两排中心距、焊盘、本体）生成焊盘，坐标由工具算；打印量出来的尺寸、焊盘表和设计文件写法，-o 出预览图。也能核对设计文件里的封装
   view         实时预览窗口（viewer/ 里的 Flutter 程序）：PCB 分层图和原理图，工程文件一改就重画；route、pour --write、gen、drc、check、erc 跑的时候，进度、输出、正在布的线、问题点实时显示在窗口里；PCB 一改自动查 DRC、原理图一改自动查 ERC，问题点标在板上和页上。窗口只读文件，不写
   serve        预览窗口的后台（窗口自己会起它，一般不用手动跑）：在 127.0.0.1 上提供工程的绘图数据，盯着文件变化，转发命令的进度
-  import       导入 PADS 板子（PADS Layout 导出的 ASCII .asc）或 Altium 板子（.PcbDoc）：转成嘉立创EDA工程（PCB：层叠、封装、器件、网络、走线、过孔、铺铜或铜皮、禁布区、板框、丝印；给 --sch 时连同原理图合成一个工程：PADS 配 OrCAD .DSN，Altium 配 .SchDoc），读回来逐项自检
+  import       导入 PADS 板子（ASCII .asc；原生 .pcb 在 Windows 调用本机已授权 PADS 转换）或 Altium .PcbDoc：转成嘉立创EDA工程，保留PCB数据并读回自检；--sch 连同 OrCAD .DSN 或 Altium .SchDoc 合成工程
   pair         差分对布线：按规则的线宽和线距找路，两头从焊盘扇出，顶层细间距端可自动过孔换到底层，走完逐段查间距；默认只报告，--write 写回（这对布过线的加 --replace 先删掉原来的）
   thermal      损耗结温和载流温升：按规则文件 [thermal] 里的工况算功率器件的损耗和结温（MOS 管、二极管、整流桥、电阻、电感、变压器、LDO、开关稳压芯片、电容；热阻用 θJA、散热器、或按板上散热焊盘连着的铜面积插值），走线、铺铜 / 铜皮、过孔按 IPC-2152 算温升（旁边给 IPC-2221）；给了电流从哪进、从哪出（from / to）就把网络当电阻网络（铺铜细分成网格）解出每段的电流和压降（超了退出码 1）
   si           信号完整性（反射、串扰）：按叠层用场求解器算每段走线的阻抗和延时，连同过孔、串联电阻 / 电容、到电源和地的端接搭成电路，从驱动脚加阶跃做时域仿真（通用模型：驱动的上升时间和输出阻抗、每个脚的电容），报每个接收端的飞行时间、过冲、回沟、稳定时间、单调性和阻抗跳变的段；差分对（按网络名认）两根反相一起驱动、并排段按耦合线，报差分波形、P/N 偏斜、共模、差分阻抗；--xtalk 再算同层平行网络的串扰（近端 / 远端）（超了退出码 1）；--spice 把每个电路和自己的波形写出来，tools/verify_si/compare.py 拿 ngspice 复算对比
@@ -236,7 +236,7 @@ Options:
 ## render3d
 
 ```
-整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片或GLB模型；不改工程
+整板3D：带真实元件模型、板厚、钻孔、阻焊和丝印，导出PNG图片、GLB彩色模型或STL毫米网格；不改工程
 
 Usage: easyedatool render3d [OPTIONS] <INPUT>
 
@@ -245,7 +245,7 @@ Arguments:
 
 Options:
       --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-  -o, --out <OUT>        输出 .png 或 .glb（默认 <板名>_3d.png）
+  -o, --out <OUT>        输出 .png、.glb 或 .stl（默认 <板名>_3d.png）；STL无颜色，导入时选择毫米
       --json <JSON>      同时输出供查看器读取的3D场景JSON
       --lib <LIB>        元件库路径，默认按工程 easyedatool.toml 查找
       --download-models  下载缺失的EasyEDA模型到工程缓存；默认离线使用已有模型
@@ -479,12 +479,12 @@ Options:
 ## import
 
 ```
-导入 PADS 板子（PADS Layout 导出的 ASCII .asc）或 Altium 板子（.PcbDoc）：转成嘉立创EDA工程（PCB：层叠、封装、器件、网络、走线、过孔、铺铜或铜皮、禁布区、板框、丝印；给 --sch 时连同原理图合成一个工程：PADS 配 OrCAD .DSN，Altium 配 .SchDoc），读回来逐项自检
+导入 PADS 板子（ASCII .asc；原生 .pcb 在 Windows 调用本机已授权 PADS 转换）或 Altium .PcbDoc：转成嘉立创EDA工程，保留PCB数据并读回自检；--sch 连同 OrCAD .DSN 或 Altium .SchDoc 合成工程
 
 Usage: easyedatool import [OPTIONS] --out <OUT> <INPUT>
 
 Arguments:
-  <INPUT>  PADS 导出的 .asc，或 Altium 的 .PcbDoc
+  <INPUT>  PADS .asc / 原生 .pcb（原生需本机 PADS Layout），或 Altium .PcbDoc
 
 Options:
       --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
