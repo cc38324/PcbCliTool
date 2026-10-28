@@ -1,5 +1,45 @@
 # 发布说明 / Release notes
 
+## 0.2.3 — 2026-10-28
+
+独立机械安装孔与槽孔现在真实挖穿3D板体正反面并生成孔壁；偏心通孔按钻孔中心定位，板体背面和孔壁使用一致向外的三角形方向。原先只处理焊盘孔与过孔，会把独立安装孔画成实心，这个问题已在共用几何层修复，PNG、GLB及Flutter预览一并生效。
+
+新增二进制STL导出：`render3d <工程> -o board.stl`，Flutter 3D页也分别提供“导出 STL”和“导出 GLB”。STL坐标为毫米、z向上，不带颜色；导入CAD时选择毫米。GLB保留颜色和贴图，按glTF标准使用米和y向上。两种格式都保留同一份板体、安装孔和元件几何。元件模型仍可能是明确标注的外形估算，不能用估算件验收外壳尺寸。
+
+合入PADS原生二进制`.pcb`导入：Windows通过本机已安装、已授权的PADS Layout，对私有副本执行官方ASCII导出后复用现有转换及自检；源文件不保存、不修改，也不接管已有PADS会话。非Windows或未安装授权PADS时使用已导出的`.asc`。同时修正METRIC导出混用英制/公制封装的尺寸；BASIC归一化数据保持原行为。
+
+保留完整元件本体丝印、1脚/极性标记和避让约束。开发与发布使用主工作区，打包支持`CARGO_TARGET_DIR`；修复迁移构建缓存后的Windows安装器资源路径，以及缺少资源编译器时的备用UAC清单。
+
+| 验证 | 本次结果 |
+|---|---|
+| 三平台Rust / Flutter | 各380项Rust通过、2项忽略；Flutter分析0问题、30项测试通过，全部重建 |
+| 最终包Demo | 三平台13脚差异0、5/5布通、电气DRC 0；原有6条字高警告保留 |
+| 实际窗口 | 三平台PCB、原理图、3D截图已查看，无运行异常；STL/GLB导出均通过 |
+| Windows安装 | 正常与无资源编译器两条路径都可安装，文件逐一与ZIP一致 |
+| Linux升级 | 独立Ubuntu 22.04容器验证0.2.2-1→0.2.3-1 |
+| 实际模型 | 独立安装孔与NPTH钻孔吻合，STL/GLB孔位与毫米尺寸一致；预览接口与CLI输出逐字节一致 |
+| PADS真实文件 | 180器件、473焊盘、949过孔几何自检无差异，源文件哈希不变；所配参考DSN的原版15处网络差异按原样报告 |
+| 包内文档 | 四个完整包的86个公开文档/示例文件逐项一致，无内部说明或地址 |
+
+CLI与窗口来源均为`c62d326daccdd371edd80adfff1bb854850e6f2f`，Windows安装器来源`770cc4dbfaee67ce9a2238ca01d105c8bf3373a2`，包内文档固定到`ecc370e31fd42027e42f0fb3b4a96c5fb2d36e4a`。构建SDK、完整验证和六个二进制附件的SHA256见`build-info.json`与`SHA256SUMS.txt`。
+
+下载：[v0.2.3 Release](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.3)。Homebrew Formula使用本版CLI真实URL和SHA256。APT本轮未同步，仍为0.2.1-1，本版使用Release的0.2.3-1 DEB。
+
+winget官方源尚未找到`Miyue.PcbCliTool`：[0.2.0收录申请 #452460](https://github.com/microsoft/winget-pkgs/pull/452460) 等待维护者批准。0.2.3清单引用最终Windows ZIP并通过本地格式验证；LocalManifestFiles未启用，未声称本地清单或官方源安装成功，未修改管理员设置。
+
+### English
+
+Mechanical mounting holes and routed slots now cut both PCB faces with real walls in the shared PNG, GLB and Flutter geometry. Offset pad drills use their actual drill origin; bottom and wall triangles face outwards.
+
+STL export is available from the CLI and Flutter viewer alongside GLB. STL contains geometry in millimetres, z-up, without colours; import as mm. GLB preserves materials and follows glTF metre/y-up conventions. Both share the same component and drilled-board geometry. Approximate models remain labelled and cannot validate enclosure dimensions.
+
+Native PADS binary PCB import uses an installed, licensed Windows PADS Layout to export a private copy through official automation. Original files and existing PADS sessions remain untouched. Other platforms use exported ASCII. Mixed metric/imperial decal units are corrected without changing normalized BASIC exports.
+
+Each platform passed 380 Rust tests (2 ignored), clean Flutter analysis and 30 widget tests. Final packages passed the Demo, both model formats and actual PCB/schematic/3D window checks. Windows normal and manifest-fallback installers match the ZIP file for file; Linux upgrades from 0.2.2-1 in an isolated Ubuntu 22.04 container. The reference PADS PCB geometry matches; its paired schematic retains 15 pre-existing net differences. The legacy Demo retains 6 text-height warnings.
+
+Source commits are recorded above and in build-info.json. Winget still awaits maintainer approval; schema validation does not establish installation availability. APT remains 0.2.1-1. Windows/macOS packages are unsigned/unnotarized.
+
+
 ## 0.2.2 — 2026-10-28
 
 AI skill 将元件本体丝印完整性及避让作为交付约束：先列出全板元件及丝印清单，保留完整外框、芯片1脚和二极管/LED负极条。冲突通过移动/转向元件并重接线路解决，禁止删框、裁短或隐藏图层规避检查；交付核对DRC、实际顶底层Gerber与最新PCB预览。器件范围和参数均由项目设计/规则配置。
