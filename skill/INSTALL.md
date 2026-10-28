@@ -13,7 +13,7 @@
 | macOS Apple 芯片，仅 CLI | `easyedatool-0.2.2-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
 | Ubuntu / Debian amd64 | `easyedatool_0.2.2-1_amd64.deb` | 包含 |
 
-Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。**2026-10-28 刷新官方源后未找到 EasyEdaTool；当前使用 Release 安装包，本地清单不等于官方收录。**
+Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。**2026-10-28 官方源未查到 Miyue.PcbCliTool；0.2.0申请 #452460 已通过自动验证但尚待合入，0.2.2清单已通过本地格式验证。当前使用Release安装包。**
 
 macOS 完整 ZIP 的程序在 `bin/easyedatool`，窗口在 `viewer/easyeda_view.app`，保留两者的相对位置。安装包未经 Apple 公证；系统拦截时先核对来源与校验和，再从系统安全设置允许打开。
 

@@ -27,7 +27,7 @@ Download the installer, or extract the ZIP and run:
 .\easyedatool\bin\easyedatool.exe view <project>
 ```
 
-The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official winget source on 2026-10-28, no EasyEdaTool package was found.** Use the Release downloads. Local-manifest validation does not establish official source availability.
+The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official source on 2026-10-28, `Miyue.PcbCliTool` was not found.** The [0.2.0 submission, #452460](https://github.com/microsoft/winget-pkgs/pull/452460), passed automated validation and still awaits maintainer approval. The [0.2.2 manifests](winget/README.md) pass local schema validation; this does not establish official source availability. Use the Release downloads.
 
 ### macOS (Apple silicon)
 

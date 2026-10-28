@@ -27,7 +27,7 @@
 .\easyedatool\bin\easyedatool.exe view <工程>
 ```
 
-安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，Windows 可能显示 SmartScreen 提示。**2026-10-28 刷新 winget 官方源后，未查到 EasyEdaTool 包**。当前请使用 Release 附件；本地清单验证和官方源收录分别核对，不能把前者当成后者。
+安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`。安装程序没有签名，Windows 可能显示 SmartScreen 提示。**2026-10-28 刷新官方源后，未查到 `Miyue.PcbCliTool`**。[0.2.0 收录申请 #452460](https://github.com/microsoft/winget-pkgs/pull/452460) 已通过自动验证，仍待维护者审核合入。0.2.2 的清单见 [winget/](winget/README.md)，已通过本地格式验证；这不代表官方源已可安装。当前请使用 Release 附件。
 
 ### macOS（Apple 芯片）
 
