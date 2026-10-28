@@ -1,5 +1,41 @@
 # 发布说明 / Release notes
 
+## 0.2.2 — 2026-10-28
+
+AI skill 将元件本体丝印完整性及避让作为交付约束：先列出全板元件及丝印清单，保留完整外框、芯片1脚和二极管/LED负极条。冲突通过移动/转向元件并重接线路解决，禁止删框、裁短或隐藏图层规避检查；交付核对DRC、实际顶底层Gerber与最新PCB预览。器件范围和参数均由项目设计/规则配置。
+
+本版包含上次发布后的通用改进：整板3D PNG/GLB导出及Flutter 3D页签、模型与焊盘对齐、完整本体外框与方向标记检查、局部布局避让、机械安装孔、电源跨焊盘/过孔细颈检查、原生过孔身份保护、独立原理图文字更新、工程预览规则及可配置搜索预算。源代码未加入具体项目的固定坐标、板尺寸或网络参数。
+
+| 验证 | 本次结果 |
+|---|---|
+| Windows / macOS arm64 / Linux x64 Rust | 各375项通过，2项忽略，0失败 |
+| 三平台Flutter | 分析0问题，各30项测试通过；均重新构建 |
+| 最终包内Demo | 三平台13脚差异0，5/5布通，电气DRC 0；示例原有6条字高警告保留 |
+| 实际窗口 | 三平台PCB、原理图和3D均启动并实际查看截图，无运行异常 |
+| Windows安装 | 安装程序解出的全部文件与最终ZIP逐一一致 |
+| Linux升级 | 在独立Ubuntu 22.04容器验证0.2.1-1→0.2.2-1，依赖与动态库检查通过 |
+| 丝印正反例 | 6个完整框、2个1脚标记、1条负极条，DRC错误/警告0；故意挤近电容时铜间距仍合格，但正确报告frame_clash；实际Gerber已查看 |
+| 文档与产物 | 4个完整包内86个公开文档/示例文件逐项一致；CLI tar根目录正确；无内部说明、地址或源码归档 |
+
+CLI与窗口来源均为 `fcebccdb742707de65829384e59d2aff8ca3815d`；包内文档固定到 `637c433135322b7a3e1fbd0eeb673d86b98d8b06`。Flutter 3.41.9 / Dart 3.11.5，锁文件不变；Rust为Windows/macOS 1.98.1、Linux 1.99.0。完整来源、测试和每个附件SHA256见Release附件 `build-info.json`、`SHA256SUMS.txt`。
+
+Windows完整ZIP/安装程序、macOS arm64完整ZIP/CLI tar.gz、Linux amd64 DEB/完整tar.gz均在 [v0.2.2 Release](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.2)。Homebrew Formula已指向本版CLI及真实校验和。APT源本轮未同步，当前仍为0.2.1-1，安装本版请用Release的0.2.2-1 DEB。
+
+winget官方源当前未查到 `Miyue.PcbCliTool`。[0.2.0收录申请 #452460](https://github.com/microsoft/winget-pkgs/pull/452460) 已通过自动验证、仍待维护者批准。0.2.2清单已用本版ZIP真实SHA256通过本地格式验证；本机LocalManifestFiles未启用，本轮未声称本地或官方源安装通过，也未改变管理员设置。
+
+限制：3D缺模型会明确显示外形估算，无模型碰撞检查；不能用估算外形验收机壳。电气DRC通过不代替丝印、方向、装配空间或实物电气验证。Windows安装包未签名，macOS包未公证。
+
+### English
+
+The AI skill now requires complete component body silkscreen, pin-1 and polarity marks, and conflict-free placement. Inventory parts first; resolve clashes by moving or rotating parts and reconnecting copper, then inspect DRC, actual Gerbers and the latest preview. Do not delete or trim outlines to suppress findings. Dimensions and selection patterns remain project data.
+
+This release adds the general 3D renderer and viewer tab, complete outline/orientation checks, placement clearance search, mounting holes, power-neck checks across pads/vias, native record preservation, independent schematic updates, project preview rules and configurable routing budgets.
+
+Each platform passed 375 Rust tests (2 ignored), clean Flutter analysis and 30 widget tests. Final Windows/macOS/Linux packages passed the bundled Demo and actual PCB/schematic/3D window checks. Windows installation matches the ZIP file for file; Linux upgrades from0.2.1-1 to0.2.2-1 in an isolated Ubuntu22.04 container. The dedicated silkscreen case preserves six complete frames, two pin-1 marks and one cathode bar with no errors or warnings; a deliberately crowded layout is detected even without a copper-clearance violation. The legacy Demo retains six existing text-height warnings.
+
+Source and packaged-document commits are recorded above and in build-info.json. Homebrew uses the release's actual CLI SHA256. APT remains at0.2.1-1; use the release DEB for0.2.2. Winget's previous0.2.0 submission still awaits maintainer approval; the new manifest passes schema validation, which does not establish installation or official availability. Models may be approximate, collision checking is not implemented, and the Windows/macOS packages remain unsigned/unnotarized.
+
+
 ## 0.2.1
 
 本版改进通用 PCB 布线整理、检查和预览。板子的线宽、孔径、间距、调长范围等参数继续来自工程或规则文件，不内置特定板卡的坐标和例外。

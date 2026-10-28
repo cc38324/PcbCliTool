@@ -13,6 +13,6 @@ Installers:
   - RelativeFilePath: easyedatool\bin\easyedatool.exe
     PortableCommandAlias: easyedatool.exe
   InstallerUrl: https://github.com/cc38324/PcbCliTool/releases/download/v0.2.2/easyedatool-0.2.2-windows-x64.zip
-  InstallerSha256: 0A9A870914AF66C35C37756A9F748E5A25CCC1CAE9DE5E4087AC195877823695
+  InstallerSha256: B601AB2953BBD443C782799E6CF5B20922F535BA7759F46CA41437D3AC31790E
 ManifestType: installer
 ManifestVersion: 1.12.0
