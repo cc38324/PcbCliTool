@@ -8,6 +8,9 @@
 Usage: easyedatool [OPTIONS] <COMMAND>
 
 Commands:
+  model3d      参数3D模型：方块、圆柱、多实体组合与改色；按规格尺寸建模并绑定工程位号
+  pad-edit     改下载封装的焊盘铜面：长宽、增减、缩放、固定边；默认试算，输出副本并保留丝印
+  holes        按设计文件同步已有独立圆形安装孔的孔径；不重新生成原理图、线路、文字或差分约束
   info         板子概况：尺寸、器件、焊盘、走线、过孔、铺铜、网络
   pads         列出焊盘：位号、脚号、网络、中心（毫米）、尺寸、转角、层
   route        自动布线：删掉全部旧走线、过孔和铺铜填充，按规则文件重新布线（多层板按板子的铜层布，内层铺铜平面只让过孔穿过），写回 .epcb2，再重算铺铜
@@ -54,6 +57,70 @@ Options:
       --no-drc   改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help     Print help
   -V, --version  Print version
+```
+
+## model3d
+
+```
+参数3D模型：方块、圆柱、多实体组合与改色；按规格尺寸建模并绑定工程位号
+
+Usage: easyedatool model3d [OPTIONS] <COMMAND>
+
+Commands:
+  box       创建或替换一个长方体；配方不存在时新建，可多次添加不同名称来组合
+  cylinder  创建或替换圆柱，可组合电解电容本体、底座及引脚
+  color     只改变指定实体的颜色，保留尺寸、位置和其余实体
+  export    导出组合模型：PNG、毫米OBJ+MTL、GLB（米）、STL（毫米）、STEP（毫米）
+  bind      绑定模型到工程位号，只写easyedatool.toml；默认试算，不改电气几何或共享库
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+      --no-drc  改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -h, --help    Print help
+```
+
+## pad-edit
+
+```
+改下载封装的焊盘铜面：长宽、增减、缩放、固定边；默认试算，输出副本并保留丝印
+
+Usage: easyedatool pad-edit [OPTIONS] <INPUT>
+
+Arguments:
+  <INPUT>  下载封装的JSON，须包含 footprintDoc；不直接改共享库或已布PCB
+
+Options:
+      --no-drc                 改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -o, --out <OUT>              输出修改后的封装副本；不填只试算，禁止覆盖输入
+      --pad <PAD>              焊盘脚号，逗号分隔；*表示全部；可修改同号的全部实体焊盘 [default: *]
+      --width <WIDTH>          铜面局部X尺寸，毫米，旋转前的width
+      --height <HEIGHT>        铜面局部Y尺寸，毫米，旋转前的height
+      --grow-x <GROW_X>        X总尺寸增加量，毫米，负值缩小
+      --grow-y <GROW_Y>        Y总尺寸增加量，毫米，负值缩小
+      --scale <SCALE>          两个方向等比例缩放，例如0.9
+      --anchor <ANCHOR>        固定局部哪一边；有孔焊盘仅支持center，孔径和孔位不变 [default: center] [possible values: center, left, right, bottom, top]
+      --clearance <CLEARANCE>  焊盘间最小铜间距，毫米；已有不足不得变差 [default: 0.1]
+      --name <NAME>            副本的新封装名称，配合独立文件使用；不改焊盘脚号
+      --preview <PREVIEW>      在指定目录输出before.png和after.png；丝印、脚号和铜面都画出来
+  -h, --help                   Print help
+```
+
+## holes
+
+```
+按设计文件同步已有独立圆形安装孔的孔径；不重新生成原理图、线路、文字或差分约束
+
+Usage: easyedatool holes [OPTIONS] --design <DESIGN> <INPUT>
+
+Arguments:
+  <INPUT>  .epcb2、.eprj3 或工程目录
+
+Options:
+      --design <DESIGN>  读取 [[board.holes]]，毫米；只匹配已有孔心，不移动、新增或删除孔
+      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --rules <RULES>    项目的布线 / DRC 规则，用于钻孔、孔距和铜间距检查
+      --write            检查通过后写入；默认只试算
+  -h, --help             Print help
 ```
 
 ## info

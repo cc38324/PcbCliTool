@@ -1,0 +1,19 @@
+# 从立创拉的（C2652286）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TCA9538PWR <料号>
+name = "TCA9538PWR"
+description = ""
+category = ""
+symbol = "TCA9538PWR"
+footprint = "TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL"
+datasheet = "https://item.szlcsc.com/6534.html"
+status = "draft"
+notes = [
+  "从立创拉的（C2652286，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TI(德州仪器)"
+part = "TCA9538PWR"
+lcsc = "C2652286"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

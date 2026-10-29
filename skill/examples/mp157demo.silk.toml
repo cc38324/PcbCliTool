@@ -1,0 +1,13 @@
+[body_silk]
+enabled = true
+require_all = false
+width = 0.1
+gap = 0.15
+min_length = 0.2
+outset = 0.0
+max_outset = 0.5
+frames = ["J6", "R1??", "C1??", "L1??", "U*", "D*", "Y*", "SW*", "B*", "Q*"]
+frame_gap = 0.15
+pin1 = [{part="U28",pin="1"},{part="J6",pin="1",at=[3.8,-2.25]},{part="U18",pin="1"},{part="U25",pin="1"},{part="U26",pin="1"},{part="U27",pin="1"},{part="U16",pin="1"},{part="U17",pin="1"},{part="U19",pin="1"},{part="U21",pin="1"},{part="U22",pin="1"},{part="U1",pin="A1"},{part="U2",pin="A1"},{part="U5",pin="A1",at=[-5.25,3.25]},{part="U4",pin="1"},{part="U10",pin="1"},{part="U11",pin="1"},{part="U12",pin="1",at=[-2.0,2.0]},{part="U13",pin="1"},{part="U14",pin="1"},{part="U15",pin="1"}]
+pin1_diameter = 0.4
+cathodes = [{part="D1",pin="2",length=0.6},{part="D2",pin="2",length=0.6},{part="D3",pin="2",length=0.6}]

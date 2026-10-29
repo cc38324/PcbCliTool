@@ -1,0 +1,19 @@
+# 从立创拉的（C52895）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign BSS138 <料号>
+name = "BSS138"
+description = ""
+category = ""
+symbol = "BSS138_C52895"
+footprint = "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
+datasheet = "https://item.szlcsc.com/14454.html"
+status = "draft"
+notes = [
+  "从立创拉的（C52895，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "onsemi(安森美)"
+part = "BSS138"
+lcsc = "C52895"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

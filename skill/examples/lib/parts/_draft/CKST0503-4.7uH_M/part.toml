@@ -1,0 +1,19 @@
+# 从立创拉的（C3002619）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign CKST0503-4.7uH_M <料号>
+name = "CKST0503-4.7uH/M"
+description = ""
+category = ""
+symbol = "CKST0503-4.7UH_M"
+footprint = "IND-SMD_L5.7-W5.1"
+datasheet = "https://img.jlc.com/pdf/applyPasteComponent/2021-08-26/146951A/51ffba47f1b64a2a9879bb26fee49b11/%E6%96%B0WHC%E4%B8%80%E4%BD%93%E5%A4%A7%E7%94%B5%E6%B5%81%E7%94%B5t.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C3002619，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "CENKER(岑科)"
+part = "CKST0503-4.7uH/M"
+lcsc = "C3002619"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

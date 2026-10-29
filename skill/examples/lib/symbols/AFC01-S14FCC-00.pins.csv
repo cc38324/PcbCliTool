@@ -1,0 +1,17 @@
+number,name,type,side,group
+5,SCL,passive,left,bus
+6,SDA,passive,left,bus
+7,INT,passive,left,irq
+8,RESET_N,passive,left,reset
+9,NC,nc,left,nc
+12,NC,nc,left,nc
+1,GND,passive,right,supply1
+2,VCC_2V8,passive,right,supply2
+3,VCC_2V8,passive,right,supply3
+4,GND,passive,right,supply4
+10,VDD_2V8,passive,right,supply10
+11,VDD_2V8,passive,right,supply11
+13,GND,passive,right,supply13
+14,GND,passive,right,supply14
+15,SHIELD,passive,right,supply15
+16,SHIELD,passive,right,supply16

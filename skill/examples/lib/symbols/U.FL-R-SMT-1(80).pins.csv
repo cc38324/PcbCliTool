@@ -1,0 +1,4 @@
+number,name,type,side,group
+1,SIG,passive,left,rf
+2,GND,passive,right,ground1
+3,GND,passive,right,ground2

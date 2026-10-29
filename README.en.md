@@ -89,47 +89,24 @@ The release also includes mounting holes, complete outline/orientation checks, p
 
 ## Example: STM32MP157
 
-Paths below are relative to this repository's root. Full ZIPs place the contents of `skill/` directly inside the extracted `easyedatool/` directory. When running from that directory, omit the `skill/` prefix; for example, `easyedatool gen examples/mp157demo.toml --out MP157Demo`.
+A 100×80 mm, four-layer `JLC04161H-3313` example with 289 components and eight schematic pages, preserving ST's DDR and power core. It uses the selected **AM319M262928ZS 3.19-inch 262×928 AMOLED**, CO6300 display driver, CST3530 touch and **DF40C-30DS-0.4V(51), C424642**, 30-pin receptacle. The MP157 uses one DSI data lane; no LED backlight circuit is needed.
 
-The example is an STM32MP157 single-board computer, 100 × 80 mm, four layers, stack-up `JLC04161H-3313`. The generated board has about 238 parts (130 on top, 108 on the bottom), 1307 pads, 851 vias, and 210 nets.
+The [display notes](skill/examples/docs/display/README.md) include the original panel PDF, all pin assignments and pin-1 orientation. On the board top view, J6 pin 1 is at the lower right and connects to ground. The panel drawing's rear view must not be copied as a board top view. Controlled 3.7V, 1.8V, 2.8V and VCI_EN 3.3V outputs and 1.8V touch/reset/TE translation are included.
 
-| File | Contents |
-|---|---|
-| `skill/examples/mp157demo.toml` | Design file. `easyedatool gen` builds the project from it |
-| `skill/examples/mp157demo.rules.toml` | Rules for routing, DRC, and the net check |
-| `skill/examples/mp157demo.constraints.toml` | Differential pairs (USB, MIPI DSI, Ethernet, DDR) |
+From the repository root, using a CLI with `body_silk.pin1.at` support:
 
-The design names 23 library parts, placed 30 times (`part = "STM32MP157DAB1"` and the rest). Each one has its LCSC number (`lcsc = "C1236721"` and the rest). Symbols and footprints are in `skill/examples/lib` (23 symbols, 21 footprints; some parts share a footprint). `skill/examples/easyedatool.toml` points at that library.
-
-The core layout copied by `[[reuse]]` is `skill/build/st/board.PcbDoc`. It is the Altium board `STM32MP15XXAB/STM32MP15XXAB_1DDR3Lx16` from ST's AN5122 package `stm32mp15x-series-ddr-memory-routing-guidelines-examples.zip`, saved under this name. The design file points at it with `../build/st/board.PcbDoc`.
-
-`<project>` below is the project folder. `route` rewrites the board. This rules file sets `keep = ["*"]`, so existing tracks stay and only open connections are added. Commit first, and roll back with git if the result is wrong. If EasyEDA has this project open, close the PCB page before a command that writes the board, then open it again.
-
-```bash
-easyedatool gen skill/examples/mp157demo.toml --out MP157Demo
-
-easyedatool info   <project>
-easyedatool render <project> --view top -o MP157_top.png
-easyedatool render <project> --view layers -o MP157_layers.png
-easyedatool render <project> --view sch -o MP157_sch.png
-
-easyedatool check <project> --rules skill/examples/mp157demo.rules.toml
-easyedatool erc   <project>
-easyedatool drc   <project> --rules skill/examples/mp157demo.rules.toml
-
-easyedatool route <project> --rules skill/examples/mp157demo.rules.toml
-easyedatool constraints <project> --from skill/examples/mp157demo.constraints.toml
-easyedatool pair  <project> --pair USBH
-easyedatool pour  <project>
-
-easyedatool pdf     <project> -o MP157_sch.pdf
-easyedatool netlist <project> -o MP157.net
-easyedatool bom     <project> -o MP157_bom.csv
-easyedatool fab     <project> -o MP157_fab
-easyedatool view    <project>
+```powershell
+python skill/examples/build_mp157.py --tool easyedatool --out MP157Demo --export
+easyedatool view MP157Demo
 ```
 
-`drc`, `check`, and `erc` exit with code 1 when they find problems. That is the check result. Add `--help` to any command for the full option list. Command help is in Chinese.
+In the full package, omit `skill/` and point `--tool` to `bin/easyedatool.exe`. Keep the design, routed layout, rules, constraints, labels, local library and build/check scripts together. The build restores copper, runs schematic/PCB, ERC, constraints, display-specific and DRC checks, then exports documentation and manufacturing files.
+
+All 1262 connected pins match the PCB, and eight pages pass the layout audit. Display checks cover all 30 pins, unused D1/ID/VPP and the original PDF hash. Clock PCB P/N lengths are 52.285 / 51.463 mm; D0 lengths are 56.341 / 55.560 mm. These compensate the LFBGA354 package's 0.822 / 0.781 mm differences, leaving less than 0.001 mm electrical skew; average clock/data length difference is 4.077 mm. Eleven pair constraints are checked.
+
+The dense ST core retains conventional mask-cleared silk as requested; peripherals keep complete frames and orientation marks. Inner layer 1 remains the ground reference except for one approximately 15 mm PA10 connection. Fabrication warnings and routing-quality notices remain in the DRC JSON, and generic BOM entries still need procurement selections.
+
+The original ST AN5122 reference remains at `skill/build/st/board.PcbDoc`, referenced relatively. No physical panel test is claimed. CO6300 initialization, CST3530 software, touch coordinates, module power sequencing, load, ripple, EMI and RF validation remain necessary.
 
 ## For an AI assistant
 

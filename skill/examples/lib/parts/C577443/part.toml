@@ -1,0 +1,20 @@
+pn = "C577443"
+# 从立创拉的（C577443）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign AFC01-S14FCC-00 <料号>
+name = "AFC01-S14FCC-00"
+description = ""
+category = ""
+symbol = "AFC01-S14FCC-00"
+footprint = "FPC-SMD_14P-P0.50_AFC01-S14FCC-00"
+datasheet = "https://item.szlcsc.com/604977.html"
+status = "draft"
+notes = [
+  "从立创拉的（C577443，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "JS(钜硕电子)"
+part = "AFC01-S14FCC-00"
+lcsc = "C577443"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

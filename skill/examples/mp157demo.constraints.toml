@@ -1,6 +1,6 @@
 # Differential pairs of the MP157 demo board (easyedatool constraints --from ... --write; pair; tune; drc).
 # Stack-up JLC04161H-3313 (as ST's board: 0.0994 mm prepreg of Dk 4.1 under the outer layers, inner 1 a solid GND
-# plane under the top layer): the widths come from the impedance as EasyEDA's calculator works them out.
+# reference plane under the top layer, except the saved local PA10 connection): the widths come from the impedance as EasyEDA's calculator works them out.
 
 # USB 2.0 (high speed), the MPU to the ESD parts: 90 ohm
 [[pair_rule]]
@@ -19,7 +19,9 @@ impedance = 100
 gap = 0.15
 width_min = 0.1
 gap_min = 0.1
-skew = 0.15
+# LFBGA354 package N-P = CK 0.822 / D0 0.781 mm (AN5031).
+# PCB P is deliberately longer; tools/check_display.py checks compensated skew <=0.127.
+skew = 0.95
 
 # the USB lines from the ESD parts to the connectors: a few millimetres the router lays (too tight for the pair
 # router between the USBLC6 and the connector's pads); the USB-C's D+ / D- on both rows of pins, so the nets' lengths
@@ -87,12 +89,6 @@ rule = "DIFF_100"
 name = "DSI_D0"
 positive = "DSI_D0_P"
 negative = "DSI_D0_N"
-rule = "DIFF_100"
-
-[[pair]]
-name = "DSI_D1"
-positive = "DSI_D1_P"
-negative = "DSI_D1_N"
 rule = "DIFF_100"
 
 [[pair]]

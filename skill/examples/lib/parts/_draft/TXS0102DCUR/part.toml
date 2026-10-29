@@ -1,0 +1,19 @@
+# 从立创拉的（C53434）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TXS0102DCUR <料号>
+name = "TXS0102DCUR"
+description = ""
+category = ""
+symbol = "TXS0102DCUR"
+footprint = "VSON8_L2.0-W2.3-P0.50-LS3.1-BL"
+datasheet = "https://item.szlcsc.com/22121.html"
+status = "draft"
+notes = [
+  "从立创拉的（C53434，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TI(德州仪器)"
+part = "TXS0102DCUR"
+lcsc = "C53434"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

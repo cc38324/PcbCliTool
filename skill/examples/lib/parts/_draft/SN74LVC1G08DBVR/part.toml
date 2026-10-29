@@ -1,0 +1,19 @@
+# 从立创拉的（C7666）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign SN74LVC1G08DBVR <料号>
+name = "SN74LVC1G08DBVR"
+description = ""
+category = ""
+symbol = "SN74LVC1G08DBVR"
+footprint = "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR"
+datasheet = "https://item.szlcsc.com/236104.html"
+status = "draft"
+notes = [
+  "从立创拉的（C7666，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TI(德州仪器)"
+part = "SN74LVC1G08DBVR"
+lcsc = "C7666"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

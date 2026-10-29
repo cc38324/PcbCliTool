@@ -1,0 +1,4 @@
+number,name,type,side,group
+1,G,input,left,gate
+3,D,passive,right,drain
+2,S,passive,right,source

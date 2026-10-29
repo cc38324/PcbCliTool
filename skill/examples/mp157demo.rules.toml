@@ -1,6 +1,7 @@
 # MP157Demo: rules of route / drc / check (easyedatool … --rules rules/mp157demo.rules.toml)
 # ST's core keeps its own copper ([nets] keep: every net); the router adds the peripherals' tracks.
-grid = 0.1
+grid = 0.05
+search_budget_scale = 8
 clearance = 0.1
 track = 0.1
 power_track = 0.3
@@ -15,13 +16,14 @@ rip_max = 16
 # one more whole round with the unrouted first (the three more of the default gave nothing on this board, 22 min)
 restarts = 1
 # signals on inner 2 too (the 3V3 pour fills round them; ST's power islands there stay whole, vias pass them);
-# inner 1 stays a whole ground plane
+# inner 1 is the GND reference plane; the saved layout also retains one 15 mm local PA10 connection.
+# The autorouter does not add further tracks on inner 1.
 layers = ["top", "inner2", "bottom"]
 
 [nets]
 # the other nets ST joins through copper areas (inner-2 islands, switch nodes) the router joins the same way
 pour = ["GND", "3V3"]
-power = ["5V_VIN", "VDD", "VBUS_HOST", "VDDA_PHY", "WL_VIN_LDO", "WL_LDO_SW"]
+power = ["5V_VIN", "VDD", "VBUS_HOST", "VDDA_PHY", "WL_VIN_LDO", "WL_LDO_SW", "OLED_VBAT", "OLED_VCI_EN", "LCD_1V8", "TP_2V8", "OLED_SW"]
 keep = ["*"]
 # the long lines across the board first (USB, CAN, the debug UART, RS485): they take the clear ways
 first = ["FDCAN1_RX", "PA10", "WL_LPO", "USBH_DP", "USBH_DM", "OTG_DP", "OTG_DM", "FDCAN1_TX", "UART4_TX", "UART4_RX", "USART3_TX", "USART3_RX", "RS485_DE"]

@@ -1,0 +1,1055 @@
+{
+  "reference": "AM319M262928ZS; manufacturer drawing supplied by user",
+  "status": "1-lane AMOLED hardware; software initialization and powered validation required",
+  "sources": {
+    "display": "docs/display/AM-319-M262928-ZS.pdf",
+    "connector": "https://item.szlcsc.com/418159.html",
+    "buck": "https://www.ti.com/lit/ds/symlink/tps562201.pdf",
+    "level": "https://www.ti.com/lit/ds/symlink/txs0102.pdf"
+  },
+  "host_pins": {
+    "B1": "TP_INT_3V3",
+    "C1": "PANEL_TE_3V3"
+  },
+  "host_nc": [
+    "A15",
+    "B15"
+  ],
+  "replacements": [
+    {
+      "ref": "J6",
+      "group": "DSI",
+      "part": "DF40C-30DS-0.4V(51)",
+      "lcsc": "C424642",
+      "value": "AM319M262928ZS / DF40C-30DS",
+      "pcb": [
+        32.9999,
+        77.0001
+      ],
+      "angle": 0,
+      "side": "top",
+      "nets": {
+        "1": "GND",
+        "2": "GND",
+        "6": "GND",
+        "7": "GND",
+        "10": "GND",
+        "13": "GND",
+        "16": "GND",
+        "19": "GND",
+        "20": "GND",
+        "25": "GND",
+        "30": "GND",
+        "3": "DSI_CK_N",
+        "4": "OLED_VCI_EN",
+        "5": "DSI_CK_P",
+        "8": "LCD_1V8",
+        "12": "PANEL_RST_1V8",
+        "15": "DSI_D0_N",
+        "17": "DSI_D0_P",
+        "18": "TP_2V8",
+        "21": "PANEL_TE_1V8",
+        "22": "TP_RST_1V8",
+        "24": "TP_INT_1V8",
+        "26": "TP_SDA_1V8",
+        "27": "OLED_VBAT",
+        "28": "TP_SCL_1V8",
+        "29": "OLED_VBAT"
+      },
+      "nc": [
+        "9",
+        "11",
+        "14",
+        "23"
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "ref": "U19",
+      "group": "TOUCH",
+      "nets": {
+        "1": "DSI_SDA",
+        "2": "GND",
+        "3": "LCD_1V8",
+        "4": "TP_SDA_1V8",
+        "5": "TP_SCL_1V8",
+        "6": "PANEL_IO_OE",
+        "7": "3V3",
+        "8": "DSI_SCL"
+      },
+      "pcb": [
+        21,
+        72.5
+      ],
+      "angle": 0,
+      "side": "bottom",
+      "part": "TXS0102DCUR",
+      "lcsc": "C53434",
+      "value": "TXS0102DCUR"
+    },
+    {
+      "ref": "C130",
+      "group": "TOUCH",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "GND"
+      },
+      "pcb": [
+        18.5001,
+        74.0001
+      ],
+      "angle": 90,
+      "side": "bottom",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF"
+    },
+    {
+      "ref": "C131",
+      "group": "TOUCH",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        18.5001,
+        71.3999
+      ],
+      "angle": 90,
+      "side": "bottom",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF"
+    },
+    {
+      "ref": "R142",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_SCL_1V8",
+        "2": "LCD_1V8"
+      },
+      "pcb": [
+        23.5001,
+        75.3001
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "4.7kΩ"
+    },
+    {
+      "ref": "R143",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_SDA_1V8",
+        "2": "LCD_1V8"
+      },
+      "pcb": [
+        25.5001,
+        75.3001
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "4.7kΩ"
+    },
+    {
+      "ref": "R145",
+      "group": "TOUCH",
+      "nets": {
+        "1": "PANEL_IO_OE",
+        "2": "GND"
+      },
+      "pcb": [
+        24.2499,
+        62.9999
+      ],
+      "angle": 0,
+      "side": "bottom",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "C133",
+      "group": "TOUCH",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "GND"
+      },
+      "pcb": [
+        15.5001,
+        76.0001
+      ],
+      "angle": 0,
+      "side": "bottom",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF"
+    },
+    {
+      "ref": "R146",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_INT_1V8",
+        "2": "LCD_1V8"
+      },
+      "pcb": [
+        8.1001,
+        72.0001
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ"
+    },
+    {
+      "ref": "R147",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_INT_3V3",
+        "2": "3V3"
+      },
+      "pcb": [
+        8.1501,
+        74.8
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ"
+    },
+    {
+      "ref": "R148",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_RST_1V8",
+        "2": "LCD_1V8"
+      },
+      "pcb": [
+        17.7,
+        69.6001
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ"
+    },
+    {
+      "ref": "U21",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "GND",
+        "2": "GND",
+        "3": "NRST",
+        "4": "OLED_VBAT_EN",
+        "5": "LCD_1V8_EN",
+        "6": "PANEL_RST_CTRL",
+        "7": "TP_RST_CTRL",
+        "8": "GND",
+        "9": "PANEL_IO_CTRL",
+        "10": "TP_PWR_EN",
+        "14": "DSI_SCL",
+        "15": "DSI_SDA",
+        "16": "3V3",
+        "11": "OLED_VCI_CTRL"
+      },
+      "pcb": [
+        45.9999,
+        72.0999
+      ],
+      "angle": 90,
+      "side": "top",
+      "part": "TCA9538PWR",
+      "lcsc": "C2652286",
+      "value": "TCA9538PWR",
+      "nc": [
+        "12",
+        "13"
+      ]
+    },
+    {
+      "ref": "C134",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        51.5,
+        73.2
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF"
+    },
+    {
+      "ref": "R151",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "OLED_VBAT_EN",
+        "2": "GND"
+      },
+      "pcb": [
+        43.1,
+        76.0001
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "R152",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "LCD_1V8_EN",
+        "2": "GND"
+      },
+      "pcb": [
+        40.5,
+        76.0001
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "R153",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "PANEL_RST_CTRL",
+        "2": "GND"
+      },
+      "pcb": [
+        47.9999,
+        76.6001
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "R154",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "PANEL_IO_CTRL",
+        "2": "GND"
+      },
+      "pcb": [
+        50.5,
+        77.2
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "R155",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "TP_PWR_EN",
+        "2": "GND"
+      },
+      "pcb": [
+        52.9999,
+        77.5
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ"
+    },
+    {
+      "ref": "U16",
+      "group": "LCD_POWER",
+      "nets": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "LCD_1V8_EN",
+        "5": "LCD_1V8"
+      },
+      "pcb": [
+        52.3999,
+        56.3999
+      ],
+      "angle": 0,
+      "side": "top",
+      "part": "TLV75518PDBVR",
+      "lcsc": "C2877863",
+      "value": "TLV75518PDBVR",
+      "nc": [
+        "4"
+      ]
+    },
+    {
+      "ref": "U17",
+      "group": "TOUCH",
+      "nets": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "TP_PWR_EN",
+        "5": "TP_2V8"
+      },
+      "pcb": [
+        15,
+        73.0001
+      ],
+      "angle": 0,
+      "side": "top",
+      "part": "TLV70028DDCR",
+      "lcsc": "C507266",
+      "value": "TLV70028DDCR",
+      "nc": [
+        "4"
+      ]
+    },
+    {
+      "ref": "C135",
+      "group": "TOUCH",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        19,
+        73.0001
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V"
+    },
+    {
+      "ref": "C136",
+      "group": "TOUCH",
+      "nets": {
+        "1": "TP_2V8",
+        "2": "GND"
+      },
+      "pcb": [
+        15,
+        76.5
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V"
+    },
+    {
+      "ref": "C137",
+      "group": "LCD_POWER",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        55.5,
+        56.5
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V"
+    },
+    {
+      "ref": "C138",
+      "group": "LCD_POWER",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "GND"
+      },
+      "pcb": [
+        49.2001,
+        58.1
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V"
+    },
+    {
+      "ref": "C141",
+      "group": "DSI",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "GND"
+      },
+      "pcb": [
+        36.9999,
+        72.7499
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V"
+    },
+    {
+      "ref": "C142",
+      "group": "DSI",
+      "nets": {
+        "1": "OLED_VBAT",
+        "2": "GND"
+      },
+      "pcb": [
+        39.5,
+        72.5
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0805",
+      "value": "10uF/10V"
+    },
+    {
+      "ref": "U22",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "2": "PANEL_RST_CTRL",
+        "3": "GND",
+        "4": "PANEL_RST_1V8",
+        "5": "3V3"
+      },
+      "pcb": [
+        50.8,
+        67.0001
+      ],
+      "angle": 0,
+      "side": "top",
+      "part": "SN74LVC1G07DBVR",
+      "lcsc": "C7829",
+      "value": "SN74LVC1G07DBVR",
+      "nc": [
+        "1"
+      ]
+    },
+    {
+      "ref": "C143",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        50.6999,
+        64.6001
+      ],
+      "angle": 0,
+      "side": "top",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF"
+    },
+    {
+      "ref": "R156",
+      "group": "PANEL_CTRL",
+      "nets": {
+        "1": "PANEL_RST_1V8",
+        "2": "LCD_1V8"
+      },
+      "pcb": [
+        54.5,
+        68.5
+      ],
+      "angle": 90,
+      "side": "top",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ"
+    },
+    {
+      "ref": "U25",
+      "group": "TOUCH",
+      "part": "SN74LVC1G07DBVR",
+      "lcsc": "C7829",
+      "value": "SN74LVC1G07DBVR",
+      "nets": {
+        "2": "TP_RST_CTRL",
+        "3": "GND",
+        "4": "TP_RST_1V8",
+        "5": "3V3"
+      },
+      "pcb": [
+        10.5001,
+        72.0001
+      ],
+      "angle": 0,
+      "side": "bottom",
+      "nc": [
+        "1"
+      ]
+    },
+    {
+      "ref": "U26",
+      "group": "TOUCH",
+      "part": "TXS0102DCUR",
+      "lcsc": "C53434",
+      "value": "TXS0102DCUR",
+      "nets": {
+        "1": "TP_INT_3V3",
+        "2": "GND",
+        "3": "LCD_1V8",
+        "4": "TP_INT_1V8",
+        "5": "PANEL_TE_1V8",
+        "6": "PANEL_IO_OE",
+        "7": "3V3",
+        "8": "PANEL_TE_3V3"
+      },
+      "pcb": [
+        15.5001,
+        72.0001
+      ],
+      "angle": 0,
+      "side": "bottom"
+    },
+    {
+      "ref": "U27",
+      "group": "PANEL_CTRL",
+      "part": "SN74LVC1G07DBVR",
+      "lcsc": "C7829",
+      "value": "SN74LVC1G07DBVR",
+      "nets": {
+        "2": "PANEL_IO_CTRL",
+        "3": "GND",
+        "4": "PANEL_IO_OE",
+        "5": "3V3"
+      },
+      "pcb": [
+        23,
+        66.0001
+      ],
+      "angle": 0,
+      "side": "bottom",
+      "nc": [
+        "1"
+      ]
+    },
+    {
+      "ref": "C148",
+      "group": "TOUCH",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        7,
+        72.0001
+      ],
+      "angle": 90,
+      "side": "bottom"
+    },
+    {
+      "ref": "C149",
+      "group": "TOUCH",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "GND"
+      },
+      "pcb": [
+        15.5001,
+        77.5
+      ],
+      "angle": 0,
+      "side": "bottom"
+    },
+    {
+      "ref": "C150",
+      "group": "TOUCH",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        12,
+        77.7499
+      ],
+      "angle": 0,
+      "side": "bottom"
+    },
+    {
+      "ref": "C151",
+      "group": "PANEL_CTRL",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "pcb": [
+        26.5001,
+        65.2501
+      ],
+      "angle": 0,
+      "side": "bottom"
+    },
+    {
+      "ref": "R144",
+      "group": "PANEL_CTRL",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ",
+      "nets": {
+        "1": "LCD_1V8",
+        "2": "PANEL_IO_OE"
+      },
+      "pcb": [
+        24.9999,
+        70.5
+      ],
+      "angle": 0,
+      "side": "bottom"
+    },
+    {
+      "ref": "R149",
+      "group": "PANEL_CTRL",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ",
+      "nets": {
+        "1": "TP_RST_CTRL",
+        "2": "GND"
+      },
+      "pcb": [
+        17,
+        66.3999
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "R150",
+      "group": "PANEL_CTRL",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "100kΩ",
+      "nets": {
+        "1": "OLED_VCI_CTRL",
+        "2": "GND"
+      },
+      "pcb": [
+        52.9999,
+        74.6501
+      ],
+      "angle": 90,
+      "side": "top"
+    },
+    {
+      "ref": "U18",
+      "group": "LCD_POWER",
+      "part": "TPS562201DDCR",
+      "lcsc": "C90061",
+      "value": "TPS562201DDCR",
+      "nets": {
+        "1": "GND",
+        "2": "OLED_SW",
+        "3": "5V_VIN",
+        "4": "OLED_FB",
+        "5": "OLED_VBAT_EN",
+        "6": "OLED_BOOT"
+      },
+      "pcb": [
+        67.8,
+        50.2501
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "L102",
+      "group": "LCD_POWER",
+      "part": "CKCS4030-4.7uH_M",
+      "lcsc": "C354587",
+      "value": "4.7uH/2A, Isat2.9A",
+      "nets": {
+        "1": "OLED_SW",
+        "2": "OLED_VBAT"
+      },
+      "pcb": [
+        73.5,
+        54.2
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "C139",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0805",
+      "value": "10uF/10V",
+      "nets": {
+        "1": "5V_VIN",
+        "2": "GND"
+      },
+      "pcb": [
+        73.9,
+        45.5
+      ],
+      "angle": 270,
+      "side": "top"
+    },
+    {
+      "ref": "C140",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0805",
+      "value": "22uF/10V",
+      "nets": {
+        "1": "OLED_VBAT",
+        "2": "GND"
+      },
+      "pcb": [
+        80.1,
+        51.7
+      ],
+      "angle": 90,
+      "side": "top"
+    },
+    {
+      "ref": "C144",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0805",
+      "value": "22uF/10V",
+      "nets": {
+        "1": "OLED_VBAT",
+        "2": "GND"
+      },
+      "pcb": [
+        73.0001,
+        61.5
+      ],
+      "angle": 90,
+      "side": "top"
+    },
+    {
+      "ref": "C145",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "5V_VIN",
+        "2": "GND"
+      },
+      "pcb": [
+        71.0001,
+        46.9999
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "C146",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0402",
+      "value": "100nF",
+      "nets": {
+        "1": "OLED_BOOT",
+        "2": "OLED_SW"
+      },
+      "pcb": [
+        67.8,
+        45.6
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "R157",
+      "group": "LCD_POWER",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "38.3kΩ 1%",
+      "nets": {
+        "1": "OLED_VBAT",
+        "2": "OLED_FB"
+      },
+      "pcb": [
+        66.5,
+        52.75
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "R158",
+      "group": "LCD_POWER",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ 1%",
+      "nets": {
+        "1": "OLED_FB",
+        "2": "GND"
+      },
+      "pcb": [
+        63.7499,
+        48.2501
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "U28",
+      "group": "LCD_POWER",
+      "part": "TLV75533PDBVR",
+      "lcsc": "C404027",
+      "value": "TLV75533PDBVR",
+      "nets": {
+        "1": "5V_VIN",
+        "2": "GND",
+        "3": "OLED_VCI_CTRL",
+        "5": "OLED_VCI_EN"
+      },
+      "nc": [
+        "4"
+      ],
+      "pcb": [
+        52.15,
+        52.0499
+      ],
+      "angle": 0,
+      "side": "top"
+    },
+    {
+      "ref": "C152",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V",
+      "nets": {
+        "1": "5V_VIN",
+        "2": "GND"
+      },
+      "pcb": [
+        48.75,
+        51.8
+      ],
+      "angle": 90,
+      "side": "top"
+    },
+    {
+      "ref": "C153",
+      "group": "LCD_POWER",
+      "sym": "CAP",
+      "fp": "C0603",
+      "value": "1uF/10V",
+      "nets": {
+        "1": "OLED_VCI_EN",
+        "2": "GND"
+      },
+      "pcb": [
+        55.3001,
+        51.8
+      ],
+      "angle": 90,
+      "side": "top"
+    },
+    {
+      "ref": "R160",
+      "group": "LCD_POWER",
+      "sym": "RES",
+      "fp": "R0402",
+      "value": "10kΩ",
+      "nets": {
+        "1": "OLED_VCI_EN",
+        "2": "GND"
+      },
+      "pcb": [
+        55.3001,
+        49.1
+      ],
+      "angle": 0,
+      "side": "top"
+    }
+  ],
+  "symbols": [],
+  "blocks": [
+    {
+      "name": "TOUCH",
+      "title": "CST3530: 2.8V supply, 1.8V I2C / IRQ",
+      "regions": [
+        [
+          7,
+          66,
+          30,
+          79
+        ]
+      ]
+    },
+    {
+      "name": "LCD_POWER",
+      "title": "AMOLED: regulated 3.7V VBAT and 1.8V IO",
+      "regions": [
+        [
+          48,
+          49,
+          69,
+          64
+        ]
+      ]
+    },
+    {
+      "name": "PANEL_CTRL",
+      "title": "Power sequence, resets, VCI_EN and IO isolation",
+      "regions": [
+        [
+          38,
+          65,
+          55,
+          79
+        ]
+      ]
+    }
+  ],
+  "power": [
+    "OLED_VBAT",
+    "LCD_1V8",
+    "TP_2V8",
+    "OLED_VCI_EN"
+  ],
+  "display_compatibility": {
+    "host_lanes": 2,
+    "panel_lanes": 1,
+    "direct_connection_compatible": true,
+    "resolution": [
+      262,
+      928
+    ],
+    "driver": "CO6300",
+    "touch": "CST3530",
+    "backlight": false
+  }
+}

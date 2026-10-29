@@ -1,0 +1,19 @@
+# 从立创拉的（C2877863）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TLV75518PDBVR <料号>
+name = "TLV75518PDBVR"
+description = ""
+category = ""
+symbol = "TLV75518PDBVR"
+footprint = "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR"
+datasheet = "https://atta.szlcsc.com/upload/public/pdf/source/20201015/C882654_F49EC15FD6A974BF40D8ED13350A683B.pdf"
+status = "draft"
+notes = [
+  "从立创拉的（C2877863，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TI(德州仪器)"
+part = "TLV75518PDBVR"
+lcsc = "C2877863"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

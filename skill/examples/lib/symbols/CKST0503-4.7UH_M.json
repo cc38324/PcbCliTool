@@ -1,0 +1,38 @@
+{
+  "name": "CKST0503-4.7UH_M",
+  "kind": "symbol",
+  "symbolUuid": "654afcb53269c51b",
+  "designator": "L?",
+  "description": "",
+  "units": [
+    {
+      "id": "CKST0503-4.7UH_M.1",
+      "name": "CKST0503-4.7UH_M.1",
+      "title": null,
+      "pins": [
+        "2",
+        "1"
+      ]
+    }
+  ],
+  "symbolDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"SYMBOL\",\"client\":\"eb4fea1286b6d624\",\"uuid\":\"654afcb53269c51b\",\"updateTime\":1793253439567,\"version\":\"1793253439567\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"CANVAS\",\"ticket\":1,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0}|",
+    "{\"type\":\"PART\",\"ticket\":2,\"id\":\"CKST0503-4.7UH_M.1\"}||{\"BBOX\":[-16.5,-0.52,16.5,4.5],\"title\":\"CKST0503-4.7UH_M.1\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":3,\"id\":\"e0\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":1,\"parentId\":\"\",\"key\":\"Symbol\",\"value\":\"CKST0503-4.7UH_M\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":4,\"id\":\"e1\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":2,\"parentId\":\"\",\"key\":\"Designator\",\"value\":\"L?\",\"keyVisible\":false,\"valueVisible\":false,\"x\":null,\"y\":null,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ARC\",\"ticket\":5,\"id\":\"e2\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":3,\"startX\":-16,\"startY\":-0.02,\"referX\":-11.98,\"referY\":-4,\"endX\":-8,\"endY\":0.02,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":6,\"id\":\"e3\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":4,\"startX\":-8,\"startY\":-0.02,\"referX\":-3.98,\"referY\":-4,\"endX\":0,\"endY\":0.02,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":7,\"id\":\"e4\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":5,\"startX\":8,\"startY\":-0.02,\"referX\":12.02,\"referY\":-4,\"endX\":16,\"endY\":0.02,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"ARC\",\"ticket\":8,\"id\":\"e5\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":6,\"startX\":0,\"startY\":-0.02,\"referX\":4.02,\"referY\":-4,\"endX\":8,\"endY\":0.02,\"strokeColor\":null,\"strokeStyle\":null,\"strokeWidth\":null,\"fillColor\":null,\"fillStyle\":null}|",
+    "{\"type\":\"PIN\",\"ticket\":9,\"id\":\"e6\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":7,\"display\":true,\"x\":20,\"y\":0,\"length\":4,\"rotation\":180,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":10,\"id\":\"e7\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":8,\"parentId\":\"e6\",\"key\":\"Pin Name\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":12.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":11,\"id\":\"e8\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":9,\"parentId\":\"e6\",\"key\":\"Pin Number\",\"value\":\"2\",\"keyVisible\":false,\"valueVisible\":false,\"x\":16.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":12,\"id\":\"e9\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":10,\"parentId\":\"e6\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"PIN\",\"ticket\":13,\"id\":\"e10\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":11,\"display\":true,\"x\":-20,\"y\":0,\"length\":4,\"rotation\":0,\"color\":null,\"pinShape\":\"NONE\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":14,\"id\":\"e11\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":12,\"parentId\":\"e10\",\"key\":\"Pin Name\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-12.3,\"y\":5.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":15,\"id\":\"e12\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":13,\"parentId\":\"e10\",\"key\":\"Pin Number\",\"value\":\"1\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-16.5,\"y\":0.915,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":false,\"underline\":false,\"italic\":false,\"fontWeight\":false,\"align\":\"RIGHT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":16,\"id\":\"e13\"}||{\"partId\":\"CKST0503-4.7UH_M.1\",\"groupId\":\"\",\"locked\":false,\"zIndex\":14,\"parentId\":\"e10\",\"key\":\"Pin Type\",\"value\":\"Undefined\",\"keyVisible\":false,\"valueVisible\":false,\"x\":-20,\"y\":0,\"rotation\":0,\"color\":null,\"fillColor\":null,\"fontFamily\":null,\"fontSize\":null,\"strikeout\":null,\"underline\":null,\"italic\":null,\"fontWeight\":null,\"align\":\"LEFT_BOTTOM\",\"version\":\"2.0\"}|",
+    "{\"type\":\"META\",\"ticket\":17,\"id\":\"META\"}||{\"title\":\"CKST0503-4.7UH_M\",\"description\":\"CKST0503-4.7UH/M\",\"tags\":[],\"docType\":2,\"source\":\"a5e09dc0a6726861827c0a476b035d67|d6757f332ae648e5475bf4efff5c16cb\"}|"
+  ]
+}

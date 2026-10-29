@@ -1,0 +1,19 @@
+# 从立创拉的（C82398）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign SWPA4020S100MT <料号>
+name = "SWPA4020S100MT"
+description = ""
+category = ""
+symbol = "SWPA4020S100MT"
+footprint = "IND-SMD_L4.0-W4.0_SLW4010S"
+datasheet = "https://item.szlcsc.com/241196.html"
+status = "draft"
+notes = [
+  "从立创拉的（C82398，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "Sunlord(顺络)"
+part = "SWPA4020S100MT"
+lcsc = "C82398"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

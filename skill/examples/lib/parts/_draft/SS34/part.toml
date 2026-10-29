@@ -1,0 +1,19 @@
+# 从立创拉的（C8678）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign SS34 <料号>
+name = "SS34"
+description = ""
+category = ""
+symbol = "SS34_C8678"
+footprint = "SMA_L4.3-W2.6-LS5.2-RD"
+datasheet = "https://item.szlcsc.com/34721.html"
+status = "draft"
+notes = [
+  "从立创拉的（C8678，Basic Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "MDD(辰达半导体)"
+part = "SS34"
+lcsc = "C8678"
+
+[attributes]
+"JLCPCB Part Class" = "Basic Part"

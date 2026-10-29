@@ -1,0 +1,17 @@
+number,name,type,side,group
+P2,MDI0+,passive,left,tx
+P3,MDI0-,passive,left,tx
+P1,P1,passive,left,tx
+P4,MDI1+,passive,left,rx
+P7,MDI1-,passive,left,rx
+P5,MDI2+,passive,left,unused
+P6,MDI2-,passive,left,unused
+P8,MDI3+,passive,left,unused
+P9,MDI3-,passive,left,unused
+11,11,passive,right,led1
+12,12,passive,right,led1
+14,14,passive,right,led2
+13,13,passive,right,led2
+P10,P10,passive,right,ground
+SHIELD0,SHIELD0,passive,right,shield0
+SHIELD1,SHIELD1,passive,right,shield1

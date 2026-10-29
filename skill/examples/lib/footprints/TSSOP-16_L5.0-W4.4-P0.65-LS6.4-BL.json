@@ -1,0 +1,177 @@
+{
+  "name": "TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL",
+  "kind": "footprint",
+  "footprintUuid": "5fd2debce071ed50",
+  "designator": "U?",
+  "description": "",
+  "footprintElems": {
+    "pads": [
+      {
+        "num": "1",
+        "elemId": "e37"
+      },
+      {
+        "num": "2",
+        "elemId": "e38"
+      },
+      {
+        "num": "3",
+        "elemId": "e39"
+      },
+      {
+        "num": "4",
+        "elemId": "e40"
+      },
+      {
+        "num": "5",
+        "elemId": "e41"
+      },
+      {
+        "num": "6",
+        "elemId": "e42"
+      },
+      {
+        "num": "7",
+        "elemId": "e43"
+      },
+      {
+        "num": "8",
+        "elemId": "e44"
+      },
+      {
+        "num": "16",
+        "elemId": "e45"
+      },
+      {
+        "num": "15",
+        "elemId": "e46"
+      },
+      {
+        "num": "14",
+        "elemId": "e47"
+      },
+      {
+        "num": "13",
+        "elemId": "e48"
+      },
+      {
+        "num": "12",
+        "elemId": "e49"
+      },
+      {
+        "num": "11",
+        "elemId": "e50"
+      },
+      {
+        "num": "10",
+        "elemId": "e51"
+      },
+      {
+        "num": "9",
+        "elemId": "e52"
+      }
+    ],
+    "attrFootprint": "2b2f11c88a2d0d55",
+    "attrDesignator": "7b8a49f5f0b161bc"
+  },
+  "attrZ": {
+    "footprint": 55,
+    "designator": 56
+  },
+  "footprintDoc": [
+    "{\"type\":\"DOCHEAD\"}||{\"docType\":\"FOOTPRINT\",\"client\":\"3d318d55516d0757\",\"uuid\":\"5fd2debce071ed50\",\"updateTime\":1793246927746,\"version\":\"1793246927746\",\"editVersion\":\"2.3.0\",\"user\":{}}|",
+    "{\"type\":\"META\",\"ticket\":1,\"id\":\"META\"}||{\"title\":\"TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL\",\"description\":\"\",\"tags\":[],\"source\":\"87709205d03f3e4765e15ed31de9888e|fabd77ebc822e80f68bcc1ab8c749a23\"}|",
+    "{\"type\":\"LAYER\",\"ticket\":2,\"id\":\"[\\\"LAYER\\\",1]\"}||{\"layerType\":\"TOP\",\"layerName\":\"Top Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FF0000\",\"activateTransparency\":1,\"inactiveColor\":\"#7F0000\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":3,\"id\":\"[\\\"LAYER\\\",2]\"}||{\"layerType\":\"BOTTOM\",\"layerName\":\"Bottom Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#0000FF\",\"activateTransparency\":1,\"inactiveColor\":\"#00007F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":4,\"id\":\"[\\\"LAYER\\\",3]\"}||{\"layerType\":\"TOP_SILK\",\"layerName\":\"Top Silkscreen Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FFCC00\",\"activateTransparency\":1,\"inactiveColor\":\"#7F6600\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":5,\"id\":\"[\\\"LAYER\\\",4]\"}||{\"layerType\":\"BOT_SILK\",\"layerName\":\"Bottom Silkscreen Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#66CC33\",\"activateTransparency\":1,\"inactiveColor\":\"#336619\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":6,\"id\":\"[\\\"LAYER\\\",7]\"}||{\"layerType\":\"TOP_PASTE_MASK\",\"layerName\":\"Top Paste Mask Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#808080\",\"activateTransparency\":1,\"inactiveColor\":\"#404040\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":7,\"id\":\"[\\\"LAYER\\\",8]\"}||{\"layerType\":\"BOT_PASTE_MASK\",\"layerName\":\"Bottom Paste Mask Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#800000\",\"activateTransparency\":1,\"inactiveColor\":\"#400000\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":8,\"id\":\"[\\\"LAYER\\\",5]\"}||{\"layerType\":\"TOP_SOLDER_MASK\",\"layerName\":\"Top Solder Mask Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#800080\",\"activateTransparency\":1,\"inactiveColor\":\"#400040\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":9,\"id\":\"[\\\"LAYER\\\",6]\"}||{\"layerType\":\"BOT_SOLDER_MASK\",\"layerName\":\"Bottom Solder Mask Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#AA00FF\",\"activateTransparency\":1,\"inactiveColor\":\"#55007F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":10,\"id\":\"[\\\"LAYER\\\",13]\"}||{\"layerType\":\"DOCUMENT\",\"layerName\":\"Document Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FFFFFF\",\"activateTransparency\":1,\"inactiveColor\":\"#7F7F7F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":11,\"id\":\"[\\\"LAYER\\\",11]\"}||{\"layerType\":\"OUTLINE\",\"layerName\":\"Board Outline Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FF00FF\",\"activateTransparency\":1,\"inactiveColor\":\"#7F007F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":12,\"id\":\"[\\\"LAYER\\\",12]\"}||{\"layerType\":\"MULTI\",\"layerName\":\"Multi-Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#C0C0C0\",\"activateTransparency\":1,\"inactiveColor\":\"#606060\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":13,\"id\":\"[\\\"LAYER\\\",9]\"}||{\"layerType\":\"TOP_ASSEMBLY\",\"layerName\":\"Top Assembly Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#33CC99\",\"activateTransparency\":1,\"inactiveColor\":\"#19664C\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":14,\"id\":\"[\\\"LAYER\\\",10]\"}||{\"layerType\":\"BOT_ASSEMBLY\",\"layerName\":\"Bottom Assembly Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#5555FF\",\"activateTransparency\":1,\"inactiveColor\":\"#2A2A7F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":15,\"id\":\"[\\\"LAYER\\\",14]\"}||{\"layerType\":\"MECHANICAL\",\"layerName\":\"Mechanical Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#F022F0\",\"activateTransparency\":1,\"inactiveColor\":\"#781178\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":16,\"id\":\"[\\\"LAYER\\\",52]\"}||{\"layerType\":\"COMPONENT_MODEL\",\"layerName\":\"Component Model Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FFFFFF\",\"activateTransparency\":1,\"inactiveColor\":\"#7F7F7F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":17,\"id\":\"[\\\"LAYER\\\",48]\"}||{\"layerType\":\"COMPONENT_SHAPE\",\"layerName\":\"Component Shape Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#00CCCC\",\"activateTransparency\":1,\"inactiveColor\":\"#006666\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":18,\"id\":\"[\\\"LAYER\\\",51]\"}||{\"layerType\":\"PIN_FLOATING\",\"layerName\":\"Pin Floating Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#FF99FF\",\"activateTransparency\":1,\"inactiveColor\":\"#7F4C7F\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":19,\"id\":\"[\\\"LAYER\\\",49]\"}||{\"layerType\":\"COMPONENT_MARKING\",\"layerName\":\"Component Marking Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#66FFCC\",\"activateTransparency\":1,\"inactiveColor\":\"#337F66\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"LAYER\",\"ticket\":20,\"id\":\"[\\\"LAYER\\\",50]\"}||{\"layerType\":\"PIN_SOLDERING\",\"layerName\":\"Pin Soldering Layer\",\"use\":true,\"show\":true,\"locked\":false,\"activeColor\":\"#CC9999\",\"activateTransparency\":1,\"inactiveColor\":\"#664C4C\",\"inactiveTransparency\":1}|",
+    "{\"type\":\"ACTIVE_LAYER\",\"ticket\":21,\"id\":\"ACTIVE_LAYER\"}||{\"layerId\":1}|",
+    "{\"type\":\"CANVAS\",\"ticket\":22,\"id\":\"CANVAS\"}||{\"originX\":0,\"originY\":0,\"unit\":\"mm\",\"gridXSize\":10,\"gridYSize\":10,\"snapXSize\":0.5,\"snapYSize\":0.5,\"gridType\":\"NONE\",\"multiGridType\":\"NONE\",\"highlightValue\":0.5,\"layerBrightness\":\"NORMAL\"}|",
+    "{\"type\":\"FILL\",\"ticket\":23,\"id\":\"e0\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":49,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[\"CIRCLE\",-98.425,-125.979,2.362]],\"locked\":false,\"zIndex\":1,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":24,\"id\":\"e1\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-94.39,-125.979,\"L\",-94.39,-102.357,-84.744,-102.357,-84.744,-125.979,-94.39,-125.979]],\"locked\":false,\"zIndex\":2,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":25,\"id\":\"e2\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-94.39,-102.751,\"L\",-94.39,-86.215,-84.744,-86.215,-84.744,-102.751,-94.39,-102.751]],\"locked\":false,\"zIndex\":3,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":26,\"id\":\"e3\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-68.799,-125.979,\"L\",-68.799,-102.357,-59.154,-102.357,-59.154,-125.979,-68.799,-125.979]],\"locked\":false,\"zIndex\":4,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":27,\"id\":\"e4\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-68.799,-102.751,\"L\",-68.799,-86.215,-59.154,-86.215,-59.154,-102.751,-68.799,-102.751]],\"locked\":false,\"zIndex\":5,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":28,\"id\":\"e5\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-43.209,-125.979,\"L\",-43.209,-102.357,-33.563,-102.357,-33.563,-125.979,-43.209,-125.979]],\"locked\":false,\"zIndex\":6,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":29,\"id\":\"e6\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-43.209,-102.751,\"L\",-43.209,-86.215,-33.563,-86.215,-33.563,-102.751,-43.209,-102.751]],\"locked\":false,\"zIndex\":7,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":30,\"id\":\"e7\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-17.618,-125.979,\"L\",-17.618,-102.357,-7.972,-102.357,-7.972,-125.979,-17.618,-125.979]],\"locked\":false,\"zIndex\":8,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":31,\"id\":\"e8\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-17.618,-102.751,\"L\",-17.618,-86.215,-7.972,-86.215,-7.972,-102.751,-17.618,-102.751]],\"locked\":false,\"zIndex\":9,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":32,\"id\":\"e9\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[7.972,-125.979,\"L\",7.972,-102.357,17.618,-102.357,17.618,-125.979,7.972,-125.979]],\"locked\":false,\"zIndex\":10,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":33,\"id\":\"e10\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[7.972,-102.751,\"L\",7.972,-86.215,17.618,-86.215,17.618,-102.751,7.972,-102.751]],\"locked\":false,\"zIndex\":11,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":34,\"id\":\"e11\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[33.563,-125.979,\"L\",33.563,-102.357,43.209,-102.357,43.209,-125.979,33.563,-125.979]],\"locked\":false,\"zIndex\":12,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":35,\"id\":\"e12\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[33.563,-102.751,\"L\",33.563,-86.215,43.209,-86.215,43.209,-102.751,33.563,-102.751]],\"locked\":false,\"zIndex\":13,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":36,\"id\":\"e13\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[59.154,-125.979,\"L\",59.154,-102.357,68.799,-102.357,68.799,-125.979,59.154,-125.979]],\"locked\":false,\"zIndex\":14,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":37,\"id\":\"e14\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[59.154,-102.751,\"L\",59.154,-86.215,68.799,-86.215,68.799,-102.751,59.154,-102.751]],\"locked\":false,\"zIndex\":15,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":38,\"id\":\"e15\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[84.744,-125.979,\"L\",84.744,-102.357,94.39,-102.357,94.39,-125.979,84.744,-125.979]],\"locked\":false,\"zIndex\":16,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":39,\"id\":\"e16\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[84.744,-102.751,\"L\",84.744,-86.215,94.39,-86.215,94.39,-102.751,84.744,-102.751]],\"locked\":false,\"zIndex\":17,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":40,\"id\":\"e17\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-94.39,125.989,\"L\",-94.39,102.367,-84.744,102.367,-84.744,125.989,-94.39,125.989]],\"locked\":false,\"zIndex\":18,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":41,\"id\":\"e18\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-94.39,102.761,\"L\",-94.39,86.225,-84.744,86.225,-84.744,102.761,-94.39,102.761]],\"locked\":false,\"zIndex\":19,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":42,\"id\":\"e19\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-68.799,125.989,\"L\",-68.799,102.367,-59.154,102.367,-59.154,125.989,-68.799,125.989]],\"locked\":false,\"zIndex\":20,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":43,\"id\":\"e20\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-68.799,102.761,\"L\",-68.799,86.225,-59.154,86.225,-59.154,102.761,-68.799,102.761]],\"locked\":false,\"zIndex\":21,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":44,\"id\":\"e21\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-43.209,125.989,\"L\",-43.209,102.367,-33.563,102.367,-33.563,125.989,-43.209,125.989]],\"locked\":false,\"zIndex\":22,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":45,\"id\":\"e22\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-43.209,102.761,\"L\",-43.209,86.225,-33.563,86.225,-33.563,102.761,-43.209,102.761]],\"locked\":false,\"zIndex\":23,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":46,\"id\":\"e23\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-17.618,125.989,\"L\",-17.618,102.367,-7.972,102.367,-7.972,125.989,-17.618,125.989]],\"locked\":false,\"zIndex\":24,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":47,\"id\":\"e24\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[-17.618,102.761,\"L\",-17.618,86.225,-7.972,86.225,-7.972,102.761,-17.618,102.761]],\"locked\":false,\"zIndex\":25,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":48,\"id\":\"e25\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[7.972,125.989,\"L\",7.972,102.367,17.618,102.367,17.618,125.989,7.972,125.989]],\"locked\":false,\"zIndex\":26,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":49,\"id\":\"e26\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[7.972,102.761,\"L\",7.972,86.225,17.618,86.225,17.618,102.761,7.972,102.761]],\"locked\":false,\"zIndex\":27,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":50,\"id\":\"e27\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[33.563,125.989,\"L\",33.563,102.367,43.209,102.367,43.209,125.989,33.563,125.989]],\"locked\":false,\"zIndex\":28,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":51,\"id\":\"e28\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[33.563,102.761,\"L\",33.563,86.225,43.209,86.225,43.209,102.761,33.563,102.761]],\"locked\":false,\"zIndex\":29,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":52,\"id\":\"e29\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[59.154,125.989,\"L\",59.154,102.367,68.799,102.367,68.799,125.989,59.154,125.989]],\"locked\":false,\"zIndex\":30,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":53,\"id\":\"e30\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[59.154,102.761,\"L\",59.154,86.225,68.799,86.225,68.799,102.761,59.154,102.761]],\"locked\":false,\"zIndex\":31,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":54,\"id\":\"e31\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":50,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[84.744,125.989,\"L\",84.744,102.367,94.39,102.367,94.39,125.989,84.744,125.989]],\"locked\":false,\"zIndex\":32,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"FILL\",\"ticket\":55,\"id\":\"e32\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":51,\"width\":0.2,\"fillStyle\":\"SOLID\",\"path\":[[84.744,102.761,\"L\",84.744,86.225,94.39,86.225,94.39,102.761,84.744,102.761]],\"locked\":false,\"zIndex\":33,\"isBridgingCopper\":false,\"networkList\":[],\"refs\":[]}|",
+    "{\"type\":\"POLY\",\"ticket\":56,\"id\":\"e33\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":48,\"width\":2,\"path\":[-98.425,-86.614,\"L\",-98.425,86.614,98.425,86.614,98.425,-86.614,-98.425,-86.614],\"locked\":false,\"zIndex\":34,\"polyType\":\"NORMAL\"}|",
+    "{\"type\":\"POLY\",\"ticket\":57,\"id\":\"e34\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":3,\"width\":6,\"path\":[-101.425,-69.735,\"L\",-101.425,69.745,101.425,69.745,101.425,-69.735,-101.425,-69.735],\"locked\":false,\"zIndex\":35,\"polyType\":\"NORMAL\"}|",
+    "{\"type\":\"POLY\",\"ticket\":58,\"id\":\"e35\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":3,\"width\":11.811,\"path\":[\"CIRCLE\",-80,-50,5.91],\"locked\":false,\"zIndex\":36,\"polyType\":\"NORMAL\"}|",
+    "{\"type\":\"POLY\",\"ticket\":59,\"id\":\"e36\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":3,\"width\":11.811,\"path\":[\"CIRCLE\",-114.13,-112.825,5.91],\"locked\":false,\"zIndex\":37,\"polyType\":\"NORMAL\"}|",
+    "{\"type\":\"PAD\",\"ticket\":60,\"id\":\"e37\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"1\",\"centerX\":-89.57,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.003,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":38,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":61,\"id\":\"e38\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"2\",\"centerX\":-63.98,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":39,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":62,\"id\":\"e39\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"3\",\"centerX\":-38.39,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":40,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":63,\"id\":\"e40\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"4\",\"centerX\":-12.79,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.005,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":41,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":64,\"id\":\"e41\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"5\",\"centerX\":12.8,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.005,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":42,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":65,\"id\":\"e42\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"6\",\"centerX\":38.39,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":43,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":66,\"id\":\"e43\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"7\",\"centerX\":63.98,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":44,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":67,\"id\":\"e44\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"8\",\"centerX\":89.57,\"centerY\":-112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.003,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":45,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":68,\"id\":\"e45\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"16\",\"centerX\":-89.57,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.003,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":46,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":69,\"id\":\"e46\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"15\",\"centerX\":-63.98,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":47,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":70,\"id\":\"e47\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"14\",\"centerX\":-38.39,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":48,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":71,\"id\":\"e48\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"13\",\"centerX\":-12.79,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.005,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":49,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":72,\"id\":\"e49\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"12\",\"centerX\":12.8,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.005,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":50,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":73,\"id\":\"e50\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"11\",\"centerX\":38.39,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":51,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":74,\"id\":\"e51\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"10\",\"centerX\":63.98,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.004,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":52,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"PAD\",\"ticket\":75,\"id\":\"e52\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":1,\"num\":\"9\",\"centerX\":89.57,\"centerY\":112.825,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"OVAL\",\"width\":13.504,\"height\":68.169},\"specialPad\":[],\"padOffsetX\":-0.003,\"padOffsetY\":0.005,\"relativeAngle\":90,\"plated\":true,\"padType\":\"NORMAL\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":null,\"bottomPasteExpansion\":null,\"locked\":false,\"zIndex\":53,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0}|",
+    "{\"type\":\"POLY\",\"ticket\":76,\"id\":\"e53\"}||{\"groupId\":0,\"netName\":\"\",\"layerId\":13,\"width\":11.811,\"path\":[\"CIRCLE\",-89.57,-141.725,5.91],\"locked\":false,\"zIndex\":54,\"polyType\":\"NORMAL\"}|",
+    "{\"type\":\"ATTR\",\"ticket\":77,\"id\":\"2b2f11c88a2d0d55\"}||{\"groupId\":0,\"parentId\":\"\",\"layerId\":3,\"x\":null,\"y\":null,\"key\":\"Footprint\",\"value\":\"TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL\",\"keyVisible\":false,\"valueVisible\":false,\"fontFamily\":\"default\",\"fontSize\":67.5,\"strokeWidth\":6,\"bold\":false,\"italic\":false,\"origin\":\"LEFT_BOTTOM\",\"angle\":0,\"reverse\":false,\"expansion\":0,\"mirror\":false,\"locked\":false,\"zIndex\":55}|",
+    "{\"type\":\"ATTR\",\"ticket\":78,\"id\":\"7b8a49f5f0b161bc\"}||{\"groupId\":0,\"parentId\":\"\",\"layerId\":3,\"x\":null,\"y\":null,\"key\":\"Designator\",\"value\":\"U?\",\"keyVisible\":false,\"valueVisible\":false,\"fontFamily\":\"default\",\"fontSize\":67.5,\"strokeWidth\":6,\"bold\":false,\"italic\":false,\"origin\":\"LEFT_BOTTOM\",\"angle\":0,\"reverse\":false,\"expansion\":0,\"mirror\":false,\"locked\":false,\"zIndex\":56}|",
+    "{\"type\":\"NET\",\"ticket\":79,\"id\":\"[\\\"NET\\\",\\\"\\\"]\"}||{\"netType\":null,\"specialColor\":null,\"retLine\":true,\"differentialName\":null,\"isPositiveNet\":false,\"equalLengthGroupName\":null}|"
+  ],
+  "model3d": {
+    "uuid": "534f03d8fe164fbab551f91e5a792e30",
+    "title": "TSSOP-16_L5.0-W4.4-H1.0-LS6.4-P0.65",
+    "origin": [
+      -914.4618,
+      685.5052
+    ],
+    "z": 0.0,
+    "rotation": [
+      0.0,
+      0.0,
+      90.0
+    ]
+  }
+}

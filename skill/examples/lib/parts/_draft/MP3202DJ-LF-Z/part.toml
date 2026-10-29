@@ -1,0 +1,19 @@
+# 从立创拉的（C8953）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign MP3202DJ-LF-Z <料号>
+name = "MP3202DJ-LF-Z"
+description = ""
+category = ""
+symbol = "MP3202DJ-LF-Z"
+footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+datasheet = "https://item.szlcsc.com/169042.html"
+status = "draft"
+notes = [
+  "从立创拉的（C8953，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "MPS(芯源)"
+part = "MP3202DJ-LF-Z"
+lcsc = "C8953"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

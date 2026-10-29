@@ -1,0 +1,100 @@
+# Silkscreen labels of the MP157 demo board, put on the routed board:
+#     easyedatool label project/MP157Demo --from rules/mp157demo.labels.toml --write
+# (tools/route_board.py does it last). Each label finds its own spot clear of the pads and the other silkscreen.
+
+size = 1.0
+min_size = 0.8
+
+# the header's and the terminals' pin names: the function, short (the odd column of the 40-pin header has 2 mm to
+# the board edge)
+rename = { "5V_VIN" = "5V", "I2C4_SCL" = "SCL", "I2C4_SDA" = "SDA", "SPI5_SCK" = "SCK", "SPI5_MOSI" = "MOSI", "SPI5_MISO" = "MISO", "SPI5_NSS" = "CS", "UART5_TX" = "TX5", "UART5_RX" = "RX5" }
+
+# ---------------------------------------------------------------- what each connector is
+[[part]]
+part = "J2"
+text = "USB"
+
+[[part]]
+part = "J3"
+text = "ETH"
+
+[[part]]
+part = "J6"
+text = "AM319 TP+OLED"
+
+[[part]]
+part = "J8"
+text = "CAN"
+
+[[part]]
+part = "J9"
+text = "DEBUG"
+
+[[part]]
+part = "J10"
+text = "DFU"
+
+[[part]]
+part = "J12"
+text = "GPIO"
+
+[[part]]
+part = "SW1"
+text = "RST"
+
+[[part]]
+part = "SW2"
+text = "USER"
+
+# ---------------------------------------------------------------- each pin's signal
+[[pins]]
+part = "J11"
+size = 0.8
+# the odd column has 2 mm between the header's outline and the board edge
+min_size = 0.7
+
+[[pins]]
+part = "J7"
+names = { "1" = "A", "2" = "B", "3" = "GND" }
+
+[[pins]]
+part = "J8"
+names = { "1" = "H", "2" = "L", "3" = "GND" }
+
+[[pins]]
+part = "J9"
+names = { "1" = "GND", "2" = "TX", "3" = "RX" }
+
+[[pins]]
+part = "J10"
+names = { "1" = "BOOT", "2" = "GND" }
+size = 0.8
+
+[[pins]]
+part = "J12"
+size = 0.8
+
+# the USB-C's and the RS485 terminal's names where there is room (beside them none)
+[[text]]
+text = "USB-C"
+at = [89.8, 71.5]
+size = 0.8
+
+[[text]]
+text = "RS485"
+at = [79.8, 18.4]
+size = 0.8
+
+# ---------------------------------------------------------------- the board
+[[text]]
+text = "MP157 AMOLED"
+at = [78.0, 42.0]
+size = 1.2
+
+# 器件位号：板上只印大件和接口（芯片、接口、按键、晶振、电感，元件长边 2.5 mm 以上），字高 0.8、线宽 0.15
+# （嘉立创建议的最小值）；挡着焊盘或别的丝印的挪到器件旁，挪不开就不印。小件的位号看贴片图（easyedatool assembly）
+[designators]
+size = 0.8
+stroke = 0.15
+only = ["U*", "J*", "SW*", "B*", "Y*", "L*", "Q*", "D4"]
+min_body = 2.5

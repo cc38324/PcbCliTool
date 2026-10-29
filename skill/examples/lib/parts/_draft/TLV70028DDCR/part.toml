@@ -1,0 +1,19 @@
+# 从立创拉的（C507266）：符号、封装、3D 是立创库的原样；审过、定了料号以后 easyedatool lib assign TLV70028DDCR <料号>
+name = "TLV70028DDCR"
+description = ""
+category = ""
+symbol = "TLV70028DDCR"
+footprint = "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR"
+datasheet = "https://item.szlcsc.com/236104.html"
+status = "draft"
+notes = [
+  "从立创拉的（C507266，Extended Part），符号、封装是立创库的，审过再用",
+]
+
+[[mpn]]
+manufacturer = "TI(德州仪器)"
+part = "TLV70028DDCR"
+lcsc = "C507266"
+
+[attributes]
+"JLCPCB Part Class" = "Extended Part"

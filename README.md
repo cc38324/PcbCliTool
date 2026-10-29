@@ -89,47 +89,24 @@ easyedatool --version
 
 ## 例子：STM32MP157
 
-以下文件路径以本仓库根目录为起点。完整 ZIP 将 `skill/` 里的内容放在解压目录 `easyedatool/` 下；在包内执行示例时去掉路径中的 `skill/` 前缀，例如 `easyedatool gen examples/mp157demo.toml --out MP157Demo`。
+100×80 mm 四层 `JLC04161H-3313`，289 个器件、8 页原理图，保留 ST 的 DDR / 电源核心布局。显示使用用户选定的 **AM319M262928ZS，3.19 英寸 262×928 AMOLED**，CO6300 显示驱动、CST3530 触摸，接 **DF40C-30DS-0.4V(51)（C424642）** 30 针座。MP157 配置一线 DSI；AMOLED 自发光，不需要 LED 背光电路。
 
-例子是一块 STM32MP157 单板电脑，板框 100 × 80 mm，四层，叠层 `JLC04161H-3313`。生成出来的工程约 238 个器件（正面 130、背面 108）、1307 个焊盘、851 个过孔、210 个网络。
+[原始屏 PDF、逐脚接法及 1 脚方向](skill/examples/docs/display/README.md)：主板顶视 J6 的 1 脚在右下角、接地。屏图的背视图不能直接当作主板顶视图。提供受控 3.7V、1.8V、2.8V 电源和用于 VCI_EN 的受控 3.3V 输出，触摸、复位、TE 按 1.8V 信号转换。
 
-| 文件 | 内容 |
-|---|---|
-| `skill/examples/mp157demo.toml` | 设计文件。`easyedatool gen` 用它生成工程 |
-| `skill/examples/mp157demo.rules.toml` | 布线、DRC、核对的规则 |
-| `skill/examples/mp157demo.constraints.toml` | 差分对（USB、MIPI DSI、网口、DDR） |
+在仓库根目录执行，程序须支持 `body_silk.pin1.at`：
 
-设计文件里有 23 种元件库器件（30 处，`part = "STM32MP157DAB1"` 这一类）。每种都写了立创料号（`lcsc = "C1236721"` 这一类）。符号和封装在 `skill/examples/lib`（23 个符号、21 个封装，有的件共用一个封装），`skill/examples/easyedatool.toml` 指向这个库。
-
-核心电路的参考布局是 `skill/build/st/board.PcbDoc`。它来自意法半导体 AN5122 的布线例程包 `stm32mp15x-series-ddr-memory-routing-guidelines-examples.zip`，里面 `STM32MP15XXAB/STM32MP15XXAB_1DDR3Lx16` 的 Altium 板文件，抽出来后改叫这个名字。设计文件的 `[[reuse]]` 用相对路径 `../build/st/board.PcbDoc` 指着它。
-
-下面把工程文件夹写成 `<工程>`。`route` 会改写板子；这条规则里有 `keep = ["*"]`，已有走线留着，只补还没连上的。先提交 git，不满意就回滚。嘉立创开着这个工程时，先关掉 PCB 页再写文件，写完再打开。
-
-```bash
-easyedatool gen skill/examples/mp157demo.toml --out MP157Demo
-
-easyedatool info   <工程>
-easyedatool render <工程> --view top -o MP157_top.png
-easyedatool render <工程> --view layers -o MP157_layers.png
-easyedatool render <工程> --view sch -o MP157_sch.png
-
-easyedatool check <工程> --rules skill/examples/mp157demo.rules.toml
-easyedatool erc   <工程>
-easyedatool drc   <工程> --rules skill/examples/mp157demo.rules.toml
-
-easyedatool route <工程> --rules skill/examples/mp157demo.rules.toml
-easyedatool constraints <工程> --from skill/examples/mp157demo.constraints.toml
-easyedatool pair  <工程> --pair USBH
-easyedatool pour  <工程>
-
-easyedatool pdf     <工程> -o MP157_sch.pdf
-easyedatool netlist <工程> -o MP157.net
-easyedatool bom     <工程> -o MP157_bom.csv
-easyedatool fab     <工程> -o MP157_fab
-easyedatool view    <工程>
+```powershell
+python skill/examples/build_mp157.py --tool easyedatool --out MP157Demo --export
+easyedatool view MP157Demo
 ```
 
-`drc`、`check`、`erc` 查出问题时退出码是 1，那是检查结果。每个命令加 `--help` 看全部参数。
+完整包内去掉 `skill/` 前缀，`--tool` 指向 `bin/easyedatool.exe`。设计文件、已布线的 `.layout.toml`、规则、差分约束、标注、本地 `lib/`、构建与专项检查脚本必须一起保留。构建脚本恢复走线与铺铜，执行 `check`、`erc`、`constraints`、`check_display.py`、`drc`，检查通过后再导出 PDF / BOM / 网表 / Gerber / 钻孔 / 坐标。
+
+1262 个接网引脚逐脚一致，8 页版面无出界、标题栏碰撞或重叠。专项检查核对全部 30 针、未使用的 D1 / ID / VPP 和原始 PDF 哈希。时钟 PCB P/N 长度为 52.285 / 51.463 mm，D0 为 56.341 / 55.560 mm，分别补偿 LFBGA354 内部的 0.822 / 0.781 mm；补偿后的对内误差小于 0.001 mm，时钟与 D0 平均长度差 4.077 mm。11 组差分约束均检查。
+
+按用户要求，ST 密集核心保留常规避焊盘丝印，外围阻容与芯片保留完整外框，方向标记不删。内层 1 是地参考层，另保留约 15 mm 的 PA10 局部连接。工艺警告和布线质量提示保留在 DRC JSON，通用 BOM 项仍需采购选型。
+
+原始 ST AN5122 参考保留在 `skill/build/st/board.PcbDoc`，设计使用相对路径。本例尚未实物点屏；仍须 CO6300 初始化、CST3530 驱动、触摸坐标及模组上下电时序适配，也未完成负载、纹波、EMI 或射频验证。
 
 ## 给 AI 用
 

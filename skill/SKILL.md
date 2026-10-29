@@ -1,6 +1,6 @@
 ---
 name: easyedatool
-description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .esch2 / .epcb2）的离线命令行工具 easyedatool：从设计文件（TOML / JSON）生成整套工程（原理图分页排版 + PCB 摆放）、自动布线、照 EDA 规则算铺铜、DRC、原理图和 PCB 逐脚核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标（嘉立创下单包）。用户要画板、生成或修改嘉立创工程、布线、铺铜、查间距、核对网表、看板子、出 BOM 或生产文件时用；要在正在运行的 EDA 客户端界面里点选、改图元时用 easyeda-api skill。
+description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .esch2 / .epcb2）的离线命令行工具 easyedatool：从设计文件（TOML / JSON）生成整套工程（原理图分页排版 + PCB 摆放）、自动布线、照 EDA 规则算铺铜、DRC、原理图和 PCB 逐脚核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标（嘉立创下单包）。用户要画板、生成或修改嘉立创工程、布线、铺铜、查间距、核对网表、看板子、补元件3D或机械封装、出 BOM 或生产文件时用；要在正在运行的 EDA 客户端界面里点选、改图元时用 easyeda-api skill。
 ---
 
 # easyedatool：嘉立创EDA工程离线工具
@@ -41,7 +41,7 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 `power_min_run` 量的是同层同网络、中心线端点相接的连续新加宽段：跨多条 LINE 记录累计，细颈或换层处断开。`route` 与 `widen` 用同一判断；设 0 保持旧行为，已有宽线不会被它缩细。阈值由当前板的规则文件确定。试算后核对各电源网的“线宽×长度”，再放大查看残留细颈和短鼓包；质量提示为 0 仍不能代替看图。
 
 - 程序：本目录下 `bin/easyedatool.exe`（Windows x64，模板都编译在里面，不需要别的文件）。下文的 `easyedatool` 都指它，命令里写它的完整路径。
-- 本发行包提供命令行程序、桌面预览、说明书和示例；程序位置见 `INSTALL.md`。
+- 源码：`E:\project\EasyEdaTool`（公司内部仓库 miyue/EasyEdaTool）；别的系统在源码目录 `cargo build --release`，用 `target/release/easyedatool`。
 - 参数全集：每个命令加 `--help`（中文）；汇总在 `references/commands.md`。
 - 写设计文件：`references/design-format.md`，照 `examples/demo.toml` 改。
 - 布线 / DRC / 核对规则文件：`references/rules-format.md`，例子 `examples/demo.rules.toml`。
@@ -54,7 +54,19 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 
 ## 安装孔与3D交付核对
 
+导入板子的不贴装器件、无实体标记，在工程`easyedatool.toml`的对应`[view3d.parts."位号"]`设置`hidden=true`，只从3D装配排除，保留PCB焊盘和网络；须有BOM/标记类型依据，不按空Value猜。仅用于兼容占位、尚未核实实物匹配的外部OBJ设置`approximate=true`，模型清单仍标为近似。用`render3d`输出和实际窗口复查隐藏数量、位号、模型位置；用法及端子CAD来源见[模型与焊盘说明](references/models-and-pads.md)。
+
+开关电源变压器先读[变压器参数、绕制与3D来源](references/transformers.md)：按拓扑及工况设计电气参数，确定磁芯、材料、气隙和骨架后输出绕制规格书，再配封装与3D。EE/PQ等外形名称不能确定功率、匝数或脚位。当前`smps`检查版图，`thermal`按给定绕组DCR、有效值电流和磁芯损耗估算发热，尚无自动磁件设计命令；厂家设计工具和CAD入口见该参考。只询问方法时先解释流程和来源，不自行选定电源工况或开始绕组设计。
+
+TO-220 MOS管、肖特基管的散热器，先读[散热器和机械件封装](references/heatsinks.md)里的获取渠道与截面图流程：优先找同型号模型，只有截面图时按尺寸重建并拉伸、开孔。当前工具尚无任意截面拉伸和实体开孔命令，需用外部CAD生成模型再转换绑定。用户只是询问哪里能找到时，先回答渠道与格式，等实际制作时再确认采购规格。
+
+散热器、隔离柱等无焊脚机械件可在自建封装中显式设`mechanical=true`、`pads=[]`及正数宽高的`outline`，保留完整外框；普通封装仍须有焊盘。先按型号核对机械尺寸，再用参数配方或毫米OBJ绑定。`examples/heatsink.toml`提供可生成的机械件示例。厂家STEP须先转换，不能把参数STEP导出说成原厂CAD直接导入；KiCad封装、DWG/DXF当前也未提供一键导入。步骤及验收见[散热器和机械件封装](references/heatsinks.md)。
+
+按规格书和照片补模型时，使用通用`model3d box`、`cylinder`命令组合实体，`color`改RGB颜色，`export`出PNG/OBJ/GLB/STL/STEP，`bind`试算后加`--write`绑定位号。规格书尺寸及公差、照片近似配色分别记来源；成功须看到「参数模型已保存/已导出/参数模型绑定」。参数模型不得冒充原厂CAD，须查看实际正反面预览并核对位置和高度。下载封装的焊盘用`pad-edit`改铜面尺寸、增减或缩放，默认试算，`--out`输出副本；保留丝印与孔，不给正式已布板试尺寸。新丝印干涉须调整完整轮廓，不能删框。项目的`library_pad_patches`可设`width`/`height`，它们是铜面，`hole_width`/`hole_height`才是孔。完整步骤、命令及边界见[参数模型和焊盘修改](references/models-and-pads.md)；先查`--help`，已发布0.2.3尚无这些开发版命令。
+
 机械安装孔须逐项核对设计坐标/孔径、PCB原生孔、NPTH钻孔文件及3D板体：圆孔和槽孔必须真实挖穿并有孔壁，不能用黑色圆形贴图冒充。孔位与尺寸从项目读取，不写死进通用渲染代码。若仅3D漏孔，修渲染并重新导出PNG/GLB/STL、刷新Flutter预览，不为迁就模型改动实际孔位；核对最新正反面及斜视图。
+
+只改已有圆形安装孔孔径时，先在设计文件的 `[[board.holes]]` 修改毫米直径，保留孔心，再用 `holes <工程> --design 设计.toml --rules 规则.toml` 试算。必须看到「孔距 / 铜间距 / 板边检查通过」后才能加 `--write`；缺孔、重复匹配、工艺或间距冲突须先处理，不能用脚本改原生记录。命令不移动、新增或删除孔，也不扩大螺钉头禁布区；写后 `layout --save`、项目 DRC，并重导生产钻孔、二维图、GLB和STL，核对孔径与孔心一致。须先查 `holes --help`；已发布的0.2.3尚无此开发版命令，不能假定旧安装包支持。
 
 ## 元件丝印与布局的交付约束
 
@@ -67,6 +79,8 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 - 用户明确允许时可不印位号文字，但本体外框、芯片1脚、二极管/LED负极条仍保留，全部位号继续进入BOM、坐标和装配图。
 
 配置、清单与复查步骤见 [元件丝印与布局约束](references/silkscreen.md)。发现元件无本体线、缺边或丝印打架时，先修正再导出生产包。
+
+STM32MP157 示例按用户确认的范围处理：保留 ST 参考核心的密集布局，核心阻容使用避开阻焊开窗的常规丝印，外围保留完整外框和方向标记。不要为给核心阻容加完整外框而重排原厂 DDR / 电源布局；补线所需的局部调整、走线和铺铜保存在示例的布局文件中，按示例自己的构建步骤恢复。
 
 ## 规矩（先读）
 
@@ -256,6 +270,8 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 整板布线时：`pair --no-tune` 先布差分主干 → `route` 用 `[nets] keep` 保留差分网络并完成普通连接 → `tune --group` / `tune --pair` 补等长 → `pour --write` → `constraints` 和 `drc`。不要在普通引脚还没有出路时先塞入蛇形线；它可能占掉相邻电源、控制脚的过孔位置。
 
 ## 快速自测（第一次用、或怀疑环境有问题时）
+
+完整的 STM32MP157 复杂示例可用 `python examples/build_mp157.py --tool bin/easyedatool.exe --out MP157Demo --export` 恢复，不必从头布线。AM319 屏的原始 PDF、30 针接法及 1 脚方向在 `examples/docs/display/`；构建脚本还会核对一线 DSI 和计入封装长度差后的配对长度。实物驱动与点屏状态以例子 README 为准。
 
 在一个临时文件夹里跑（`<目录>` 换成真实路径，`examples/` 在本目录下）：
 
