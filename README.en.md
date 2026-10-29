@@ -4,18 +4,18 @@
 
 Offline command-line tool for EasyEDA Pro folder projects. It builds the schematic and PCB from a design file, autoroutes, pours copper with the EDA rules, runs DRC and a pin-by-pin net check, and exports a schematic PDF, netlist, BOM, Gerber, drill files, and a pick-and-place file. EasyEDA projects and exported PADS ASCII files need neither a browser nor an EDA client. Native PADS binary `.pcb` import requires Windows and a locally licensed PADS Layout installation.
 
-Version 0.2.3 includes native PADS `.pcb` import, mixed metric/imperial footprint fixes, and real mounting-hole and slot cutouts. PNG, GLB and STL share the same geometry; the Flutter viewer exports both model formats. Complete body silkscreen and conflict checks remain required.
+Version 0.2.4 ships the completed STM32MP157 AMOLED/touch example with saved copper, a local library, the original panel PDF and automatic checks. It also adds mounting-hole diameter synchronization, parametric 3D modelling, downloaded-footprint pad editing, mechanical-part examples, and pin-1/differential-neck fixes.
 
 ## Install
 
-The current version is **0.2.3**. Download it from [GitHub Release v0.2.3](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.3), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.2.4**. Download it from [GitHub Release v0.2.4](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.4), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.2.3 package | PCB / schematic viewer |
+| System | 0.2.4 package | PCB / schematic viewer |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-windows-x64-setup.exe) | Included |
-| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.zip) | Included |
-| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool-0.2.3-macos-arm64.tar.gz) / Homebrew | Not included |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.3/easyedatool_0.2.3-1_amd64.deb) | Included |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool_0.2.4-1_amd64.deb) | Included |
 | Intel Mac / HarmonyOS PC | No package in this version | — |
 
 Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
@@ -29,7 +29,7 @@ Download the installer, or extract the ZIP and run:
 .\easyedatool\bin\easyedatool.exe view <project>
 ```
 
-The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may display a SmartScreen prompt. **After refreshing the official source on 2026-10-28, `Miyue.PcbCliTool` was not found.** The [0.2.0 submission, #452460](https://github.com/microsoft/winget-pkgs/pull/452460), passed automated validation and still awaits maintainer approval. The [0.2.3 manifests](winget/README.md) pass local schema validation; this does not establish official source availability. Use the Release downloads.
+The installer defaults to `%USERPROFILE%\.claude\skills\easyedatool`. It is unsigned, so Windows may show SmartScreen. Confirm winget availability and version against the official source; this release does not change that source. Use the Release downloads. Historical manifests are in [winget/](winget/README.md).
 
 ### macOS (Apple silicon)
 
@@ -58,7 +58,7 @@ For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`.
 Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
 
 ```bash
-sudo apt install ./easyedatool_0.2.3-1_amd64.deb
+sudo apt install ./easyedatool_0.2.4-1_amd64.deb
 easyedatool --version
 easyedatool view <project>
 ```
@@ -73,13 +73,13 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.3-1
+sudo apt-get install easyedatool=0.2.4-1
 easyedatool --version
 ```
 
-If `0.2.3-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+If `0.2.4-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
 
-## 0.2.3: component silkscreen, placement and board 3D
+## 0.2.4: component silkscreen, placement and board 3D
 
 New layouts and footprint changes must preserve component body outlines, pin-1 marks and diode/LED polarity marks. Inventory every component first. Resolve conflicts by moving or rotating parts and reconnecting affected copper; do not delete or trim outlines or hide layers to suppress findings. Check silkscreen and component spacing, then inspect the actual top/bottom Gerbers and current preview. Reference text may be hidden when the user permits it; body and orientation marks remain, and the BOM, placement file and assembly drawing keep every reference. See the [silkscreen workflow](skill/references/silkscreen.md).
 
@@ -93,14 +93,16 @@ A 100×80 mm, four-layer `JLC04161H-3313` example with 289 components and eight 
 
 The [display notes](skill/examples/docs/display/README.md) include the original panel PDF, all pin assignments and pin-1 orientation. On the board top view, J6 pin 1 is at the lower right and connects to ground. The panel drawing's rear view must not be copied as a board top view. Controlled 3.7V, 1.8V, 2.8V and VCI_EN 3.3V outputs and 1.8V touch/reset/TE translation are included.
 
-From the repository root, using a CLI with `body_silk.pin1.at` support:
+Display/touch supplies U18, U16, U17 and U28 are on the bottom near J6; the switch-to-inductor trunk is 0.6 mm. Power checks cover 34 nets across pads and vias, starting at 0.1 mm. The only approved intermediate neck is the necessary U5.N2 BGA escape, approximately 0.09 mm wide and 0.50 mm long; the former R40 pull-up branch now uses a 0.3 mm detour. The ST core component positions and four-layer process are preserved.
+
+From the repository root, using Python 3.11 or newer and a CLI with `body_silk.pin1.at` and through-contact neck checks:
 
 ```powershell
 python skill/examples/build_mp157.py --tool easyedatool --out MP157Demo --export
 easyedatool view MP157Demo
 ```
 
-In the full package, omit `skill/` and point `--tool` to `bin/easyedatool.exe`. Keep the design, routed layout, rules, constraints, labels, local library and build/check scripts together. The build restores copper, runs schematic/PCB, ERC, constraints, display-specific and DRC checks, then exports documentation and manufacturing files.
+In the full package, omit `skill/` and point `--tool` to `bin/easyedatool.exe`. Keep the design, routed layout, rules, constraints, labels, local library and build/check scripts together. The build restores copper, runs schematic/PCB, ERC, constraints, display, DRC and power checks, then exports documentation and manufacturing files. `check_power.py` verifies supply placement and recognizes only the approved escape by its actual pads, position and dimensions; other intermediate power necks fail the build.
 
 All 1262 connected pins match the PCB, and eight pages pass the layout audit. Display checks cover all 30 pins, unused D1/ID/VPP and the original PDF hash. Clock PCB P/N lengths are 52.285 / 51.463 mm; D0 lengths are 56.341 / 55.560 mm. These compensate the LFBGA354 package's 0.822 / 0.781 mm differences, leaving less than 0.001 mm electrical skew; average clock/data length difference is 4.077 mm. Eleven pair constraints are checked.
 
@@ -111,3 +113,5 @@ The original ST AN5122 reference remains at `skill/build/st/board.PcbDoc`, refer
 ## For an AI assistant
 
 The instructions are in `skill/SKILL.md`. Command, design-file, and rules-file details are in `skill/references/`.
+
+The tool is model independent. An agent with local file access and command execution can read [SKILL.md](https://raw.githubusercontent.com/cc38324/PcbCliTool/main/skill/SKILL.md), follow INSTALL.md, download the complete package for its operating system, and run the bundled Demo before editing a project. A chat-only interface cannot execute local commands. Keep the manual, references, example library and original panel PDF together. GitHub download counts do not identify an AI model or establish that a particular model is using the tool.

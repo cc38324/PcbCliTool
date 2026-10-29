@@ -1,0 +1,20 @@
+name = "MLCC_0402_example"
+source = "风华通用MLCC规格书Product Dimensions表的0402名义示例：L=1.00，W/T=0.50，WB=0.25mm；具体料号厚度及公差须再核实"
+color_source = "演示配色，未从该料号实物照片测量；可用model3d color修改"
+
+[[shapes]]
+name = "ceramic"
+box = [0.50, 0.50, 0.50]
+color = "#B69B70"
+
+[[shapes]]
+name = "terminal_left"
+box = [0.25, 0.50, 0.50]
+at = [-0.375, 0, 0]
+color = "#C8C8CA"
+
+[[shapes]]
+name = "terminal_right"
+box = [0.25, 0.50, 0.50]
+at = [0.375, 0, 0]
+color = "#C8C8CA"

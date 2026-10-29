@@ -1,0 +1,20 @@
+name = "Electrolytic_example"
+source = "纯演示尺寸：本体直径5mm，含底座总高5.4mm；不能对应实际料号下单"
+color_source = "示意黑色外套和银色顶盖，须按实际照片改色"
+
+[[shapes]]
+name = "base"
+box = [5.5, 5.5, 0.5]
+color = "#303236"
+
+[[shapes]]
+name = "sleeve"
+cylinder = [5.0, 4.85]
+at = [0, 0, 0.5]
+color = "#24262A"
+
+[[shapes]]
+name = "lid"
+cylinder = [4.7, 0.05]
+at = [0, 0, 5.35]
+color = "#BFC2C6"

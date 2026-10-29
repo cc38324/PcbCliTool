@@ -41,7 +41,7 @@ description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .e
 `power_min_run` 量的是同层同网络、中心线端点相接的连续新加宽段：跨多条 LINE 记录累计，细颈或换层处断开。`route` 与 `widen` 用同一判断；设 0 保持旧行为，已有宽线不会被它缩细。阈值由当前板的规则文件确定。试算后核对各电源网的“线宽×长度”，再放大查看残留细颈和短鼓包；质量提示为 0 仍不能代替看图。
 
 - 程序：本目录下 `bin/easyedatool.exe`（Windows x64，模板都编译在里面，不需要别的文件）。下文的 `easyedatool` 都指它，命令里写它的完整路径。
-- 源码：`E:\project\EasyEdaTool`（公司内部仓库 miyue/EasyEdaTool）；别的系统在源码目录 `cargo build --release`，用 `target/release/easyedatool`。
+- 本发行包提供命令行程序、桌面预览、说明书和示例；程序位置见 `INSTALL.md`。
 - 参数全集：每个命令加 `--help`（中文）；汇总在 `references/commands.md`。
 - 写设计文件：`references/design-format.md`，照 `examples/demo.toml` 改。
 - 布线 / DRC / 核对规则文件：`references/rules-format.md`，例子 `examples/demo.rules.toml`。
@@ -62,11 +62,11 @@ TO-220 MOS管、肖特基管的散热器，先读[散热器和机械件封装](r
 
 散热器、隔离柱等无焊脚机械件可在自建封装中显式设`mechanical=true`、`pads=[]`及正数宽高的`outline`，保留完整外框；普通封装仍须有焊盘。先按型号核对机械尺寸，再用参数配方或毫米OBJ绑定。`examples/heatsink.toml`提供可生成的机械件示例。厂家STEP须先转换，不能把参数STEP导出说成原厂CAD直接导入；KiCad封装、DWG/DXF当前也未提供一键导入。步骤及验收见[散热器和机械件封装](references/heatsinks.md)。
 
-按规格书和照片补模型时，使用通用`model3d box`、`cylinder`命令组合实体，`color`改RGB颜色，`export`出PNG/OBJ/GLB/STL/STEP，`bind`试算后加`--write`绑定位号。规格书尺寸及公差、照片近似配色分别记来源；成功须看到「参数模型已保存/已导出/参数模型绑定」。参数模型不得冒充原厂CAD，须查看实际正反面预览并核对位置和高度。下载封装的焊盘用`pad-edit`改铜面尺寸、增减或缩放，默认试算，`--out`输出副本；保留丝印与孔，不给正式已布板试尺寸。新丝印干涉须调整完整轮廓，不能删框。项目的`library_pad_patches`可设`width`/`height`，它们是铜面，`hole_width`/`hole_height`才是孔。完整步骤、命令及边界见[参数模型和焊盘修改](references/models-and-pads.md)；先查`--help`，已发布0.2.3尚无这些开发版命令。
+按规格书和照片补模型时，使用通用`model3d box`、`cylinder`命令组合实体，`color`改RGB颜色，`export`出PNG/OBJ/GLB/STL/STEP，`bind`试算后加`--write`绑定位号。规格书尺寸及公差、照片近似配色分别记来源；成功须看到「参数模型已保存/已导出/参数模型绑定」。参数模型不得冒充原厂CAD，须查看实际正反面预览并核对位置和高度。下载封装的焊盘用`pad-edit`改铜面尺寸、增减或缩放，默认试算，`--out`输出副本；保留丝印与孔，不给正式已布板试尺寸。新丝印干涉须调整完整轮廓，不能删框。项目的`library_pad_patches`可设`width`/`height`，它们是铜面，`hole_width`/`hole_height`才是孔。完整步骤、命令及边界见[参数模型和焊盘修改](references/models-and-pads.md)；这些命令从0.2.4提供，使用前先查`--help`，旧安装包须先升级。
 
 机械安装孔须逐项核对设计坐标/孔径、PCB原生孔、NPTH钻孔文件及3D板体：圆孔和槽孔必须真实挖穿并有孔壁，不能用黑色圆形贴图冒充。孔位与尺寸从项目读取，不写死进通用渲染代码。若仅3D漏孔，修渲染并重新导出PNG/GLB/STL、刷新Flutter预览，不为迁就模型改动实际孔位；核对最新正反面及斜视图。
 
-只改已有圆形安装孔孔径时，先在设计文件的 `[[board.holes]]` 修改毫米直径，保留孔心，再用 `holes <工程> --design 设计.toml --rules 规则.toml` 试算。必须看到「孔距 / 铜间距 / 板边检查通过」后才能加 `--write`；缺孔、重复匹配、工艺或间距冲突须先处理，不能用脚本改原生记录。命令不移动、新增或删除孔，也不扩大螺钉头禁布区；写后 `layout --save`、项目 DRC，并重导生产钻孔、二维图、GLB和STL，核对孔径与孔心一致。须先查 `holes --help`；已发布的0.2.3尚无此开发版命令，不能假定旧安装包支持。
+只改已有圆形安装孔孔径时，先在设计文件的 `[[board.holes]]` 修改毫米直径，保留孔心，再用 `holes <工程> --design 设计.toml --rules 规则.toml` 试算。必须看到「孔距 / 铜间距 / 板边检查通过」后才能加 `--write`；缺孔、重复匹配、工艺或间距冲突须先处理，不能用脚本改原生记录。命令不移动、新增或删除孔，也不扩大螺钉头禁布区；写后 `layout --save`、项目 DRC，并重导生产钻孔、二维图、GLB和STL，核对孔径与孔心一致。须先查 `holes --help`；本命令从0.2.4提供，不能假定旧安装包支持。
 
 ## 元件丝印与布局的交付约束
 

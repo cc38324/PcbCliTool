@@ -1,0 +1,40 @@
+# 机械封装示例：胶粘式散热器，无焊脚、无安装孔，尺寸不对应具体厂家料号。
+# gen本文件后，用model3d bind绑定examples/models/heatsink20.toml。
+[project]
+name = "HeatsinkDemo"
+time = "2026-10-29 00:00:00"
+
+[board]
+outline = [[0, 0], [40, 0], [40, 40], [0, 40]]
+
+[[symbols]]
+name = "MECHANICAL"
+mechanical = true
+designator = "HS"
+description = "Mechanical heatsink, no electrical pins"
+left = []
+right = []
+
+[[footprints]]
+name = "HEATSINK_DEMO_20"
+designator = "HS"
+description = "20 x 20 mm adhesive-mounted heatsink outline; example only"
+mechanical = true
+unit = "mm"
+pads = []
+outline = [-10, -10, 20, 20]
+silk = [[[-10,-10],[10,-10],[10,10],[-10,10],[-10,-10]]]
+
+[[blocks]]
+name = "MECH"
+title = "Heatsink mechanical example"
+regions = [[2, 2, 38, 38]]
+
+[[parts]]
+ref = "HS1"
+sym = "MECHANICAL"
+fp = "HEATSINK_DEMO_20"
+value = "Heatsink 20x20x10 example"
+group = "MECH"
+pcb = [20, 20]
+nets = {}

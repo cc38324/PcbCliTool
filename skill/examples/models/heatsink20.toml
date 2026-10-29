@@ -1,0 +1,183 @@
+name = "heatsink20"
+source = "直鳍散热器通用演示：20×20×10mm，底板2mm、8条1mm厚鳍片；无指定厂家料号，无安装孔，胶粘安装的外形示例"
+color_source = "铝色示意配色"
+
+[[shapes]]
+name = "base"
+color = "#A8ADB3"
+at = [
+    0.0,
+    0.0,
+    0.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    20.0,
+    20.0,
+    2.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin1"
+color = "#A8ADB3"
+at = [
+    -9.5,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin2"
+color = "#A8ADB3"
+at = [
+    -6.785714285714286,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin3"
+color = "#A8ADB3"
+at = [
+    -4.071428571428571,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin4"
+color = "#A8ADB3"
+at = [
+    -1.3571428571428577,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin5"
+color = "#A8ADB3"
+at = [
+    1.3571428571428577,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin6"
+color = "#A8ADB3"
+at = [
+    4.071428571428571,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin7"
+color = "#A8ADB3"
+at = [
+    6.785714285714285,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
+
+[[shapes]]
+name = "fin8"
+color = "#A8ADB3"
+at = [
+    9.5,
+    0.0,
+    2.0,
+]
+rotation = [
+    0.0,
+    0.0,
+    0.0,
+]
+box = [
+    1.0,
+    20.0,
+    8.0,
+]
+segments = 64
