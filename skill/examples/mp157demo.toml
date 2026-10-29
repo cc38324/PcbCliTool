@@ -53,7 +53,6 @@ pin1 = [{part="U28",pin="1"},{part="J6",pin="1",at=[3.8,-2.25]},{part="U18",pin=
 pin1_diameter = 0.4
 cathodes = [{part="D1",pin="2",length=0.6},{part="D2",pin="2",length=0.6},{part="D3",pin="2",length=0.6}]
 
-
 [designators]
 font = 0.6
 stroke = 0.1
@@ -3070,9 +3069,9 @@ value = "100kΩ"
 ref = "U16"
 group = "LCD_POWER"
 nets = { 1 = "3V3", 2 = "GND", 3 = "LCD_1V8_EN", 5 = "LCD_1V8" }
-pcb = [52.3999, 56.3999]
+pcb = [38.8, 72.2]
 angle = 0
-side = "top"
+side = "bottom"
 part = "TLV75518PDBVR"
 lcsc = "C2877863"
 value = "TLV75518PDBVR"
@@ -3082,9 +3081,9 @@ nc = ["4"]
 ref = "U17"
 group = "TOUCH"
 nets = { 1 = "3V3", 2 = "GND", 3 = "TP_PWR_EN", 5 = "TP_2V8" }
-pcb = [15, 73.0001]
+pcb = [42.4, 77.0]
 angle = 0
-side = "top"
+side = "bottom"
 part = "TLV70028DDCR"
 lcsc = "C507266"
 value = "TLV70028DDCR"
@@ -3094,9 +3093,9 @@ nc = ["4"]
 ref = "C135"
 group = "TOUCH"
 nets = { 1 = "3V3", 2 = "GND" }
-pcb = [19, 73.0001]
+pcb = [39.1, 78.0]
 angle = 90
-side = "top"
+side = "bottom"
 sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
@@ -3105,9 +3104,9 @@ value = "1uF/10V"
 ref = "C136"
 group = "TOUCH"
 nets = { 1 = "TP_2V8", 2 = "GND" }
-pcb = [15, 76.5]
+pcb = [36.5, 77.3]
 angle = 0
-side = "top"
+side = "bottom"
 sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
@@ -3116,9 +3115,9 @@ value = "1uF/10V"
 ref = "C137"
 group = "LCD_POWER"
 nets = { 1 = "3V3", 2 = "GND" }
-pcb = [55.5, 56.5]
+pcb = [41.8, 71.9]
 angle = 90
-side = "top"
+side = "bottom"
 sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
@@ -3127,9 +3126,9 @@ value = "1uF/10V"
 ref = "C138"
 group = "LCD_POWER"
 nets = { 1 = "LCD_1V8", 2 = "GND" }
-pcb = [49.2001, 58.1]
-angle = 90
-side = "top"
+pcb = [38.5, 75.5]
+angle = 0
+side = "bottom"
 sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
@@ -3309,9 +3308,9 @@ part = "TPS562201DDCR"
 lcsc = "C90061"
 value = "TPS562201DDCR"
 nets = { 1 = "GND", 2 = "OLED_SW", 3 = "5V_VIN", 4 = "OLED_FB", 5 = "OLED_VBAT_EN", 6 = "OLED_BOOT" }
-pcb = [67.8, 50.2501]
-angle = 0
-side = "top"
+pcb = [31.7, 71.5]
+angle = 90
+side = "bottom"
 
 [[parts]]
 ref = "L102"
@@ -3320,9 +3319,9 @@ part = "CKCS4030-4.7uH_M"
 lcsc = "C354587"
 value = "4.7uH/2A, Isat2.9A"
 nets = { 1 = "OLED_SW", 2 = "OLED_VBAT" }
-pcb = [73.5, 54.2]
-angle = 0
-side = "top"
+pcb = [31.7, 76.8]
+angle = 90
+side = "bottom"
 
 [[parts]]
 ref = "C139"
@@ -3331,9 +3330,9 @@ sym = "CAP"
 fp = "C0805"
 value = "10uF/10V"
 nets = { 1 = "5V_VIN", 2 = "GND" }
-pcb = [73.9, 45.5]
-angle = 270
-side = "top"
+pcb = [35.4, 72.8]
+angle = 90
+side = "bottom"
 
 [[parts]]
 ref = "C140"
@@ -3342,9 +3341,9 @@ sym = "CAP"
 fp = "C0805"
 value = "22uF/10V"
 nets = { 1 = "OLED_VBAT", 2 = "GND" }
-pcb = [80.1, 51.7]
+pcb = [28.0, 77.0]
 angle = 90
-side = "top"
+side = "bottom"
 
 [[parts]]
 ref = "C144"
@@ -3353,9 +3352,9 @@ sym = "CAP"
 fp = "C0805"
 value = "22uF/10V"
 nets = { 1 = "OLED_VBAT", 2 = "GND" }
-pcb = [73.0001, 61.5]
+pcb = [25.2, 73.6]
 angle = 90
-side = "top"
+side = "bottom"
 
 [[parts]]
 ref = "C145"
@@ -3364,7 +3363,7 @@ sym = "CAP"
 fp = "C0402"
 value = "100nF"
 nets = { 1 = "5V_VIN", 2 = "GND" }
-pcb = [71.0001, 46.9999]
+pcb = [34.9, 72.1]
 angle = 0
 side = "top"
 
@@ -3375,9 +3374,9 @@ sym = "CAP"
 fp = "C0402"
 value = "100nF"
 nets = { 1 = "OLED_BOOT", 2 = "OLED_SW" }
-pcb = [67.8, 45.6]
+pcb = [30.0, 68.4]
 angle = 0
-side = "top"
+side = "bottom"
 
 [[parts]]
 ref = "R157"
@@ -3386,9 +3385,9 @@ sym = "RES"
 fp = "R0402"
 value = "38.3kΩ 1%"
 nets = { 1 = "OLED_VBAT", 2 = "OLED_FB" }
-pcb = [66.5, 52.75]
-angle = 0
-side = "top"
+pcb = [28.6, 72.3]
+angle = 90
+side = "bottom"
 
 [[parts]]
 ref = "R158"
@@ -3397,9 +3396,9 @@ sym = "RES"
 fp = "R0402"
 value = "10kΩ 1%"
 nets = { 1 = "OLED_FB", 2 = "GND" }
-pcb = [63.7499, 48.2501]
-angle = 0
-side = "top"
+pcb = [27.1, 72.3]
+angle = 90
+side = "bottom"
 
 [[parts]]
 ref = "U28"
@@ -3409,9 +3408,9 @@ lcsc = "C404027"
 value = "TLV75533PDBVR"
 nets = { 1 = "5V_VIN", 2 = "GND", 3 = "OLED_VCI_CTRL", 5 = "OLED_VCI_EN" }
 nc = ["4"]
-pcb = [52.15, 52.0499]
+pcb = [47.0, 76.0]
 angle = 0
-side = "top"
+side = "bottom"
 
 [[parts]]
 ref = "C152"
@@ -3420,9 +3419,9 @@ sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
 nets = { 1 = "5V_VIN", 2 = "GND" }
-pcb = [48.75, 51.8]
+pcb = [50.3, 76.5]
 angle = 90
-side = "top"
+side = "bottom"
 
 [[parts]]
 ref = "C153"
@@ -3431,9 +3430,9 @@ sym = "CAP"
 fp = "C0603"
 value = "1uF/10V"
 nets = { 1 = "OLED_VCI_EN", 2 = "GND" }
-pcb = [55.3001, 51.8]
-angle = 90
-side = "top"
+pcb = [44.4, 72.6]
+angle = 0
+side = "bottom"
 
 [[parts]]
 ref = "R160"
@@ -3442,9 +3441,9 @@ sym = "RES"
 fp = "R0402"
 value = "10kΩ"
 nets = { 1 = "OLED_VCI_EN", 2 = "GND" }
-pcb = [55.3001, 49.1]
+pcb = [47.3, 72.6]
 angle = 0
-side = "top"
+side = "bottom"
 
 [[pours]]
 net = "GND"

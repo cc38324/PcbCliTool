@@ -93,14 +93,16 @@ easyedatool --version
 
 [原始屏 PDF、逐脚接法及 1 脚方向](skill/examples/docs/display/README.md)：主板顶视 J6 的 1 脚在右下角、接地。屏图的背视图不能直接当作主板顶视图。提供受控 3.7V、1.8V、2.8V 电源和用于 VCI_EN 的受控 3.3V 输出，触摸、复位、TE 按 1.8V 信号转换。
 
-在仓库根目录执行，程序须支持 `body_silk.pin1.at`：
+显示和触摸供电芯片 U18、U16、U17、U28 集中在 J6 附近的底面，开关电源到电感的主干为 0.6 mm。电源检查覆盖 34 个实际网络，从 0.1 mm 起查并贯穿焊盘、过孔；不得抬高起查值漏掉较细分支。按用户确认，仅保留 U5.N2 约 0.09 mm × 0.50 mm 的必要 BGA 短出线，原另一处上拉支路已改为 0.3 mm 绕行。保持四层工艺与 ST 核心器件位置。
+
+在仓库根目录执行，构建脚本需要 Python 3.11 或更新版本；程序须支持 `body_silk.pin1.at` 和跨焊盘、过孔的细颈检查：
 
 ```powershell
 python skill/examples/build_mp157.py --tool easyedatool --out MP157Demo --export
 easyedatool view MP157Demo
 ```
 
-完整包内去掉 `skill/` 前缀，`--tool` 指向 `bin/easyedatool.exe`。设计文件、已布线的 `.layout.toml`、规则、差分约束、标注、本地 `lib/`、构建与专项检查脚本必须一起保留。构建脚本恢复走线与铺铜，执行 `check`、`erc`、`constraints`、`check_display.py`、`drc`，检查通过后再导出 PDF / BOM / 网表 / Gerber / 钻孔 / 坐标。
+完整包内去掉 `skill/` 前缀，`--tool` 指向 `bin/easyedatool.exe`。设计文件、已布线的 `.layout.toml`、规则、差分约束、标注、本地 `lib/`、构建与专项检查脚本必须一起保留。构建脚本恢复走线与铺铜，执行 `check`、`erc`、`constraints`、`check_display.py`、`drc` 和 `check_power.py`；后者核对供电器件位置，并只按引脚、邻近焊盘、坐标与尺寸识别上述唯一例外，其余中段细颈会拒绝。检查通过后再导出 PDF / BOM / 网表 / Gerber / 钻孔 / 坐标。
 
 1262 个接网引脚逐脚一致，8 页版面无出界、标题栏碰撞或重叠。专项检查核对全部 30 针、未使用的 D1 / ID / VPP 和原始 PDF 哈希。时钟 PCB P/N 长度为 52.285 / 51.463 mm，D0 为 56.341 / 55.560 mm，分别补偿 LFBGA354 内部的 0.822 / 0.781 mm；补偿后的对内误差小于 0.001 mm，时钟与 D0 平均长度差 4.077 mm。11 组差分约束均检查。
 

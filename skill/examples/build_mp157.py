@@ -46,6 +46,9 @@ def main():
     run("constraints", project)
     subprocess.run([sys.executable, str(here / "check_display.py"), str(project), "--tool", tool], check=True)
     run("drc", project, "--rules", rules_dir / "mp157demo.rules.toml", "--json", output / "MP157Demo_drc.json")
+    subprocess.run([sys.executable, str(here / "check_power.py"), str(project), "--tool", tool,
+                    "--rules", str(rules_dir / "mp157demo.rules.toml"),
+                    "--drc-json", str(output / "MP157Demo_drc.json")], check=True)
     if args.export:
         for view in ("top", "bottom", "layers", "sch"):
             run("render", project, "--view", view, "-o", output / f"MP157Demo_{view}.png")
