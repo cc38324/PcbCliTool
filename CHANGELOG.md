@@ -1,12 +1,39 @@
 # 发布说明 / Release notes
 
-## 待发布 — STM32MP157 AMOLED 与触摸示例（2026-10-29）
+## 0.2.4 — 2026-10-29
 
-补完原示例并按用户指定的 AM319M262928ZS 一线 MIPI AMOLED、CST3530 触摸与 DF40 30 针座接线；加入原始 PDF、1 脚方向说明、独立受控电源及 1.8V 信号转换。保留 ST 核心布局，外围保留完整丝印外框。源例子位于主仓库 examples/mp157demo，打包时自动附带本地库、ST 参考、已布线路、PDF 与检查脚本。
+完整 STM32MP157 AMOLED / 触摸示例随三平台完整包提供：AM319M262928ZS 一线 MIPI、CST3530 触摸、DF40 30 针座，附原始屏 PDF、1 脚方向说明、已布线布局、本地元件库和构建检查。显示与触摸供电芯片集中在 J6 附近，全板电源加粗，检查覆盖 34 个电源网络并贯穿焊盘和过孔。普通中段细颈为 0；按用户确认，仅保留 U5.N2 约 0.09 mm × 0.50 mm 的必要 BGA 短出线，维持 ST 核心器件位置和四层工艺。
 
-新增封装局部坐标的 1 脚标记位置，修正差分端部颈缩导致宽主干被误拒绝的问题。Rust release 测试 397 项通过、2 项忽略。MP157 为 289 个器件、8 页、1262 个接网引脚逐脚一致；MIPI 专项检查计入 LFBGA354 内部长度差。完整检查报告与工艺提示由构建脚本保留。
+本版还提供 `holes` 安装孔孔径同步、`model3d` 参数建模与绑定、`pad-edit` 下载封装铜面编辑、无焊盘机械件和散热器示例，以及不贴装/近似 3D 模型标记。新增封装局部坐标的 1 脚标记位置，修正差分端部颈缩导致宽主干被误拒绝的问题。所有新功能均按当前工程的数据与规则运行。
 
-尚未实物点屏，仍需显示 / 触摸驱动与电源时序适配。本条为本地提交准备，未发布新安装包。
+公开 skill、安装说明、参数模型/焊盘/散热器/变压器参考已同步。支持具备文件和命令工具的 AI 代理；完整包包含所需参考、例子和库，不限定模型。MP157 构建脚本需要 Python 3.11 或更新版本。
+
+| 验证 | 本次结果 |
+|---|---|
+| Windows / macOS arm64 / Linux x64 | 各 397 项 Rust 测试通过、2 项忽略；Flutter 分析 0 问题、30 项测试通过 |
+| 三平台完整包 Demo | 13 脚差异 0、5/5 布通、电气 DRC 0；保留原有 6 条字高警告 |
+| 实际窗口 | 三平台 PCB、原理图、3D 截图已查看，未见运行异常；GLB / STL 导出通过 |
+| Windows 安装器 | 安装后的全部文件逐一与最终 ZIP 一致 |
+| Linux 升级 | Ubuntu 22.04 独立容器验证 0.2.3-1 → 0.2.4-1 |
+| 三平台 MP157 冷启动 | 289 器件、8 页、1262 接网脚差异 0；11 对差分、显示与电源专项通过，图纸和生产文件均导出 |
+| 例子依赖 | 40 个本地元件清单引用完整，包含带 ℃ 字符的符号文件；原始 PDF 哈希一致 |
+| 最终包内容 | 四个完整包的 163 个公开文档/示例文件逐项一致，无内部目录、地址、源码归档或凭据 |
+
+CLI、窗口和 Windows 安装器来源为 `f2515a3519e27e607a6cbf870f7a62429a0052fc`，包内文档固定到公开提交 `9e2fa5ffac7db099fb6ece12b21ad7c3d2a07844`。SDK、附件大小与 SHA256 见 `build-info.json` 和 `SHA256SUMS.txt`。
+
+跨平台比对确认电气铜、元件位置、引脚网络和约束一致；系统字体会影响常规丝印裁切和位号位置，库文档时间戳也受时区影响，不声称跨平台原始文件逐字节相同。MP157 尚未实物点屏，仍需 CO6300 初始化、CST3530 驱动、时序、负载、纹波、EMI 和射频验证；原有工艺提示保留在检查报告中。
+
+Homebrew Formula 已更新到本版 CLI 的实际 URL 和 SHA256。本次未更新 APT 或 winget 官方源，安装使用 [v0.2.4 Release](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.4) 附件。Windows 包未签名，macOS 包未公证；近似 3D 模型不能用于机壳尺寸或碰撞验收。
+
+### English
+
+The complete STM32MP157 AMOLED/touch example now ships with the Windows, Apple-silicon macOS and Linux full packages, including saved copper, a local library, the original panel PDF, connector pin-1 notes and build checks. Display supplies are near J6; ordinary intermediate power necks are zero across 34 checked nets, with only the approved U5.N2 BGA escape retained. ST core placement and the four-layer process are preserved.
+
+This version also adds mounting-hole diameter synchronization, parametric 3D modelling/binding, downloaded-footprint pad editing, mechanical/heatsink examples and assembly-model flags, plus pin-1 and differential-neck fixes. The public AI manual and all referenced guides are synchronized. The MP157 helper requires Python 3.11 or newer.
+
+Each platform passed 397 Rust tests (2 ignored), clean Flutter analysis and 30 widget tests. Final-package Demo, PCB/schematic/3D windows and GLB/STL checks passed. The Windows installer matches its ZIP file for file, and Linux upgrades from 0.2.3-1 in Ubuntu 22.04. The MP157 example rebuilt and exported successfully on all three platforms: 1262 connected pins match, 11 differential pairs pass, and display/power checks pass. All 40 local part manifests resolve, including Unicode library filenames, and all four full packages contain the same 163 public documentation/example files.
+
+Electrical copper, component positions, pin assignments and constraints match across platforms; system fonts affect silkscreen/designator layout and library metadata timestamps can reflect the time zone. Raw native-file byte identity across platforms is not claimed. Physical display/touch operation and electrical prototype testing remain unverified. Homebrew is updated; APT/winget official sources are unchanged by this release. Windows binaries are unsigned and the macOS app is not notarized.
 
 ## 0.2.3 — 2026-10-28
 
