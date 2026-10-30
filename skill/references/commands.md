@@ -15,6 +15,7 @@ Commands:
   pads         列出焊盘：位号、脚号、网络、中心（毫米）、尺寸、转角、层
   route        自动布线：删掉全部旧走线、过孔和铺铜填充，按规则文件重新布线（多层板按板子的铜层布，内层铺铜平面只让过孔穿过），写回 .epcb2，再重算铺铜
   drc          查铜皮：不同网络间距、离板边距离、禁布区、没连通的网络、悬空线头、隔离带宽度（有问题时退出码 1）
+  em           天线三维全波电磁仿真：从当前 PCB 导出实际铜形和叠层，检查全层天线净空；--run 调用 openEMS
   check        核对工程：器件重叠 / 出板、原理图没接上的导线、原理图和 PCB 逐脚网络对比（有问题时退出码 1）
   erc          原理图电气规则检查（ERC）：照嘉立创原理图 DRC 逐条查——引脚悬空、导线没接引脚 / 只接一个引脚、一组导线多个网络名、网络标识和导线名不一致、引脚端点重叠、位号、缺器件 / 封装、引脚和焊盘对不上、多部件、超出图纸、不在格点；规则名、级别、中文说明都照它，--pins 再查引脚类型冲突（有致命错误、错误或警告时退出码 1）
   hookup       接法检查：照元件库里芯片的接法规则（按数据手册的参考电路和外部元件表写的）查原理图——两脚之间该有的电感 / 电阻 / 电容和取值、额定电压，该同网的脚，该接地或悬空的脚，几种接法里用的是哪一种；查得出接错脚这类 ERC 查不出来的错（有错误或警告时退出码 1）
@@ -187,6 +188,26 @@ Options:
       --clearance <CLEARANCE>  所有铜皮统一用这个间距（毫米，drc.py 用 0.152）；不给就按工程文件里 EDA 的间距规则
       --json <JSON>            把完整结果写成 JSON
   -h, --help                   Print help
+```
+
+## em
+
+```
+天线三维全波电磁仿真：从当前 PCB 导出实际铜形和叠层，检查全层天线净空；--run 调用 openEMS
+
+Usage: easyedatool em [OPTIONS] --config <CONFIG> --out <OUT> <INPUT>
+
+Arguments:
+  <INPUT>  .epcb2、.eprj3 或工程目录；只读
+
+Options:
+      --config <CONFIG>            电磁配置 TOML/JSON：端口、材料来源、损耗、频段、网格、天线净空
+      --no-drc                     改板子的命令（gen、route、pour --write、widen、tune、pair 的 --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -o, --out <OUT>                  模型、日志、S11/阻抗 CSV、远场和图的目录
+      --run                        实际求解；省略时只导出，不报告仿真成功
+      --python <PYTHON>            装有同版本 openEMS/CSXCAD 的 Python；也可配置或设置 EASYEDATOOL_EM_PYTHON
+      --solver-root <SOLVER_ROOT>  openEMS 运行库目录（Windows 为包含 CSXCAD.dll 的目录）
+  -h, --help                       Print help
 ```
 
 ## check

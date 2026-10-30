@@ -1,0 +1,41 @@
+# 与 antenna_coupon 示例生成的原生测试板配套，几何 mm、频率 GHz。
+# 路径相对于本配置；填写已安装的匹配版本运行环境。
+# python = "../out/em-runtime/python313/python.exe"
+# solver_root = "../out/em-runtime/openEMS/openEMS"
+material_note = "JLC04161H-7628 nominal stack; tan(delta)=0.02 assumed. No carrier/enclosure; verify production materials before release."
+loss_tangent = 0.02
+omit_solder_mask = true
+frequency_ghz = [4.0, 10.0]
+samples = 601
+far_field_ghz = [6.4896, 7.9872]
+antenna_keepout = [0.0, 13.0, 30.0, 20.0]
+
+[[bands]]
+name = "UWB Channel 5"
+frequency_ghz = [6.240, 6.7392]
+max_s11_db = -10.0
+
+[[bands]]
+name = "UWB Channel 9"
+frequency_ghz = [7.7376, 8.2368]
+max_s11_db = -10.0
+
+[port]
+net = "RF_ANT"
+ground_net = "GND"
+xy = [15.0, 11.1]
+signal_layer = 1
+ground_layer = 15
+width_mm = 0.3
+length_mm = 0.1
+resistance_ohm = 50.0
+
+[mesh]
+cell_mm = 0.4
+feed_cell_mm = 0.024
+min_cell_mm = 0.06
+air_mm = 20.0
+steps = 60000
+end_db = -50.0
+threads = 4
+max_cells = 6000000

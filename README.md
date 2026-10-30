@@ -4,18 +4,20 @@
 
 离线命令行工具，读写嘉立创 EDA 专业版（EasyEDA Pro）的文件夹工程。从设计文件生成原理图和 PCB，自动布线，按 EDA 的规则算铺铜，做 DRC 和逐脚核对，并导出原理图 PDF、网表、BOM、Gerber、钻孔和贴片坐标。嘉立创工程与已导出的 PADS ASCII 无需浏览器或 EDA 客户端。原生 PADS 二进制 `.pcb` 导入需 Windows 和本机已授权的 PADS Layout。
 
-0.2.4 随工具包提供完整 STM32MP157 AMOLED / 触摸示例、已布线布局、本地元件库、原始屏幕 PDF 及自动检查。新增安装孔孔径同步、参数 3D 建模、下载封装焊盘编辑和无焊盘机械件示例，并改进封装方向标记及差分端部颈缩处理。
+0.2.5 加入可配置天线全波仿真、设计文件铜形与开窗、盲埋孔层跨度保存、邮票孔板边规则，以及DRC和3D交互刷新优化。裸核心板可只隐藏排针与外围虚拟模型，保留电气设计。模型来源、厂家CAD转换与验收流程已写入AI手册；完整MP157 AMOLED/触摸示例继续随包提供。
+
+`em <工程> --config antenna.toml -o output/em`只导出模型，追加`--run`调用另行安装的openEMS。求解完成、频带匹配达标及网格收敛分别记录，详见[电磁仿真说明](skill/references/antenna-em.md)。元件的CAD、尺寸简模与占位体分别标记，裸板显示和模型来源核对见[3D模型说明](skill/references/models-and-pads.md)。
 
 ## 安装
 
-当前版本 **0.2.4**。安装包在 [GitHub Release v0.2.4](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.4)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
+当前版本 **0.2.5**。安装包在 [GitHub Release v0.2.5](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.5)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
 
-| 系统 | 0.2.4 安装包 | PCB / 原理图窗口 |
+| 系统 | 0.2.5 安装包 | PCB / 原理图窗口 |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-windows-x64-setup.exe) | 包含 |
-| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-macos-arm64.zip) | 包含 |
-| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool-0.2.4-macos-arm64.tar.gz) / Homebrew | 不包含 |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.4/easyedatool_0.2.4-1_amd64.deb) | 包含 |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-windows-x64-setup.exe) | 包含 |
+| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-macos-arm64.zip) | 包含 |
+| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-macos-arm64.tar.gz) / Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool_0.2.5-1_amd64.deb) | 包含 |
 | Intel Mac / 鸿蒙电脑 | 本版没有安装包 | — |
 
 完整包包含命令行工具和桌面预览；`easyedatool view <工程>` 打开窗口。项目的线宽、间距、孔径和等长要求由设计文件或规则文件配置，升级不会替用户确认电气设计或生产可行性。
@@ -58,7 +60,7 @@ easyedatool --version
 下载本版 DEB 后，在下载目录安装；`apt` 会处理窗口所需的系统依赖：
 
 ```bash
-sudo apt install ./easyedatool_0.2.4-1_amd64.deb
+sudo apt install ./easyedatool_0.2.5-1_amd64.deb
 easyedatool --version
 easyedatool view <工程>
 ```
@@ -73,11 +75,11 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.4-1
+sudo apt-get install easyedatool=0.2.5-1
 easyedatool --version
 ```
 
-候选列表没有 `0.2.4-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
+候选列表没有 `0.2.5-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
 
 ## 本体丝印、布局与整板3D
 
