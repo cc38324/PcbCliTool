@@ -1,0 +1,85 @@
+{
+  "lanes": [
+    {
+      "net": "LINK_D0_P",
+      "from": "J1.1",
+      "to": "J2.1",
+      "gap_after": 0.22
+    },
+    {
+      "net": "LINK_D0_N",
+      "from": "J1.2",
+      "to": "J2.2",
+      "gap_after": 0.62
+    },
+    {
+      "net": "LINK_D1_P",
+      "from": "J1.3",
+      "to": "J2.3",
+      "gap_after": 0.22
+    },
+    {
+      "net": "LINK_D1_N",
+      "from": "J1.4",
+      "to": "J2.4",
+      "gap_after": 0.62
+    },
+    {
+      "net": "LINK_D2_P",
+      "from": "J1.5",
+      "to": "J2.5",
+      "gap_after": 0.22
+    },
+    {
+      "net": "LINK_D2_N",
+      "from": "J1.6",
+      "to": "J2.6",
+      "gap_after": 0.62
+    },
+    {
+      "net": "LINK_D3_P",
+      "from": "J1.7",
+      "to": "J2.7",
+      "gap_after": 0.22
+    },
+    {
+      "net": "LINK_D3_N",
+      "from": "J1.8",
+      "to": "J2.8",
+      "gap_after": 0.62
+    }
+  ],
+  "layer": 1,
+  "width": 0.13,
+  "gap": 0.22,
+  "grid": 0.05,
+  "spine": [
+    [
+      10,
+      17.5
+    ],
+    [
+      20,
+      17.5
+    ],
+    [
+      24,
+      21.5
+    ],
+    [
+      40,
+      21.5
+    ],
+    [
+      44,
+      17.5
+    ],
+    [
+      50,
+      17.5
+    ]
+  ],
+  "via": {
+    "enabled": false
+  }
+}

@@ -4,20 +4,20 @@
 
 Offline command-line tool for EasyEDA Pro folder projects. It builds the schematic and PCB from a design file, autoroutes, pours copper with the EDA rules, runs DRC and a pin-by-pin net check, and exports a schematic PDF, netlist, BOM, Gerber, drill files, and a pick-and-place file. EasyEDA projects and exported PADS ASCII files need neither a browser nor an EDA client. Native PADS binary `.pcb` import requires Windows and a locally licensed PADS Layout installation.
 
-Version 0.2.5 adds configurable antenna EM simulation, design-file copper shapes and mask openings, blind/buried-via span preservation, castellation edge rules, and faster DRC and interactive 3D rendering. Bare-core views can hide unpopulated headers and virtual perimeter bodies while retaining the electrical design. The AI manual covers model provenance and manufacturer CAD conversion; the complete MP157 AMOLED/touch example remains included.
+Version 0.2.6 adds multi-PCB/multi-schematic project selection and editing of the selected PCB, native FPC stiffener production files, 3D panning and local inspection, and safer length tuning. Multi-net bundle routing, power-pin decoupling checks and configurable routing quality gates are included. The complete MP157 AMOLED/touch example remains available.
 
 `em <project> --config antenna.toml -o output/em` exports a model; add `--run` to invoke a separately installed openEMS environment. Solver completion, matching targets and mesh convergence are separate results: see the [EM guide](skill/references/antenna-em.md). CAD, dimensioned simplified models and placeholders remain labelled; see the [3D guide](skill/references/models-and-pads.md) for provenance and bare-board views.
 
 ## Install
 
-The current version is **0.2.5**. Download it from [GitHub Release v0.2.5](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.5), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.2.6**. Download it from [GitHub Release v0.2.6](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.6), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.2.5 package | PCB / schematic viewer |
+| System | 0.2.6 package | PCB / schematic viewer |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-windows-x64-setup.exe) | Included |
-| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-macos-arm64.zip) | Included |
-| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool-0.2.5-macos-arm64.tar.gz) / Homebrew | Not included |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.5/easyedatool_0.2.5-1_amd64.deb) | Included |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.6/easyedatool-0.2.6-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.6/easyedatool-0.2.6-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.6/easyedatool-0.2.6-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.6/easyedatool-0.2.6-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.6/easyedatool_0.2.6-1_amd64.deb) | Included |
 | Intel Mac / HarmonyOS PC | No package in this version | — |
 
 Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
@@ -60,7 +60,7 @@ For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`.
 Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
 
 ```bash
-sudo apt install ./easyedatool_0.2.5-1_amd64.deb
+sudo apt install ./easyedatool_0.2.6-1_amd64.deb
 easyedatool --version
 easyedatool view <project>
 ```
@@ -75,13 +75,23 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.5-1
+sudo apt-get install easyedatool=0.2.6-1
 easyedatool --version
 ```
 
-If `0.2.5-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+If `0.2.6-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
 
-## 0.2.5: component silkscreen, placement and board 3D
+## Multiple boards, 3D navigation and FPC
+
+Open the project folder or `.eprj3` with `view`. The single selector immediately left of the PCB / 3D / P1 tabs switches the PCB, 3D view and associated schematic together while preserving the view mode. PCB moves, rotation, flipping, locking and copper edits apply to the selected board. Finish or cancel an edit session before switching boards. Logical schematic edits still require the corresponding design file; multi-board review is not implemented.
+
+In 3D, left-drag to rotate, middle-drag or Shift+left-drag to pan, scroll to zoom at the pointer and double-click to fit the whole board. Pan and zoom to a corner before inspecting it from different angles.
+
+FPC designs can record a custom physical stackup and top/bottom stiffener material, thickness and regions. `fab` includes material/side-specific stiffener Gerbers and `jlcpcb.json` in the production ZIP. See the [design format](skill/references/design-format.md) and [FPC guide](skill/references/fpc.md); verify the factory's parsed order parameters. Any discount depends on the actual order conditions.
+
+See [bundle routing](skill/references/bundle-routing.md) and [project quality gates](skill/references/routing-quality-gates.md) for the additional routing workflows.
+
+## Component silkscreen, placement and board 3D
 
 New layouts and footprint changes must preserve component body outlines, pin-1 marks and diode/LED polarity marks. Inventory every component first. Resolve conflicts by moving or rotating parts and reconnecting affected copper; do not delete or trim outlines or hide layers to suppress findings. Check silkscreen and component spacing, then inspect the actual top/bottom Gerbers and current preview. Reference text may be hidden when the user permits it; body and orientation marks remain, and the BOM, placement file and assembly drawing keep every reference. See the [silkscreen workflow](skill/references/silkscreen.md).
 

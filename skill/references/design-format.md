@@ -71,6 +71,68 @@ outline = [[0, 0], [30, 0], [30, 20], [0, 20]]   # 板框多边形（毫米）�
 
 多层板的内层铺铜在 `[[pours]]` 里写 `layer = 15`（内层 1）、`16`（内层 2）…；盖住大半块板的内层铺铜，`route` 当铺铜平面（不在上面布线，只让过孔穿过）。
 
+### 自定义物理叠层（包括FPC覆盖膜）
+
+板厂提供非标准材料或软板叠层时，用 `board.stackup_layers`，与 `board.stackup` 标准预设互斥。按实际顶面到底面依次填写，单位毫米：铜层为 `1,15,16,…,2`，每两铜层之间的介质依次为 `361,362,…`；可在最外侧添加 `5/6` 顶底覆盖膜或阻焊。材料名称不能为空，厚度须为正有限数；介质 `er>1`，可选 `loss_tangent>=0`。省略外侧膜表示没有该膜的物理厚度，不会保留模板的默认阻焊厚度。下面仅示范格式，数值不是板厂已确认工艺或阻抗依据。
+
+```toml
+[[board.stackup_layers]]
+layer = 5
+material = "PI coverlay + adhesive"
+thickness = 0.025
+er = 3.4
+
+[[board.stackup_layers]]
+layer = 1
+material = "Cu"
+thickness = 0.018
+
+[[board.stackup_layers]]
+layer = 361
+material = "PI"
+thickness = 0.050
+er = 3.4
+
+[[board.stackup_layers]]
+layer = 2
+material = "Cu"
+thickness = 0.018
+
+[[board.stackup_layers]]
+layer = 6
+material = "PI coverlay + adhesive"
+thickness = 0.025
+er = 3.4
+```
+
+`gen` 写入原生 `LAYER_PHYS` 材料、厚度、介电常数及损耗，`info/impedance/render3d` 读同一叠层。局部补强、端部阶梯厚度、沉金厚度和屏蔽壳接地须另按连接器及工厂图纸定义；此功能不会自动生成它们，也不表示高速阻抗已经验证。更新叠层后重新生成，并读回核对各层材料和总厚度。
+
+### FPC类型与局部补强
+
+物理叠层不会启用FPC补强层。设计 `[board] fpc = true` 开启原生58（顶面）/59（底面）层；局部补强写 `[[board.stiffeners]]`，单位毫米。补强不会成为铜、焊盘、采购器件或全板厚度。
+
+```toml
+[board]
+fpc = true
+outline = [[0,0],[40,0],[40,30],[0,30]]
+
+[[board.stiffeners]]
+layer = 59
+material = "PI"
+thickness = 0.20
+rect = [0,0,5,12]   # 左下x/y、宽、高
+
+[[board.stiffeners]]
+layer = 58
+material = "3M9077"  # 胶必须给明确型号
+thickness = 0.05
+rings = [[[30,0],[40,0],[40,12],[30,12]], [[32,2],[32,4],[34,4],[34,2]]]
+```
+
+`rect` 与 `rings` 二选一；`rings` 是外轮廓及内洞，至少三个点，闭合点可省。支持 `PI`/`Polyimide`/`聚酰亚胺`、`FR4`、`Steel`/`Stainless Steel`/`钢片`、`3M468`、`3M9077`、`TESA8854`、`EMI Shielding Film`/`电磁屏蔽膜`。不接受只写 `3M Tape`，避免嘉立创读入未知材质后回退为PI。厚度须为有限正数，取值按工厂及具体材料型号核对，示例不代表某连接器要求的金手指局部总厚。
+
+`gen` 写原生 `FPC_FILL`；`fab` 生成按嘉立创规则命名的补强Gerber和 `jlcpcb.json` 并打进生产zip。`render --view layers --layer 58,59` 可查看区域轮廓；完整下单核对见 [FPC生产资料](fpc.md)。
+
 机械安装孔写在 `board.holes`，单位毫米、Y 向上，坐标和孔径由各项目给定；不增加原理图器件、焊盘或采购 BOM：
 
 ```toml
@@ -278,6 +340,7 @@ group = "IO"
 [rules]
 clearance = 0.09      # 铜间距（mm）：安全间距表里走线、贴片 / 通孔焊盘、测试点、过孔、铜皮之间的格子（铺铜、板框、孔那几行不动）
 smd_pad_clearance = 0.15  # 只覆盖贴片焊盘对贴片焊盘的间距格；不给则沿用 clearance 或 EDA 默认值
+smd_pad_to_edge = 0.20   # 只改贴片焊盘铜到板框；用于原厂明确要求的板边触点，其余铜的板边规则保持原值
 track = 0.09          # 最细线宽
 via = [0.4, 0.2]      # 最小过孔：外径、孔径
 hole_to_hole = 0.25   # 孔边到孔边

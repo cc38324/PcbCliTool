@@ -2,18 +2,18 @@
 
 嘉立创 EDA 专业版（EasyEDA Pro）文件夹工程的离线工具：从设计文件生成工程、自动布线、铺铜、DRC、核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标。完整安装包带 PCB / 原理图桌面预览窗口。
 
-## 安装 0.2.5
+## 安装 0.2.6
 
-下载入口：[GitHub Release v0.2.5](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.5)。详细步骤见[中文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.md)和[英文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.en.md)。
+下载入口：[GitHub Release v0.2.6](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.6)。详细步骤见[中文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.md)和[英文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.en.md)。
 
 | 平台 | 文件 | 窗口 |
 |---|---|---|
-| Windows x64 | `easyedatool-0.2.5-windows-x64.zip` 或 `easyedatool-0.2.5-windows-x64-setup.exe` | 包含 |
-| macOS Apple 芯片 | `easyedatool-0.2.5-macos-arm64.zip` | 包含 |
-| macOS Apple 芯片，仅 CLI | `easyedatool-0.2.5-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
-| Ubuntu / Debian amd64 | `easyedatool_0.2.5-1_amd64.deb` | 包含 |
+| Windows x64 | `easyedatool-0.2.6-windows-x64.zip` 或 `easyedatool-0.2.6-windows-x64-setup.exe` | 包含 |
+| macOS Apple 芯片 | `easyedatool-0.2.6-macos-arm64.zip` | 包含 |
+| macOS Apple 芯片，仅 CLI | `easyedatool-0.2.6-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | `easyedatool_0.2.6-1_amd64.deb` | 包含 |
 
-Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。winget 官方源状态请实际查询；本次使用 Release 附件，不声称官方源已经收录 0.2.5。
+Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。winget 官方源状态请实际查询；本次使用 Release 附件，不声称官方源已经收录 0.2.6。
 
 macOS 完整 ZIP 的程序在 `bin/easyedatool`，窗口在 `viewer/easyeda_view.app`，保留两者的相对位置。安装包未经 Apple 公证；系统拦截时先核对来源与校验和，再从系统安全设置允许打开。
 
@@ -29,12 +29,12 @@ easyedatool --version
 已安装则用 `brew upgrade cc38324/pcbclitool/easyedatool`。Linux 在下载目录执行：
 
 ```bash
-sudo apt install ./easyedatool_0.2.5-1_amd64.deb
+sudo apt install ./easyedatool_0.2.6-1_amd64.deb
 easyedatool --version
 easyedatool view <工程>
 ```
 
-APT 源的添加方法见中文说明。先用 `apt-cache policy easyedatool` 确认有 `0.2.5-1`，没有时安装 Release 的 DEB；不能把源里的旧版当成升级成功。Linux 窗口需要图形桌面。Intel Mac 和鸿蒙电脑本版没有安装包。
+APT 源的添加方法见中文说明。先用 `apt-cache policy easyedatool` 确认有 `0.2.6-1`，没有时安装 Release 的 DEB；不能把源里的旧版当成升级成功。Linux 窗口需要图形桌面。Intel Mac 和鸿蒙电脑本版没有安装包。
 
 ## 完整 ZIP 的文件
 

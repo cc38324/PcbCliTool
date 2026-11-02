@@ -1,0 +1,31 @@
+[[pair_rule]]
+name = "BUNDLE_PAIR"
+width = 0.13
+width_min = 0.13
+gap = 0.22
+gap_min = 0.12
+skew = 0.5
+
+[[pair]]
+name = "LINK_D0"
+positive = "LINK_D0_P"
+negative = "LINK_D0_N"
+rule = "BUNDLE_PAIR"
+
+[[pair]]
+name = "LINK_D1"
+positive = "LINK_D1_P"
+negative = "LINK_D1_N"
+rule = "BUNDLE_PAIR"
+
+[[pair]]
+name = "LINK_D2"
+positive = "LINK_D2_P"
+negative = "LINK_D2_N"
+rule = "BUNDLE_PAIR"
+
+[[pair]]
+name = "LINK_D3"
+positive = "LINK_D3_P"
+negative = "LINK_D3_N"
+rule = "BUNDLE_PAIR"

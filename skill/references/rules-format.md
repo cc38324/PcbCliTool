@@ -67,7 +67,13 @@ points = [[-0.25, 2.37], [-0.25, 1.6], [0.0, 1.35], [0.51, 1.35]]
 
 ## `[drc]`（`drc` 命令用）
 
+自动阻断绕远孔位、中段细颈等问题：设置 `[drc.quality] blocking_kinds` 与 `via_placement_min_saving`，详见[严格质量门禁](routing-quality-gates.md)。默认仍为提示；明确选择的种类才计入DRC错误，绘图写盘前也按项目规则拒绝新增问题。
+
 布线质量提示用 `[drc.quality]`：`enabled = true`、`via_offset = 0.05`、`detour_min = 0.5`、`detour_ratio = 1.3`、`lookahead = 5.0`、`include_constrained = false` 是默认值。长度单位 mm；`via_offset = 0` / `detour_min = 0` 分别关闭偏心 / 局部绕路检查。`enabled = false` 全关。差分 / 等长网络默认不报绕路，避免误报补长度；需要人工复核时设 `include_constrained = true`。`routing_quality` 不算电气错误，也不自动改线；`--clearance` 的旧 Python 对照模式不输出此项。
+
+跨层孔位审查另行显式开启：同一节设 `via_placement_nets = ["LED_K"]`，支持 `*` / `?`；默认空列表保持原有检查和输出。另有优先于包含表的 `via_placement_exclude = []`，同样支持通配符，例如全板审查用 `via_placement_nets = ["*"]`、`via_placement_exclude = ["GND", "USB_D*"]` 排除地平面网及尚未登记约束的 USB 网。它枚举指定普通网络不同铜层走线的中心线交点，在内存中试移一个普通通孔，只剪原孔处不承担焊盘、其它过孔或真实 T 分支连接的旧叶尾，再比较**全网有效铜长和孔数**。候选至少省 0.5 mm，输出 `routing_quality` 的 `kind = "via_placement"`，`at` 是旧孔位、`candidate` 是候选孔位，`length` / `candidate_length` 是全网铜长；不改文件，也不增加电气错误。旧 T 因删去第三臂而退化为两口急角时，可在每臂最多 3 mm 内试同宽 45° 连接；仍有第三臂、焊盘或其它孔时停止。此版不另布整网、不删除孔对，孔径、线宽和孔数保持原值。
+
+孔位候选先筛实际铜间距、孔距和贴片焊盘避孔，再按项目 `[drc]` 的网络/类别/工艺规则复核板边、禁布区、孔到铜、原焊盘连通分组及已启用的几何检查。差分、等长网始终排除，`include_constrained = true` 也不解除此项保护；参与铺铜、盲埋孔、封装内孔和连接超过两层的孔保守跳过。它是有边界的启发式审查：每网最多 512 个线段、每孔先近后远枚举最多 128 个交点，全板按预计净收益排序后最多完整验证 24 个候选，每孔只报一个通过验证的建议。未提示不代表全网最优；铜边搭接、孔对取消、需要重布的路径还须另外审查。`detour_min` / `lookahead` 仍只控制旧的固定孔位局部检查，不代替此显式选项。
 
 同一节可设置 `corner_angle = 100.0`（内角 ≤ 此度数的无分支转角）、`corner_cut = 0.2`（候选倒角沿每边最多截去的 mm）、`width_bulge = 1.6`（短于此 mm 的孤立加宽段）。`corner_angle` 和 `width_bulge` 默认 0，分别关闭；`corner_cut` 默认 0.2。报告种类是 `sharp_corner`、`width_bulge`，仅为质量提示。转角检查包含差分 / 等长网络，忽略孔内、焊盘内接点和分支；候选不能直接应用，须复查另一根差分线及全组长度。宽度鼓包按连通的线段组检查，保护焊盘、过孔、分支搭接的整理逻辑仍由 `widen --smooth` 决定。
 
@@ -234,6 +240,20 @@ decouple = ["U1"]       # 查去耦的芯片，不写就是 ic
 loop_warn = 300         # 这路电源自己的回路限值（反激默认 300 / 600）
 loop_max = 600
 ```
+
+明确某颗去耦电容服务哪个电源脚，用 `[[smps.decoupling]]`。检查指定电容，不允许同一电源网上的其它电容或较近的大容量电容替代；不依赖原理图有没有电源脚名称。电源脚、电容缺失，电源或返回芯片地的铜路径不通，都会失败并退出1。复位RC（如NRST）不作为自动供电去耦识别。
+
+```toml
+[[smps.decoupling]]
+pin = "U12.3"           # 实际PCB位号.脚号，每个目标脚只绑定一次
+cap = "C28"             # 指定旁路电容，须连该脚电源网和地
+max_distance = 1.5      # 两个电源焊盘中心的平面距离 mm
+max_power = 2.5         # 供电实际铜路径 mm，包含换层；省略用decouple_max
+max_ground = 5.0        # 电容地返回芯片地的实际路径 mm
+max_area = 8.0          # 三维闭合去耦回路面积 mm²；省略用decouple_area_max
+```
+
+这些数值只是规则写法示例，须按芯片、封装及板层条件设置，不能当作通用推荐值。`max_distance`、`max_ground`省略则不设该项上限；即使没设地长上限，指定电容的地仍必须有铜返回芯片。绑定规则宜纳入项目复建和生产导出检查，不能只看普通间距DRC通过。
 
 ## `[stackup]`（`si`、`impedance --stackup 规则.toml` 用）
 

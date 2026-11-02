@@ -1,0 +1,43 @@
+# 八线整束示例：四对差分从两端并排扇出，共用一条带45度转弯的主干。
+# easyedatool gen examples/bundle-demo.toml --out out/bundle-demo/BundleDemo
+# easyedatool constraints out/bundle-demo/BundleDemo --from examples/bundle-demo.constraints.toml --write
+# easyedatool bundle out/bundle-demo/BundleDemo --plan examples/bundle-demo.json --json out/bundle-demo/preview.json
+# 加 --write 才写回。完成后检查等长并重算铺铜；示例不是实际HDMI电气设计。
+[project]
+name = "BundleDemo"
+time = "2026-10-30 12:00:00"
+[board]
+outline = [[0,0],[60,0],[60,35],[0,35]]
+[[blocks]]
+name = "LINK"
+title = "八线整束示例"
+regions = [[2,3,58,32]]
+[[symbols]]
+name = "GROUP8"
+designator = "J"
+ic = true
+left = [["1","D0+"],["2","D0-"],["3","D1+"],["4","D1-"]]
+right = [["5","D2+"],["6","D2-"],["7","D3+"],["8","D3-"]]
+[[footprints]]
+name = "BUNDLE8_SMD"
+designator = "J"
+outline = [-1,-2.7,2,5.4]
+pads = [["1", 0, 1.825, 0.8, 0.18], ["2", 0, 1.475, 0.8, 0.18], ["3", 0, 0.725, 0.8, 0.18], ["4", 0, 0.375, 0.8, 0.18], ["5", 0, -0.375, 0.8, 0.18], ["6", 0, -0.725, 0.8, 0.18], ["7", 0, -1.475, 0.8, 0.18], ["8", 0, -1.825, 0.8, 0.18]]
+
+[[parts]]
+ref = "J1"
+sym = "GROUP8"
+fp = "BUNDLE8_SMD"
+value = "8路信号组示例"
+group = "LINK"
+pcb = [6, 17.5]
+nets = { "1" = "LINK_D0_P", "2" = "LINK_D0_N", "3" = "LINK_D1_P", "4" = "LINK_D1_N", "5" = "LINK_D2_P", "6" = "LINK_D2_N", "7" = "LINK_D3_P", "8" = "LINK_D3_N" }
+
+[[parts]]
+ref = "J2"
+sym = "GROUP8"
+fp = "BUNDLE8_SMD"
+value = "8路信号组示例"
+group = "LINK"
+pcb = [54, 17.5]
+nets = { "1" = "LINK_D0_P", "2" = "LINK_D0_N", "3" = "LINK_D1_P", "4" = "LINK_D1_N", "5" = "LINK_D2_P", "6" = "LINK_D2_N", "7" = "LINK_D3_P", "8" = "LINK_D3_N" }
