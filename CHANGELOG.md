@@ -1,5 +1,38 @@
 # 发布说明 / Release notes
 
+## 0.2.6 — 2026-11-02
+
+- 同一嘉立创工程支持多个PCB、多个原理图。PCB / 3D / P1页签左侧的单个下拉选择主板、功放或电源，对应视图一起切换，保留当前查看模式；位号、网络和导出按文档隔离。
+- 多板项目保留所选PCB的移动、旋转、翻面、锁定、改线及撤销/重做。编辑过程中固定当前板，交还时只对该板重算铺铜。原理图逻辑编辑仍需对应设计文件，多板审核尚未实现。
+- FPC支持原生补强区域和自定义物理叠层。生产ZIP增加分材质/面别的补强Gerber和`jlcpcb.json`，覆盖PI、FR4、钢片、指定胶与电磁膜；订单仍须核对材料、厚度、面别和平台识别结果。
+- 3D支持中键或Shift加左键拖动平移、围绕局部观察目标旋转、鼠标位置缩放和双击全板复位。
+- 修复等长补偿的分层差分间距和写回保护，允许保存已缩小的原有长度差，同时报告剩余差值。增加多网络整束布线、指定电源脚去耦检查、只读孔位候选复核及可配置的项目布线质量门禁。
+- 公开skill同步上述流程、字段及命令参考，附八线整束示例，并保留完整MP157示例和本地元件库。
+
+| 验证 | 本次结果 |
+|---|---|
+| Windows x64 / macOS arm64 / Linux x64 | 各493项Rust测试通过、2项原有忽略；Flutter分析0问题、54项通过、1项可选联调跳过 |
+| 最终完整包Demo | 三平台逐脚差异0、5/5布通、电气DRC通过；保留6条原有字高警告 |
+| 实际窗口 | 三平台PCB、原理图、3D截图已查看；GLB/STL导出通过 |
+| 多板项目 | Windows及macOS多板视图截图已查看；所选板编辑后其他PCB与全部原理图逐字节不变 |
+| FPC与等长 | 原生FPC样例14个区域、10个补强生产层及等长写回回归通过 |
+| 八线整束示例 | 三平台最终包预览、整束写入、铺铜和电气DRC通过 |
+| 安装与升级 | Windows安装内容逐项与ZIP相同；Ubuntu22.04容器从0.2.5-1升级到0.2.6-1通过 |
+| MP157完整示例 | 三平台冷启动重建、显示/电源/逐脚检查与导出通过；电气铜、元件位置及位号身份一致 |
+| 包内容 | 六个二进制附件及四个完整包的175个公开文档/示例资产核对通过 |
+
+CLI、窗口和安装器来源为`22a711602342f3009c4e98b3fd08a21a41ac55c6`，包内公开文档固定到`0c236f8fc9dedfbba8da262a0f14d18efe9e867d`。SDK、实际验证、附件大小与SHA256见`build-info.json`和`SHA256SUMS.txt`。
+
+Homebrew Formula已更新至本版macOS CLI的实际URL及SHA256。本次未同步APT和winget官方源，请使用[Release附件](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.6)。macOS包面向Apple芯片，Linux包面向amd64；Windows程序未签名，macOS未公证。FPC优惠由实际订单条件确定，文件导出成功不等于已获优惠；MP157实物点屏及装配限制继续见示例说明。
+
+### English
+
+Version 0.2.6 adds multi-PCB/multi-schematic project selection through one selector beside the view tabs, editing of the selected PCB, native FPC stiffener production files, local 3D navigation and safer length tuning. It also includes multi-net bundle routing, power-pin decoupling checks and configurable project routing quality gates. The AI manual and examples are updated.
+
+All three platforms passed 493 Rust tests (2 existing ignored), clean Flutter analysis and 54 Flutter tests (1 optional live test skipped). Final packages passed Demo connectivity/routing, actual PCB/schematic/3D windows, GLB/STL exports and eight-lane bundle routing. Windows installation matches its ZIP file for file; Linux upgrades from 0.2.5-1 in Ubuntu22.04. The complete MP157 example rebuilds and exports on all three platforms with matching electrical copper, component positions and reference identities. Multi-board native windows were reviewed on Windows and macOS; editing one PCB leaves the other PCBs and all schematics byte-identical. All 175 public documentation/example assets match across the four full packages.
+
+Logical schematic edits still require a corresponding design file; multi-board review is not implemented. Check the factory's parsed FPC order parameters and actual discount conditions. macOS targets Apple silicon and Linux targets amd64. Homebrew is updated; APT and winget official sources are unchanged. See build-info.json and SHA256SUMS.txt for component sources and verification.
+
 ## 0.2.5 — 2026-10-30
 
 将射频核心板开发中可复用的能力加入工具与AI手册：
