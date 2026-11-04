@@ -9,7 +9,7 @@
 
 ```toml
 [drc.quality]
-blocking_kinds = ["via_offset", "via_detour", "via_placement", "via_pad",
+blocking_kinds = ["via_offset", "via_detour", "track_detour", "via_placement", "via_pad",
                   "sharp_corner", "width_bulge", "width_neck",
                   "width_neck_contact", "self_crossing"]
 via_placement_nets = ["*"]
@@ -18,8 +18,10 @@ via_placement_min_saving = 1.0
 via_offset = 0.05
 detour_min = 0.5
 detour_ratio = 1.3
+track_detour_min = 0.0
 lookahead = 5.0
-corner_angle = 134.5
+corner_angle = 120.0 # 拦截直角及更小的内角，135°倒角通过
+branch_angle = 89.8 # 必要分支允许90°接点，分支锐角仍报警
 corner_cut = 0.2
 width_bulge = 3.0
 width_neck = 0.127
@@ -28,7 +30,7 @@ width_neck_through_contacts = true
 width_neck_nets = ["+3V3", "+5V", "LED_K"]
 ```
 
-`blocking_kinds` 接受示例中的九种名称；拼写错误和 `constrained_via_detour` 会拒绝加载。
+`blocking_kinds` 接受示例中的十种名称；拼写错误及调长复核项 `constrained_via_detour` / `constrained_track_detour` 会拒绝加载。
 它只提升已启用检查发现的问题，不自动打开阈值为0的检查。
 `enabled=false` 与非空阻断列表冲突；孔位最小收益必须是有限非负毫米数。
 
@@ -52,7 +54,21 @@ rules = "项目.route.toml"
 这不代表旧问题已审核，最后仍须跑全板DRC和项目验收。
 普通编辑不直接继承独立 `serve --rules` 参数，须同时配置 `[checks].rules`。
 
+## 转弯角度约束
+
+新画或修改PCB时，普通走线转弯不得保留90°直角或锐角，用45°倒角形成135°内角；所有铜层逐层检查，不能漏内层。`corner_angle` 是报警的内角上限：设为120时，露铜夹角≤120°会报 `sharp_corner`，正常135°倒角通过。项目须实际加载此阈值，并把 `sharp_corner` 纳入 `blocking_kinds`；只写在技能里、只启用提示或使用89.8这类允许直角的阈值均不能满足交付要求。已有项目更严格的角度要求继续遵守。
+
+普通两段转弯、T形分支和焊盘/过孔内接点需分别辨认。`branch_angle` 是独立的露铜分支/交叉接点阈值，省略时继承 `corner_angle` 保持旧行为；项目确认需要90°分支时可设 `branch_angle = 89.8`，保留文件精度余量，同时仍拦截分支锐角，普通直角继续按 `corner_angle = 120` 阻断。数值须为有限的0～180°（不含180）；0关闭分支检查，不能用于本交付要求。只有真实的三向或多向接点使用分支阈值，普通两段转弯不会因此放行。
+
+必要分支逐项核对原始网络、层、坐标与真实负载，保留连接，再调整不合格走法；不能为了制造分支豁免而新增线头。无法处理的接点按铜几何记录并明确未解决状态，不能删除支路、降低普通转弯阈值或带着非空 `routing_quality_errors` 宣称DRC通过。真正被焊盘或有效过孔铜环覆盖的接点沿用工具的保护逻辑。
+
+复查时确认报告对应当前PCB和实际规则；已知的露铜普通90°拐角应报告 `sharp_corner` 并使DRC退出1。修复后重铺铜、保存布局、查完整DRC，再看全部铜层Gerber局部，不能用“禁止小于90°”代替“转弯不能直角”。
+
 ## 绕远过孔
+
+`track_detour_min` 默认0，保持原检查范围；设为正毫米数后，还从普通同层走线顶点检查有限长度的较短通道，不要求附近有过孔，报告 `track_detour`。它共用 `detour_ratio` 和 `lookahead`，保护焊盘、过孔及中途支路接点，不缩细走线；差分/等长默认跳过，显式 `include_constrained` 时仅作 `constrained_track_detour` 复核。最小收益和长度比例必须按项目尺度选，0.5 mm / 1.3 倍会漏掉小板上仍明显的短回头，不能把未达阈值当作已清理。候选仍须完整检查后再写盘。
+
+`sharp_corner` 同时覆盖无分支拐角、端点或线段中间的 T 分支、中心线交叉接点的露铜夹角。焊盘及实际存在的过孔铜环覆盖的接点不当作露铜锐角；内层已去掉的孔环不能掩盖该层拐角。分支报警不给会剪掉支路的两段倒角候选；保留全部连接后改走法，不可直接删分支。
 
 `via_detour` 查局部引线及较短通道，不证明候选满足全板约束。
 `via_placement` 枚举有限跨层候选，在内存中检查项目间距、板边、孔/焊盘、工艺、
@@ -66,8 +82,15 @@ rules = "项目.route.toml"
 `width_neck` 查粗线之间的细段，`width_neck_through_contacts=true` 还查可明确追踪的
 焊盘、过孔连接。真正分支或歧义接点不能强行合成无分支链。
 整条同宽细主干不一定触发细颈检查，应另外按实际源脚和负载核对连续粗铜。
+项目电源最小线宽应另用 `[[drc.class]]` / `[[drc.net]]` 的 `track=[最小,默认,最大]` 约束，最大0表示不限制；这样整条同宽但过细也会在 `dfm` 报线宽错误。目标值来自该项目，不统一套用某块示例板的数值。
 必要密脚短出线须逐项审核，不能用整网豁免、抬高起查值、关闭检查或缩细粗线消警告。
 项目若保留人工例外，须绑定精确问题及铜几何，改动后失效；工具不自动批准例外。
+
+## 悬空线头及过孔
+
+项目规则 `[drc] check_dangling = true` 使普通 `drc` 按工程间距表检查信号走线悬空端及缺少有效连接的过孔，写入 `dangling`，直接计入问题并返回退出码1，不依赖 `blocking_kinds`。默认 false 保留嘉立创对照行为；关闭时输出0不代表查过。旧 `--clearance` 对照模式始终运行原有检查，结果不受新选项改变。
+
+端点按同网络、实际铜层和铜面核对，铜皮孔洞不算接通；有网络的填充多边形本身不当作线头。真实焊盘内短线、仍接到负载的分支不能按长度判多余。声明为 `[nets].pour` 的网络保留铺铜连接语义，不按信号线悬空处理。此项是整板验收；允许分步绘制的编辑操作仍可能暂时存在开放端点，交还和交付后须复查。
 
 ## 电源及去耦回流
 
@@ -78,6 +101,5 @@ rules = "项目.route.toml"
 项目自动验收还须核对JSON完整、绑定正确、数值有限，不能放行缺失数据或标为“ok”的超限值。
 这些是指定电源回流的几何检查，不是高速信号参考平面连续性或电磁仿真。
 
-工具开发回归可运行 `python tools/verify_routing_quality_gates.py --tool <新CLI>`。
 它只在源码仓库 `out/strict-quality-fixture` 生成测试板，验证原始/严格DRC、项目自动规则、
 旧对照模式及宽松参数无法绕过项目编辑约束；不读取或修改生产PCB。

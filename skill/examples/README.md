@@ -10,20 +10,26 @@
 
 显示和触摸供电芯片 U18、U16、U17、U28 集中在 J6 附近的底面，L102 位于连接器下方。U18 到电感的开关主干为 0.6 mm；全板电源按完整路径加粗，细间距焊盘保留必要的末端出线。规则覆盖 34 个电源网络，跨焊盘和过孔检查粗线之间的细颈；不得靠缩细原有粗线消除“小蛮腰”。
 
-按用户确认保留 eMMC **U5.N2** 的必要 BGA 短出线：约 **0.09 mm 宽、0.50 mm 长**。ST 参考封装球距 0.5 mm，邻近 P2 / P3 的焊盘为 0.23 mm，扣除两侧各 0.09 mm 间距后，只剩约 0.09 mm。维持原四层工艺，无需 HDI。原先另一处细线所在的 R40 上拉电源已改为 0.3 mm 绕行。`check_power.py` 只按引脚、位置、长度和宽度识别这一处例外，其余中段细颈必须为 0；检查从 **0.1 mm 起查**，不能抬高起查值漏掉 0.2 / 0.3 mm 分支。
+按用户确认保留 eMMC **U5.N2** 的必要 BGA 短出线：约 **0.09 mm 宽、0.50 mm 长**。ST 参考封装球距 0.5 mm，邻近 P2 / P3 的焊盘为 0.23 mm，扣除两侧各 0.09 mm 间距后，只剩约 0.09 mm。维持原四层工艺，无需 HDI。原先另一处细线所在的 R40 上拉电源已改为 0.3 mm 绕行。此例外必须按引脚、位置、长度和宽度逐项人工核对，其余中段细颈必须为 0；检查从 **0.1 mm 起查**，不能抬高起查值漏掉 0.2 / 0.3 mm 分支。
 
 工程由 `mp157demo.toml` 直接生成；旁边的 panel / placement / silk 文件保存逐脚接法与布局来源。原生布局文件 `mp157demo.layout.toml` 保存已完成的走线、过孔与铺铜，必须一同保留。本地 `lib/` 提供所有元件，不修改共享元件库。
 
-以下构建脚本使用 Python 3.11 或更新版本，无额外 Python 依赖。
+公开包从0.2.7起只附设计数据，使用下列原生命令恢复完成版，不附Python构建或专项检查源码。命令中的路径相对包根目录，`easyedatool` 指包内程序；输出应放新的工程目录。
 
-```powershell
-python build_mp157.py --tool <easyedatool.exe路径> --out project/MP157Demo --export
-easyedatool view project/MP157Demo
+```text
+easyedatool --no-drc gen examples/mp157demo.toml --out MP157Demo
+easyedatool --no-drc constraints MP157Demo --from examples/mp157demo.constraints.toml --write
+easyedatool --no-drc label MP157Demo --from examples/mp157demo.labels.toml --write
+easyedatool layout MP157Demo --save
+easyedatool check MP157Demo --rules examples/mp157demo.rules.toml
+easyedatool erc MP157Demo --json MP157Demo/output/erc.json
+easyedatool constraints MP157Demo
+easyedatool drc MP157Demo --rules examples/mp157demo.rules.toml --json MP157Demo/output/drc.json
 ```
 
-`build_mp157.py` 恢复原理图和 PCB、差分约束及标注，执行网表核对、ERC、显示接口专项检查与 DRC；`--export` 在检查通过后导出 PDF、BOM、网表、效果图与 Gerber / 钻孔 / 坐标。显示专项检查还会核对原始 PDF 的 SHA-256、30 个引脚、1 脚坐标，以及计入 LFBGA354 封装内部长度差后的 MIPI 配对长度。`check_power.py` 额外核对显示供电器件的位置及电源细颈，发现细颈时构建失败。工具须支持 `body_silk.pin1.at` 和跨焊盘、过孔的细颈检查。
+`gen` 恢复已保存的布局、走线和铺铜。修改设计后须重做电气核对，不能重新下载参考设计覆盖当前布局。命令全通过以后，分别运行 `pdf`、`bom`、`netlist`、`render --view top`、`fab --files` 导出对应资料。
 
-修改设计文件后使用原生 `gen`，重新接线并复查；仅恢复完成版时运行上述构建脚本即可。已保存的布局让生成过程无需重新下载 ST 参考设计。
+以上通用命令不替代显示与供电专项验收：逐项核对原始屏幕PDF的SHA256、30针接法、1脚坐标、计入LFBGA354封装内部长度差的MIPI配对长度、显示电源器件位置，以及唯一获准的U5.N2短出线。记录实际执行的项目，不能把未附带的专项自动检查宣称为通过。工艺警告和质量提示仍按DRC JSON逐项处理。
 
 按用户要求保留 ST 密集核心的常规丝印，外围采用完整外框。工艺警告和布线质量提示保留在 `project/MP157Demo/output/MP157Demo_drc.json`，不能等同于实物验证结果。
 

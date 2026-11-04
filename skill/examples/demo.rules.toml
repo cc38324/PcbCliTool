@@ -1,4 +1,4 @@
-# examples/demo.toml 生成的板子的布线 / DRC 规则。通用参数用默认值（见 src/route/rules.rs）。
+# examples/demo.toml 生成的板子的布线 / DRC 规则，未列出的参数使用默认值。
 
 [nets]
 pour = ["GND"]
