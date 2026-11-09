@@ -6,7 +6,7 @@
 
 0.3.0 增加内置天线电磁仿真、冻结模型多端口求解及 PFC/LLC 电源版图专项检查；支持多候选布局和局部重布。多板项目编辑、FPC补强生产资料、3D局部查看和完整MP157示例继续随包提供。
 
-`em <工程> --config antenna.toml -o output/em`只导出模型，追加`--run`调用随包提供的原生openEMS，无需另外安装Python或求解器。求解完成、频带匹配达标及网格收敛分别记录，详见[电磁仿真说明](skill/references/antenna-em.md)。元件的CAD、尺寸简模与占位体分别标记，裸板显示和模型来源核对见[3D模型说明](skill/references/models-and-pads.md)。
+`em <工程> --config antenna.toml -o output/em --run` 可直接运行天线仿真。求解完成、频带匹配达标及网格收敛分别记录，详见[电磁仿真说明](skill/references/antenna-em.md)。元件的CAD、尺寸简模与占位体分别标记，裸板显示和模型来源核对见[3D模型说明](skill/references/models-and-pads.md)。
 
 3D模型清单提供眼睛开关（支持逐位号搜索、临时隐藏罩体及全部恢复），导出遵循当前可见性；FR4切边与非金属孔壁改为棕色，镀通孔及邮票孔保留金属色。补齐严格转弯、分支、绕行和悬空检查，并要求实际Gerber全层复查。采购与模型须逐最终料号核对，优先已确认的基础库物料。
 

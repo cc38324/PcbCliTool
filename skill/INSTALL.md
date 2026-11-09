@@ -80,4 +80,4 @@ Windows 安装程序会放到 Claude Code 的 skill 目录。使用完整 ZIP �
 
 整板3D：`render3d <工程> -o board.glb` 或 `view <工程> --3d`；无模型时明确显示外形估算。
 
-0.3.0各安装包均包含原生openEMS、远场工具及依赖，天线流程无需Python。macOS CLI包也须保留 `easyedatool`、`VERSION` 与 `runtime/` 的相对位置，不能只拷贝单个程序。完整包同时保留 `bin/`、`viewer/` 与 `runtime/`。PFC/LLC专项规则见 `references/smps-pfc-llc.md`。
+0.3.0各安装包均可直接运行天线仿真。macOS CLI包也须保留 `easyedatool`、`VERSION` 与 `runtime/` 的相对位置，不能只拷贝单个程序。完整包同时保留 `bin/`、`viewer/` 与 `runtime/`。PFC/LLC专项规则见 `references/smps-pfc-llc.md`。

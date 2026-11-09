@@ -2,9 +2,7 @@
 
 ## 0.3.0
 
-- 内置天线电磁仿真，输出 S11、阻抗和方向图。
-- 支持冻结模型与多端口求解。
-- 增加 PFC、LLC 电源版图专项检查。
+- 增加天线仿真与电源检查，修复部分 bug。
 
 ## 0.2.7
 
@@ -50,7 +48,7 @@ Logical schematic edits still require a corresponding design file; multi-board r
 
 将射频核心板开发中可复用的能力加入工具与AI手册：
 
-- `em`从原生PCB导出实际铜形、叠层与端口，`--run`调用另行安装的openEMS；窗口增加配置选择入口。求解完成、频带匹配、时间衰减和网格收敛分别记录，不把导出成功当作天线达标。
+- `em`从原生PCB导出实际铜形、叠层与端口，`--run`调用另行安装的电磁求解器；窗口增加配置选择入口。求解完成、频带匹配、时间衰减和网格收敛分别记录，不把导出成功当作天线达标。
 - 设计文件支持实体铜形和开窗；保存布局、重新生成及局部改线保留盲埋孔的实际铜层跨度。邮票孔板边规则只适用于显式配置且符合几何条件的镀半孔。
 - 共用DRC空间索引，保留判定规则并稳定问题顺序；3D渲染与连续操作刷新优化保留几何、纹理、钻孔及遮挡。
 - skill补充裸核心板显隐、立创/厂家模型获取边界、表面CAD转换、安装面与方向核对，以及整份模型配方的来源保留。板尺寸、器件料号、网络和模型覆盖均留在工程数据中。
@@ -63,7 +61,7 @@ Logical schematic edits still require a corresponding design file; multi-board r
 | 实际窗口 | 三平台PCB、原理图、3D截图已查看；GLB/STL导出通过 |
 | 安装与升级 | Windows安装文件逐项与ZIP一致；Ubuntu 22.04容器从0.2.4-1升级到0.2.5-1通过 |
 | MP157完整示例 | 三平台冷启动重建、显示/电源/逐脚检查和导出通过；电气铜、元件位置及位号身份跨平台核对一致 |
-| 电磁接口 | 三平台最终包均成功导出天线示例；Windows实际调用openEMS 0.37.0rc3完成流程冒烟测试，未确认时间及网格收敛，未配置匹配目标 |
+| 电磁接口 | 三平台最终包均成功导出天线示例；Windows实际调用电磁求解器 0.37.0rc3完成流程冒烟测试，未确认时间及网格收敛，未配置匹配目标 |
 | 裸板3D回归 | 71个可见元件、4个隐藏体，电气文件不变，效果图与先前版本逐字节一致 |
 | 包内容 | 6个二进制附件及4个完整包中的169个公开文档/示例资产独立核对通过 |
 
@@ -73,9 +71,9 @@ Homebrew Formula已更新到本版macOS CLI的真实URL及SHA256。本次未同�
 
 ### English
 
-This release adds a configurable PCB-to-openEMS workflow, design-file copper shapes and mask openings, blind/buried-via span preservation, explicit castellation rules, deterministic DRC indexing and faster interactive 3D rendering. The AI manual covers bare-core views, model provenance, surface-CAD conversion and mechanical alignment. Board-specific dimensions, nets, part choices and model overrides remain project data. A native four-layer antenna workflow example ships in every full package; openEMS and its matching Python dependencies are installed separately.
+This release adds a configurable PCB-to-EM solver workflow, design-file copper shapes and mask openings, blind/buried-via span preservation, explicit castellation rules, deterministic DRC indexing and faster interactive 3D rendering. The AI manual covers bare-core views, model provenance, surface-CAD conversion and mechanical alignment. Board-specific dimensions, nets, part choices and model overrides remain project data. A native four-layer antenna workflow example ships in every full package; EM solver and its matching Python dependencies are installed separately.
 
-Each platform passed 421 Rust tests (2 existing ignored tests), clean Flutter analysis and 31 widget tests. Final Windows/macOS/Linux packages passed Demo connectivity/routing, actual PCB/schematic/3D windows, GLB/STL and EM export. Windows installation matches its ZIP file for file; Linux upgrades from 0.2.4-1 in Ubuntu 22.04. The complete MP157 example rebuilds and exports on all platforms, with matching physical copper/component records and reference identities. A Windows openEMS smoke run completed, with no matching target and no verified time or mesh convergence. The bare-core regression preserves the electrical files and produces a byte-identical image. All six binaries and 169 public documentation/example assets in each full package were checked.
+Each platform passed 421 Rust tests (2 existing ignored tests), clean Flutter analysis and 31 widget tests. Final Windows/macOS/Linux packages passed Demo connectivity/routing, actual PCB/schematic/3D windows, GLB/STL and EM export. Windows installation matches its ZIP file for file; Linux upgrades from 0.2.4-1 in Ubuntu 22.04. The complete MP157 example rebuilds and exports on all platforms, with matching physical copper/component records and reference identities. A Windows EM solver smoke run completed, with no matching target and no verified time or mesh convergence. The bare-core regression preserves the electrical files and produces a byte-identical image. All six binaries and 169 public documentation/example assets in each full package were checked.
 
 See build-info.json for component sources and actual verification. Homebrew is updated; APT and winget official sources are unchanged by this release. Windows binaries are unsigned and macOS is not notarized. Approximate models and unvalidated antenna geometry retain their stated limits.
 

@@ -6,7 +6,7 @@ Offline command-line tool for EasyEDA Pro folder projects. It builds the schemat
 
 Version 0.3.0 adds bundled native antenna EM simulation, frozen multiport model solving, PFC/LLC layout checks. Candidate placement search, local routing repair, multi-board editing, FPC stiffener outputs, local 3D inspection and the complete MP157 example remain included.
 
-`em <project> --config antenna.toml -o output/em` exports a model; add `--run` to invoke the bundled native openEMS runtime without a separate Python or solver installation. Solver completion, matching targets and mesh convergence are separate results: see the [EM guide](skill/references/antenna-em.md). CAD, dimensioned simplified models and placeholders remain labelled; see the [3D guide](skill/references/models-and-pads.md) for provenance and bare-board views.
+Run antenna simulations with `em <project> --config antenna.toml -o output/em --run`. Solver completion, matching targets and mesh convergence are separate results: see the [EM guide](skill/references/antenna-em.md). CAD, dimensioned simplified models and placeholders remain labelled; see the [3D guide](skill/references/models-and-pads.md) for provenance and bare-board views.
 
 ## Install
 
