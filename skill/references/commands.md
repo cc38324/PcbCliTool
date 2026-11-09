@@ -18,6 +18,7 @@ Commands:
   route         自动布线：删掉全部旧走线、过孔和铺铜填充，按规则文件重新布线（多层板按板子的铜层布，内层铺铜平面只让过孔穿过），写回 .epcb2，再重算铺铜
   drc           查铜皮：不同网络间距、离板边距离、禁布区、没连通的网络、悬空线头、隔离带宽度（有问题时退出码 1）
   em            天线三维全波电磁仿真：从当前 PCB 导出实际铜形和叠层，检查全层天线净空；--run 调用 openEMS
+  em-native     直接求解已冻结的电磁模型/XML，支持调谐元件与多端口；使用随包原生 openEMS
   check         核对工程：器件重叠 / 出板、原理图没接上的导线、原理图和 PCB 逐脚网络对比（有问题时退出码 1）
   erc           原理图电气规则检查（ERC）：照嘉立创原理图 DRC 逐条查——引脚悬空、导线没接引脚 / 只接一个引脚、一组导线多个网络名、网络标识和导线名不一致、引脚端点重叠、位号、缺器件 / 封装、引脚和焊盘对不上、多部件、超出图纸、不在格点；规则名、级别、中文说明都照它，--pins 再查引脚类型冲突（有致命错误、错误或警告时退出码 1）
   hookup        接法检查：照元件库里芯片的接法规则（按数据手册的参考电路和外部元件表写的）查原理图——两脚之间该有的电感 / 电阻 / 电容和取值、额定电压，该同网的脚，该接地或悬空的脚，几种接法里用的是哪一种；查得出接错脚这类 ERC 查不出来的错（有错误或警告时退出码 1）
@@ -43,7 +44,7 @@ Commands:
   thermal       损耗结温和载流温升：按规则文件 [thermal] 里的工况算功率器件的损耗和结温（MOS 管、二极管、整流桥、电阻、电感、变压器、LDO、开关稳压芯片、电容；热阻用 θJA、散热器、或按板上散热焊盘连着的铜面积插值），走线、铺铜 / 铜皮、过孔按 IPC-2152 算温升（旁边给 IPC-2221）；给了电流从哪进、从哪出（from / to）就把网络当电阻网络（铺铜细分成网格）解出每段的电流和压降（超了退出码 1）
   si            信号完整性（反射、串扰）：按叠层用场求解器算每段走线的阻抗和延时，连同过孔、串联电阻 / 电容、到电源和地的端接搭成电路，从驱动脚加阶跃做时域仿真（通用模型：驱动的上升时间和输出阻抗、每个脚的电容），报每个接收端的飞行时间、过冲、回沟、稳定时间、单调性和阻抗跳变的段；差分对（按网络名认）两根反相一起驱动、并排段按耦合线，报差分波形、P/N 偏斜、共模、差分阻抗；--xtalk 再算同层平行网络的串扰（近端 / 远端）（超了退出码 1）；--spice 把每个电路和自己的波形写出来，tools/verify_si/compare.py 拿 ngspice 复算对比
   ibis          读 IBIS 模型文件（.ibs）：列出器件、引脚、模型选择器和模型（类型、电源、C_comp、有哪些表），每个能驱动的模型把自己的 V–T 波形放回测它时的夹具里重算、和表比（模型自洽、本工具读得对的检查；差超过幅度 10 % 退出码 1）
-  smps          开关电源版图检查：热回路（照实际铜走的路径算三维回路面积、估电感）、开关节点的铜皮和过孔、FB 这类安静网络离开关节点多远 / 有没有在相邻层压着它 / 从电感底下走、芯片去耦电容的铜路径和地回路；规则文件 [smps] 写电源，不写就自动认（有原理图按引脚名 SW / VIN / FB / BOOT，没有按连接：电感接芯片是降压 / 升压，一颗芯片几路的每路用自己的输入脚；变压器接 MOS 管或内置开关管的芯片是反激，顺着栅极找控制芯片）（超了退出码 1）
+  smps          开关电源版图检查：热回路、开关节点、安静网络与去耦；PFC Boost / 半桥LLC按profile绑定实际引脚，检查必需回路、驱动、采样及声明的谐振参数。required_profiles要求的级缺失、未识别/配置电源或超限时退出1。省略--rules时先读项目checks.rules；无规则时自动识别降压/升压/反激。静态检查不代表PF、THD、ZVS及整机温升实测通过。
   label         成品板加丝印：照标注文件（TOML）往布好线的板子上加丝印字——自由文字、器件旁边的名字（接口是干什么的）、每个脚旁边的信号名（排针、端子）；只加丝印字，铜皮和别的都不动，不用重新生成、重新布线；字自己找不压焊盘、不压别的丝印、不出板边的地方，放不下就缩小（不小于 min_size）或换一边，还放不下的报出来；再跑一遍替换上次加的（记在工程的 .easyedatool/labels.json）；有 [designators] 时连器件位号一起整理：原地不挡着的留下，压焊盘（板厂会削掉）或压别的丝印的挪到器件旁最近的空处、放不下缩小、再不行不印（hide = false 则照旧并报出来），挪过去的位号必须离自己的器件最近，免得认错；默认只报告，--write 写回
   widen         电源线加粗：布线后把电源网络逐段加到放得下的最粗（先试目标线宽，再 0.4、0.3 mm），细间距焊盘旁边放不下的保持原样（颈缩）；按工程间距规则查别的网络，默认只报告，--write 写回（之后 pour --write 重算铺铜）
   clean         整理普通网络的直角和连续小台阶；可补齐位于过孔铜环内的偏心引线
@@ -271,8 +272,26 @@ Options:
       --no-drc                     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>                  模型、日志、S11/阻抗 CSV、远场和图的目录
       --run                        实际求解；省略时只导出，不报告仿真成功
-      --python <PYTHON>            装有同版本 openEMS/CSXCAD 的 Python；也可配置或设置 EASYEDATOOL_EM_PYTHON
-      --solver-root <SOLVER_ROOT>  openEMS 运行库目录（Windows 为包含 CSXCAD.dll 的目录）
+      --solver-root <SOLVER_ROOT>  完整原生运行库目录；默认自动查找随包安装的 runtime/openems，无需 Python
+      --engine <ENGINE>            原生计算引擎（multithreaded、basic 或运行库支持的 gpu）
+  -h, --help                       Print help
+```
+
+## em-native
+
+```
+直接求解已冻结的电磁模型/XML，支持调谐元件与多端口；使用随包原生 openEMS
+
+Usage: easyedatool em-native [OPTIONS] --model <MODEL> --geometry <GEOMETRY> --out <OUT>
+
+Options:
+      --model <MODEL>
+      --no-drc                     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --geometry <GEOMETRY>
+  -o, --out <OUT>
+      --audit <AUDIT>              模型/XML对应的导体清单；默认取XML旁的 property-audit.json
+      --solver-root <SOLVER_ROOT>
+      --engine <ENGINE>
   -h, --help                       Print help
 ```
 
@@ -767,7 +786,7 @@ Options:
 ## smps
 
 ```
-开关电源版图检查：热回路（照实际铜走的路径算三维回路面积、估电感）、开关节点的铜皮和过孔、FB 这类安静网络离开关节点多远 / 有没有在相邻层压着它 / 从电感底下走、芯片去耦电容的铜路径和地回路；规则文件 [smps] 写电源，不写就自动认（有原理图按引脚名 SW / VIN / FB / BOOT，没有按连接：电感接芯片是降压 / 升压，一颗芯片几路的每路用自己的输入脚；变压器接 MOS 管或内置开关管的芯片是反激，顺着栅极找控制芯片）（超了退出码 1）
+开关电源版图检查：热回路、开关节点、安静网络与去耦；PFC Boost / 半桥LLC按profile绑定实际引脚，检查必需回路、驱动、采样及声明的谐振参数。required_profiles要求的级缺失、未识别/配置电源或超限时退出1。省略--rules时先读项目checks.rules；无规则时自动识别降压/升压/反激。静态检查不代表PF、THD、ZVS及整机温升实测通过。
 
 Usage: easyedatool smps [OPTIONS] <INPUT>
 
@@ -776,7 +795,7 @@ Arguments:
 
 Options:
       --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-      --rules <RULES>  规则文件（TOML，和布线共用）的 [smps] 表：[[smps.converter]] 每路电源（loops 热回路：器件和网络轮流写）、限值
+      --rules <RULES>  规则文件的[smps]表；省略时读取easyedatool.toml的checks.rules，profile专项规则及required_profiles也在此表中
       --suggest        把自动认出的电源按规则文件的写法打出来（核对后贴进规则文件）
       --png <PNG>      出 PNG：分层图上画热回路（面积着色）、开关节点和安静网络高亮；每路电源再出一张放大图（<名>_1.png …）
       --json <JSON>    把完整结果写成 JSON

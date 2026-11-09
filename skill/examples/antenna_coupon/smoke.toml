@@ -1,0 +1,39 @@
+# 仅验证随包原生求解、端口和远场流程。粗网格和 -30 dB 不能用于天线定版。
+# 此原生测试板的匹配目标可能未通过；执行完成不等于天线合格。
+material_note = "JLC04161H-7628 nominal stack; tan(delta)=0.02 assumed. Coarse runtime smoke only, not antenna acceptance."
+loss_tangent = 0.02
+omit_solder_mask = true
+frequency_ghz = [4.0, 10.0]
+samples = 121
+far_field_ghz = [6.4896, 7.9872]
+antenna_keepout = [0.0, 13.0, 30.0, 20.0]
+
+[[bands]]
+name = "UWB Channel 5"
+frequency_ghz = [6.240, 6.7392]
+max_s11_db = -10.0
+
+[[bands]]
+name = "UWB Channel 9"
+frequency_ghz = [7.7376, 8.2368]
+max_s11_db = -10.0
+
+[port]
+net = "RF_ANT"
+ground_net = "GND"
+xy = [15.0, 11.3]
+signal_layer = 1
+ground_layer = 15
+width_mm = 0.16
+length_mm = 0.2
+resistance_ohm = 50.0
+
+[mesh]
+cell_mm = 1.5
+feed_cell_mm = 0.12
+min_cell_mm = 0.1
+air_mm = 20.0
+steps = 300000
+end_db = -30.0
+threads = 4
+max_cells = 6000000

@@ -1,7 +1,6 @@
 # 与 antenna_coupon 示例生成的原生测试板配套，几何 mm、频率 GHz。
-# 路径相对于本配置；填写已安装的匹配版本运行环境。
-# python = "../out/em-runtime/python313/python.exe"
-# solver_root = "../out/em-runtime/openEMS/openEMS"
+# 自定义路径相对于本配置；默认直接使用随包原生运行库。
+# solver_root = "../runtime/openems"  # 默认自动查找随包运行库
 material_note = "JLC04161H-7628 nominal stack; tan(delta)=0.02 assumed. No carrier/enclosure; verify production materials before release."
 loss_tangent = 0.02
 omit_solder_mask = true

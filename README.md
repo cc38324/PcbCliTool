@@ -4,22 +4,22 @@
 
 离线命令行工具，读写嘉立创 EDA 专业版（EasyEDA Pro）的文件夹工程。从设计文件生成原理图和 PCB，自动布线，按 EDA 的规则算铺铜，做 DRC 和逐脚核对，并导出原理图 PDF、网表、BOM、Gerber、钻孔和贴片坐标。嘉立创工程与已导出的 PADS ASCII 无需浏览器或 EDA 客户端。原生 PADS 二进制 `.pcb` 导入需 Windows 和本机已授权的 PADS Layout。
 
-0.2.7 支持同一嘉立创工程的多PCB、多原理图预览和所选PCB的简单编辑，增加原生FPC补强生产资料，修复3D中键平移、局部旋转和等长补偿校验。多网络整束布线、指定电源脚去耦检查及可配置的布线质量门禁一并提供；完整MP157 AMOLED/触摸示例继续随包附带。
+0.3.0 增加内置天线电磁仿真、冻结模型多端口求解及 PFC/LLC 电源版图专项检查；支持多候选布局和局部重布。多板项目编辑、FPC补强生产资料、3D局部查看和完整MP157示例继续随包提供。
 
-`em <工程> --config antenna.toml -o output/em`只导出模型，追加`--run`调用另行安装的openEMS。求解完成、频带匹配达标及网格收敛分别记录，详见[电磁仿真说明](skill/references/antenna-em.md)。元件的CAD、尺寸简模与占位体分别标记，裸板显示和模型来源核对见[3D模型说明](skill/references/models-and-pads.md)。
+`em <工程> --config antenna.toml -o output/em`只导出模型，追加`--run`调用随包提供的原生openEMS，无需另外安装Python或求解器。求解完成、频带匹配达标及网格收敛分别记录，详见[电磁仿真说明](skill/references/antenna-em.md)。元件的CAD、尺寸简模与占位体分别标记，裸板显示和模型来源核对见[3D模型说明](skill/references/models-and-pads.md)。
 
-0.2.7增加3D模型清单眼睛开关（支持逐位号搜索、临时隐藏罩体及全部恢复），导出遵循当前可见性；FR4切边与非金属孔壁改为棕色，镀通孔及邮票孔保留金属色。补齐严格转弯、分支、绕行和悬空检查，并要求实际Gerber全层复查。采购与模型须逐最终料号核对，优先已确认的基础库物料。
+3D模型清单提供眼睛开关（支持逐位号搜索、临时隐藏罩体及全部恢复），导出遵循当前可见性；FR4切边与非金属孔壁改为棕色，镀通孔及邮票孔保留金属色。补齐严格转弯、分支、绕行和悬空检查，并要求实际Gerber全层复查。采购与模型须逐最终料号核对，优先已确认的基础库物料。
 
 ## 安装
 
-当前版本 **0.2.7**。安装包在 [GitHub Release v0.2.7](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.7)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
+当前版本 **0.3.0**。安装包在 [GitHub Release v0.3.0](https://github.com/cc38324/PcbCliTool/releases/tag/v0.3.0)，改动见 [发布说明](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md)。本仓库提供安装说明、AI 使用手册和示例，不包含工具源码。
 
-| 系统 | 0.2.7 安装包 | PCB / 原理图窗口 |
+| 系统 | 0.3.0 安装包 | PCB / 原理图窗口 |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.7/easyedatool-0.2.7-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.7/easyedatool-0.2.7-windows-x64-setup.exe) | 包含 |
-| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.7/easyedatool-0.2.7-macos-arm64.zip) | 包含 |
-| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.7/easyedatool-0.2.7-macos-arm64.tar.gz) / Homebrew | 不包含 |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.2.7/easyedatool_0.2.7-1_amd64.deb) | 包含 |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-windows-x64.zip) / [安装程序](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-windows-x64-setup.exe) | 包含 |
+| macOS（Apple 芯片） | [完整 ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-macos-arm64.zip) | 包含 |
+| macOS（Apple 芯片）命令行 | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-macos-arm64.tar.gz) / Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool_0.3.0-1_amd64.deb) | 包含 |
 | Intel Mac / 鸿蒙电脑 | 本版没有安装包 | — |
 
 完整包包含命令行工具和桌面预览；`easyedatool view <工程>` 打开窗口。项目的线宽、间距、孔径和等长要求由设计文件或规则文件配置，升级不会替用户确认电气设计或生产可行性。
@@ -55,14 +55,14 @@ brew install cc38324/pcbclitool/easyedatool
 easyedatool --version
 ```
 
-已装过则用 `brew upgrade cc38324/pcbclitool/easyedatool`。公式位于 [Formula/easyedatool.rb](https://github.com/cc38324/PcbCliTool/blob/main/Formula/easyedatool.rb)，仅安装 CLI；版本以 `easyedatool --version` 为准。手动安装 CLI 时解开 tar.gz，根目录的 `easyedatool` 就是程序。
+已装过则用 `brew upgrade cc38324/pcbclitool/easyedatool`。公式位于 [Formula/easyedatool.rb](https://github.com/cc38324/PcbCliTool/blob/main/Formula/easyedatool.rb)，安装 CLI及原生求解器、不含窗口；版本以 `easyedatool --version` 为准。手动安装 CLI 时解开 tar.gz，保留根目录的 `easyedatool`、`VERSION` 和 `runtime/` 相对位置。
 
 ### Ubuntu / Debian
 
 下载本版 DEB 后，在下载目录安装；`apt` 会处理窗口所需的系统依赖：
 
 ```bash
-sudo apt install ./easyedatool_0.2.7-1_amd64.deb
+sudo apt install ./easyedatool_0.3.0-1_amd64.deb
 easyedatool --version
 easyedatool view <工程>
 ```
@@ -77,11 +77,11 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.2.7-1
+sudo apt-get install easyedatool=0.3.0-1
 easyedatool --version
 ```
 
-候选列表没有 `0.2.7-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
+候选列表没有 `0.3.0-1` 时使用 Release 的 DEB，不要把旧版安装成功当作本版已升级。
 
 ## 多板项目、局部3D查看与FPC
 

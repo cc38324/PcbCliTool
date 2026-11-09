@@ -1,6 +1,6 @@
 ---
 name: easyedatool
-description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .esch2 / .epcb2）的离线命令行工具 easyedatool：从设计文件（TOML / JSON）生成整套工程（原理图分页排版 + PCB 摆放）、自动布线、照 EDA 规则算铺铜、DRC、原理图和 PCB 逐脚核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标（嘉立创下单包）。用户要画板、生成或修改嘉立创工程、布线、铺铜、查间距、核对网表、看板子、补元件3D或机械封装、出 BOM 或生产文件时用；要在正在运行的 EDA 客户端界面里点选、改图元时用 easyeda-api skill。
+description: 嘉立创EDA专业版（EasyEDA Pro）文件夹工程（.eprj3 / .esch2 / .epcb2）的离线命令行工具 easyedatool：从设计文件（TOML / JSON）生成整套工程（原理图分页排版 + PCB 摆放）、自动布线、照 EDA 规则算铺铜、DRC、原理图和 PCB 逐脚核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标（嘉立创下单包）。用户要画板、生成或修改嘉立创工程、布线、铺铜、查间距、核对网表、看板子、补元件3D或机械封装、出 BOM 或生产文件、天线仿真及PFC/LLC版图检查时用；要在正在运行的 EDA 客户端界面里点选、改图元时用 easyeda-api skill。
 ---
 
 # easyedatool：嘉立创EDA工程离线工具
@@ -61,7 +61,7 @@ HDMI 多对、MIPI 多对或普通多网络需要整体并行时，用 `bundle <
 - 程序：Windows 使用 `bin/easyedatool.exe`，macOS / Linux 使用 `bin/easyedatool`。下文 `easyedatool` 指包内程序，安装位置见 `INSTALL.md`。
 - 发行包提供命令行、桌面预览、说明书和设计示例；程序实现不在本仓库发布。
 - 参数全集：每个命令加 `--help`（中文）；汇总在 `references/commands.md`。
-- 天线全波：`em <工程> --config antenna.toml -o output/em --run`，窗口「检查 → 天线电磁仿真…」。先读 [配置和成功判据](references/antenna-em.md)；只导出不算求解，算完也不等于匹配或网格收敛通过。
+- 天线全波：`em <工程> --config antenna.toml -o output/em --run`，窗口「检查 → 天线电磁仿真…」。Rust 生成网格、调用随包原生 openEMS 并处理结果，无需 Python；高级冻结模型用 `em-native`。先读 [配置和成功判据](references/antenna-em.md)；只导出不算求解，算完也不等于匹配或网格收敛通过。
 - 自定义天线铜与裸铜区用设计文件 `fills`（铜层给网络，阻焊层不给网络），重新 `gen` 写原生 FILL，不手改工程记录。外部载板/排针的近似体用电磁配置 `environment` 显式声明并核对三维坐标、材料来源，不能继续沿用只含裸模块的仿真结论。
 - 写设计文件：`references/design-format.md`，照 `examples/demo.toml` 改。
 - 布线 / DRC / 核对规则文件：`references/rules-format.md`，例子 `examples/demo.rules.toml`。
@@ -93,6 +93,8 @@ TO-220 MOS管、肖特基管的散热器，先读[散热器和机械件封装](r
 机械安装孔须逐项核对设计坐标/孔径、PCB原生孔、NPTH钻孔文件及3D板体：圆孔和槽孔必须真实挖穿并有孔壁，不能用黑色圆形贴图冒充。孔位与尺寸从项目读取，不写死进通用渲染代码。若仅3D漏孔，修渲染并重新导出PNG/GLB/STL、刷新Flutter预览，不为迁就模型改动实际孔位；核对最新正反面及斜视图。
 
 只改已有圆形安装孔孔径时，先在设计文件的 `[[board.holes]]` 修改毫米直径，保留孔心，再用 `holes <工程> --design 设计.toml --rules 规则.toml` 试算。必须看到「孔距 / 铜间距 / 板边检查通过」后才能加 `--write`；缺孔、重复匹配、工艺或间距冲突须先处理，不能用脚本改原生记录。命令不移动、新增或删除孔，也不扩大螺钉头禁布区；写后 `layout --save`、项目 DRC，并重导生产钻孔、二维图、GLB和STL，核对孔径与孔心一致。须先查 `holes --help`；本命令从0.2.4提供，不能假定旧安装包支持。
+
+PFC＋LLC电源先读[专项规则](references/smps-pfc-llc.md)，在 `[smps] required_profiles` 明确必查级，逐级用 `profile` 绑定实际引脚及厂家依据。仅写拓扑名称、没有识别出电源、缺少必查级都不能视为通过；驱动、采样和自动生成的关键回路须执行并检查JSON。四端功率器件另用 `kelvin_source` 指定独立驱动返回焊盘，不能借功率源极铜路替代它。声明的谐振参数与实际Lr/Cr值要一致，分析频率窗口不能冒充硬件已经限频。此功能从0.3.0提供，旧0.2.7发行包须先升级，不能改用旧工具忽略未知字段；静态通过不能代替PF、THD、ZVS、磁件和整机热实测。
 
 ## 元件丝印与布局的交付约束
 
@@ -346,3 +348,8 @@ easyedatool drc <目录>/Demo --rules examples/demo.rules.toml
 HDI 布局保存的过孔必须有 `span=[起层,止层]`（如 `[1,15]`）；重生成后核对原生 BLIND 规则、DRC 连通和分层钻孔。旧布局只有非默认规则名却缺跨度时先从原 PCB `layout --save`，禁止猜层或当通孔。自动布线只创建通孔，已做的 HDI 扇出按网络保留；检查最终实际层跨度，不能把布线器的连通计数当作盲孔验收。
 
 射频电磁求解先校核窄馈线与已知负载。端口放在馈线铜内部，使用 `mesh.feed_cell_mm` 的三分边缘网格；收敛对比同时细化此值，不能只改全局网格。网格恰好压着 PEC 细线边缘可能严重偏离 50 Ω，未通过已知负载校核的数据不作为天线匹配验收。
+
+
+## 0.3.0 原生天线流程自测
+
+复制随包 `examples/antenna_coupon` 后，用 `em examples/antenna_coupon --config examples/antenna_coupon/smoke.toml -o output/em-smoke --run` 检查完整流程。须看到「电磁求解完成」「时域能量衰减收敛：已确认」，检查本次 `em-report.json`、S11图和两个远场图。粗网格与 −30 dB 门槛仅用于安装自测；匹配未通过时如实保留结论，不作天线定版。运行时保留整个 `runtime/openems`，无需安装 Python。

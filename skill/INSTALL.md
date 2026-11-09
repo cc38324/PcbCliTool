@@ -2,18 +2,18 @@
 
 嘉立创 EDA 专业版（EasyEDA Pro）文件夹工程的离线工具：从设计文件生成工程、自动布线、铺铜、DRC、核对，出效果图、原理图 PDF / 网表 / BOM、Gerber / 钻孔 / 贴片坐标。完整安装包带 PCB / 原理图桌面预览窗口。
 
-## 安装 0.2.7
+## 安装 0.3.0
 
-下载入口：[GitHub Release v0.2.7](https://github.com/cc38324/PcbCliTool/releases/tag/v0.2.7)。详细步骤见[中文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.md)和[英文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.en.md)。
+下载入口：[GitHub Release v0.3.0](https://github.com/cc38324/PcbCliTool/releases/tag/v0.3.0)。详细步骤见[中文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.md)和[英文说明](https://github.com/cc38324/PcbCliTool/blob/main/README.en.md)。
 
 | 平台 | 文件 | 窗口 |
 |---|---|---|
-| Windows x64 | `easyedatool-0.2.7-windows-x64.zip` 或 `easyedatool-0.2.7-windows-x64-setup.exe` | 包含 |
-| macOS Apple 芯片 | `easyedatool-0.2.7-macos-arm64.zip` | 包含 |
-| macOS Apple 芯片，仅 CLI | `easyedatool-0.2.7-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
-| Ubuntu / Debian amd64 | `easyedatool_0.2.7-1_amd64.deb` | 包含 |
+| Windows x64 | `easyedatool-0.3.0-windows-x64.zip` 或 `easyedatool-0.3.0-windows-x64-setup.exe` | 包含 |
+| macOS Apple 芯片 | `easyedatool-0.3.0-macos-arm64.zip` | 包含 |
+| macOS Apple 芯片，仅 CLI | `easyedatool-0.3.0-macos-arm64.tar.gz` 或 Homebrew | 不包含 |
+| Ubuntu / Debian amd64 | `easyedatool_0.3.0-1_amd64.deb` | 包含 |
 
-Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。winget 官方源状态请实际查询；本次使用 Release 附件，不声称官方源已经收录 0.2.7。
+Windows 安装程序默认放到 `%USERPROFILE%\.claude\skills\easyedatool`；ZIP 可解压到任意目录。安装程序未签名。winget 官方源状态请实际查询；本次使用 Release 附件，不声称官方源已经收录 0.3.0。
 
 macOS 完整 ZIP 的程序在 `bin/easyedatool`，窗口在 `viewer/easyeda_view.app`，保留两者的相对位置。安装包未经 Apple 公证；系统拦截时先核对来源与校验和，再从系统安全设置允许打开。
 
@@ -29,12 +29,12 @@ easyedatool --version
 已安装则用 `brew upgrade cc38324/pcbclitool/easyedatool`。Linux 在下载目录执行：
 
 ```bash
-sudo apt install ./easyedatool_0.2.7-1_amd64.deb
+sudo apt install ./easyedatool_0.3.0-1_amd64.deb
 easyedatool --version
 easyedatool view <工程>
 ```
 
-APT 源的添加方法见中文说明。先用 `apt-cache policy easyedatool` 确认有 `0.2.7-1`，没有时安装 Release 的 DEB；不能把源里的旧版当成升级成功。Linux 窗口需要图形桌面。Intel Mac 和鸿蒙电脑本版没有安装包。
+APT 源的添加方法见中文说明。先用 `apt-cache policy easyedatool` 确认有 `0.3.0-1`，没有时安装 Release 的 DEB；不能把源里的旧版当成升级成功。Linux 窗口需要图形桌面。Intel Mac 和鸿蒙电脑本版没有安装包。
 
 ## 完整 ZIP 的文件
 
@@ -79,3 +79,5 @@ Windows 安装程序会放到 Claude Code 的 skill 目录。使用完整 ZIP �
 新画板和布局/封装修改必须保留元件本体丝印、1脚及极性标记。冲突须调整位置/方向并重接，不能删框；交付前核对实际Gerber和PCB预览。见 `references/silkscreen.md`。
 
 整板3D：`render3d <工程> -o board.glb` 或 `view <工程> --3d`；无模型时明确显示外形估算。
+
+0.3.0各安装包均包含原生openEMS、远场工具及依赖，天线流程无需Python。macOS CLI包也须保留 `easyedatool`、`VERSION` 与 `runtime/` 的相对位置，不能只拷贝单个程序。完整包同时保留 `bin/`、`viewer/` 与 `runtime/`。PFC/LLC专项规则见 `references/smps-pfc-llc.md`。

@@ -1,0 +1,51 @@
+# 通用布局优化示例，配合 examples/demo.toml 生成的 Demo。
+# easyedatool place-opt <Demo> --config examples/place-opt.toml --rules examples/demo.rules.toml --out out/place-opt-demo --backend cpu
+# 输入只读；输出目录必须为空且在输入工程之外。
+movable = ["U1", "R1", "LED1", "C1", "C2"]
+fixed = ["J*"]
+keep_nets = []
+ignore_nets = []
+candidates = 24
+elites = 6
+rounds = 6
+seed = 20261103
+step = 0.25
+radius = 2.0
+spacing = 0.2
+edge = 0.3
+cell = 1.0
+rotations = [0, 90, 180, 270]
+congestion_weight = 10
+pin_weight = 1000
+
+# 原布局额外作为对照，所有候选从相同的保留铜策略重新布线。
+# 0 = 只评分；评分通过不表示布通。试布未全通时保留报告并返回失败。
+route_finalists = 2
+feedback_rounds = 1
+route_rip_passes = 2
+route_restarts = 0
+route_optimize_passes = 0
+via_penalty = 1.0
+
+# 目标是解决未布通连接时启用；已全通输入会跳过位置搜索。
+# [unrouted]
+# grid = 0.05
+# margin = 1.5
+# max_steps = 1024
+
+# 以下条目按项目需要添加，不用把所有电容放进一个刚性组。
+# [[group]]
+# parts = ["R1", "LED1"]
+# [[region]]
+# parts = ["R1", "LED1"]
+# rect = [12.0, 3.0, 28.0, 16.0]
+# [[blocked]]
+# rect = [26.0, 16.0, 30.0, 20.0]
+# side = "top"
+# [[near]]
+# pin = "C2.1"
+# target = "U1.2"
+# max = 5.0
+# [[net_weight]]
+# nets = ["LEDA"]
+# weight = 2

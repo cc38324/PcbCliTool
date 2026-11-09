@@ -215,6 +215,8 @@ part = "SVF10N65F"      # 元件库里的料号 / 型号（不写就按器件属
 
 ## `[smps]`（`smps` 命令用）
 
+开发版新增 `required_profiles = ["pfc_boost", "llc_half_bridge"]` 及 `[[smps.converter]]` 的 `profile` 表，完整字段和限制见[PFC / LLC专项规则](smps-pfc-llc.md)。缺少必查级或只有拓扑名称时失败；省略 `--rules` 时先读取项目 `[checks].rules`。旧0.2.7发行包不支持这些新字段。
+
 不写就用默认限值、自动认电源。`easyedatool smps <工程> --suggest` 打出认到的电源，核对后贴进来改：
 
 ```toml
