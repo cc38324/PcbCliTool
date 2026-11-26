@@ -32,16 +32,19 @@ Commands:
   layout        布局文件（设计文件旁边的 <设计>.layout.toml，和 gen --layout 的原理图排版无关）：器件位置、面、角度、锁定、位号，走线和过孔；窗口里手改过原理图以后还有原理图的画法（[sch]）。有它 gen 就照它摆器件、把走线和过孔写回工程、照人画的画原理图（设计文件改了的对上去），窗口里手改的、命令布的线不会被下次 gen 冲掉；工程被改过（布线、窗口里挪了器件），下次 gen 先把它收回来。不带参数看状态；--save 把工程现在的几何记进去（没有就建）；--forget 删掉（gen 回到照设计文件和自动摆法摆）；--forget-sch 只删原理图的画法（gen 重新自动排原理图）
   review        审核：人在预览窗口里标的「已审」（按器件内容记哈希：值、封装、每个脚的网络变了勾就不算了）和审核意见。AI 每轮开始先看这里和工程里的 .easyedatool/edits.log；改完一条意见用 --answer 回复，人在窗口里确认
   kicad         导出 KiCad 工程：.kicad_pcb（铜皮照工程里存的：焊盘、走线、过孔、铺铜填充和辐条原样带上）、.kicad_pro（规则最小值、网络类、哪些检查算数）、.kicad_dru（嘉立创的安全间距表、板边和孔的间距、线宽、过孔尺寸翻成 KiCad 的条件规则）
+  pads-export   导出 PADS 9.5 可编辑设计（Logic 原理图 .txt、Layout PCB .asc）
   assembly      贴片图 PDF（PADS 那种）：顶面、底面各一页，画板框、焊盘、元件外形，位号写在元件中间（顺着长边、按元件大小缩放），底面从背面看；不改板子，和丝印位号无关
   fab           PCB 生产文件：Gerber（铜、阻焊、钢网、丝印、板框）、钻孔（金属化 / 过孔 / 非金属化）、贴片坐标、贴片图 PDF，另打一个给嘉立创的 zip
   pour          铺铜：照 EDA 的规则算填充（间距、热焊盘、去孤岛），和工程里 EDA 算的逐块比；--write 写回 .epcb2（gen、route 会自动算）
   footprint     画封装：按封装类型和数据手册推荐焊盘图的尺寸（脚数、间距、两排中心距、焊盘、本体）生成焊盘，坐标由工具算；打印量出来的尺寸、焊盘表和设计文件写法，-o 出预览图。也能核对设计文件里的封装
   view          实时预览窗口（viewer/ 里的 Flutter 程序）：PCB 分层图和原理图，工程文件一改就重画；route、pour --write、gen、drc、check、erc 跑的时候，进度、输出、正在布的线、问题点实时显示在窗口里；PCB 一改自动查 DRC、原理图一改自动查 ERC，问题点标在板上和页上。窗口只读文件，不写
   serve         预览窗口的后台（窗口自己会起它，一般不用手动跑）：在 127.0.0.1 上提供工程的绘图数据，盯着文件变化，转发命令的进度
-  import        导入 PADS 板子（ASCII .asc；原生 .pcb 在 Windows 调用本机已授权 PADS 转换）或 Altium .PcbDoc：转成嘉立创EDA工程，保留PCB数据并读回自检；--sch 连同 OrCAD .DSN 或 Altium .SchDoc 合成工程
+  import        导入嘉立创专业版 V2/V3 工程（.epro / .epro2 / .epru，PCB 和全部原理图）、PADS 板子（.asc / .pcb）或 Altium .PcbDoc，转成文件夹工程并读回自检；嘉立创导入后自动 DRC
   bundle        整束布线：多网络共同通道、保持顺序和各段间距，两端扇出并可换层；默认预览，全部校验通过才整批写回
+  memory        内存总线实验：按字节组、DQS 和 CLK 审计实际路径；--route 在内存中拆掉所选参考线后重新求解，输出候选报告，不修改 PCB
   pair          差分对布线：按规则的线宽和线距找路，两头从焊盘扇出，顶层细间距端可自动过孔换到底层，走完逐段查间距；默认只报告，--write 写回（这对布过线的加 --replace 先删掉原来的）
   thermal       损耗结温和载流温升：按规则文件 [thermal] 里的工况算功率器件的损耗和结温（MOS 管、二极管、整流桥、电阻、电感、变压器、LDO、开关稳压芯片、电容；热阻用 θJA、散热器、或按板上散热焊盘连着的铜面积插值），走线、铺铜 / 铜皮、过孔按 IPC-2152 算温升（旁边给 IPC-2221）；给了电流从哪进、从哪出（from / to）就把网络当电阻网络（铺铜细分成网格）解出每段的电流和压降（超了退出码 1）
+  si-burst      实际叠层与 IBIS 的 PRBS7 单端通道眼图筛查；必须指定驱动端、位周期和模型，不等于 DDR 接口时序验收
   si            信号完整性（反射、串扰）：按叠层用场求解器算每段走线的阻抗和延时，连同过孔、串联电阻 / 电容、到电源和地的端接搭成电路，从驱动脚加阶跃做时域仿真（通用模型：驱动的上升时间和输出阻抗、每个脚的电容），报每个接收端的飞行时间、过冲、回沟、稳定时间、单调性和阻抗跳变的段；差分对（按网络名认）两根反相一起驱动、并排段按耦合线，报差分波形、P/N 偏斜、共模、差分阻抗；--xtalk 再算同层平行网络的串扰（近端 / 远端）（超了退出码 1）；--spice 把每个电路和自己的波形写出来，tools/verify_si/compare.py 拿 ngspice 复算对比
   ibis          读 IBIS 模型文件（.ibs）：列出器件、引脚、模型选择器和模型（类型、电源、C_comp、有哪些表），每个能驱动的模型把自己的 V–T 波形放回测它时的夹具里重算、和表比（模型自洽、本工具读得对的检查；差超过幅度 10 % 退出码 1）
   smps          开关电源版图检查：热回路、开关节点、安静网络与去耦；PFC Boost / 半桥LLC按profile绑定实际引脚，检查必需回路、驱动、采样及声明的谐振参数。required_profiles要求的级缺失、未识别/配置电源或超限时退出1。省略--rules时先读项目checks.rules；无规则时自动识别降压/升压/反激。静态检查不代表PF、THD、ZVS及整机温升实测通过。
@@ -59,7 +62,7 @@ Commands:
   help          Print this message or the help of the given subcommand(s)
 
 Options:
-      --no-drc   改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc   改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help     Print help
   -V, --version  Print version
 ```
@@ -75,26 +78,16 @@ Arguments:
   <INPUT>  已有部分走线的原生 PCB 或工程；输入只读
 
 Options:
-      --no-drc
-          改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-      --rules <RULES>
-          完整布线 / DRC 规则，keep 中只写确实不能重布的网络
-      --out <OUT>
-          新输出目录；保存每次候选、全板 DRC、report.json 和 best.epcb2
-      --attempts <ATTEMPTS>
-          最多实际试布次数；0 只检查原板 [default: 32]
-      --neighbors <NEIGHBORS>
-          每个失败端点周围最多选几个挡路网络，逐步扩大范围 [default: 4]
-      --beam <BEAM>
-          同时保留多少个未变差的布线路径分支 [default: 4]
-      --seed <SEED>
-          确定性搜索种子 [default: 1000]
-      --rip-passes <RIP_PASSES>
-          每次局部试布的拆线轮数，不改制造规则 [default: 6]
-      --search-budget-scale <SEARCH_BUDGET_SCALE>
-          A* 搜索预算下限，不缩小线宽、间距或过孔 [default: 16]
-  -h, --help
-          Print help
+      --no-drc                                     改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --rules <RULES>                              完整布线 / DRC 规则，keep 中只写确实不能重布的网络
+      --out <OUT>                                  新输出目录；保存每次候选、全板 DRC、report.json 和 best.epcb2
+      --attempts <ATTEMPTS>                        最多实际试布次数；0 只检查原板 [default: 32]
+      --neighbors <NEIGHBORS>                      每个失败端点周围最多选几个挡路网络，逐步扩大范围 [default: 4]
+      --beam <BEAM>                                同时保留多少个未变差的布线路径分支 [default: 4]
+      --seed <SEED>                                确定性搜索种子 [default: 1000]
+      --rip-passes <RIP_PASSES>                    每次局部试布的拆线轮数，不改制造规则 [default: 6]
+      --search-budget-scale <SEARCH_BUDGET_SCALE>  A* 搜索预算下限，不缩小线宽、间距或过孔 [default: 16]
+  -h, --help                                       Print help
 ```
 
 ## place-opt
@@ -111,7 +104,7 @@ Options:
       --config <CONFIG>
           通用布局搜索配置（TOML），必须明确 movable；见 examples/place-opt.toml
       --no-drc
-          改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+          改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>
           布线 / DRC 规则；启用 route_finalists 时必填
       --reference <REFERENCE>
@@ -142,7 +135,7 @@ Commands:
   help      Print this message or the help of the given subcommand(s)
 
 Options:
-      --no-drc  改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc  改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help    Print help
 ```
 
@@ -157,7 +150,7 @@ Arguments:
   <INPUT>  下载封装的JSON，须包含 footprintDoc；不直接改共享库或已布PCB
 
 Options:
-      --no-drc                 改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                 改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>              输出修改后的封装副本；不填只试算，禁止覆盖输入
       --pad <PAD>              焊盘脚号，逗号分隔；*表示全部；可修改同号的全部实体焊盘 [default: *]
       --width <WIDTH>          铜面局部X尺寸，毫米，旋转前的width
@@ -184,7 +177,7 @@ Arguments:
 
 Options:
       --design <DESIGN>  读取 [[board.holes]]，毫米；只匹配已有孔心，不移动、新增或删除孔
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>    项目的布线 / DRC 规则，用于钻孔、孔距和铜间距检查
       --write            检查通过后写入；默认只试算
   -h, --help             Print help
@@ -201,7 +194,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc  改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc  改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help    Print help
 ```
 
@@ -216,7 +209,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --part <PART>  只列这个位号的焊盘
       --json <JSON>  另存精确焊盘几何及阻焊扩展（JSON，毫米），CSV 标准输出保持不变
   -h, --help         Print help
@@ -233,7 +226,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹（会被改写）
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>  布线规则（TOML），见 examples/
       --only <ONLY>    这次只布这些网络（逗号隔开，可用 * ?；盖过规则文件的 [nets] only）：别的网络的铜原样留着、没连的留给下次布。先布几根要让路的线，再用 pair 布差分对、最后整板布
   -h, --help           Print help
@@ -250,10 +243,11 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc                 改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-      --rules <RULES>          板子规则（TOML，和布线共用）：铺铜网络、隔离区、[drc] 限值；不给就用默认限值、不查隔离
+      --no-drc                 改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --rules <RULES>          追加规则（TOML，和布线共用）：工艺、铺铜网络、隔离区、[drc] 限值；未指定且工程未配置时，自动用原工程参数
       --clearance <CLEARANCE>  所有铜皮统一用这个间距（毫米，drc.py 用 0.152）；不给就按工程文件里 EDA 的间距规则
       --json <JSON>            把完整结果写成 JSON
+      --project-rules          只按工程里的嘉立创电气规则检查（含铺铜、连通和差分约束），不加本工具的工艺、丝印与布线质量检查；完全离线
   -h, --help                   Print help
 ```
 
@@ -269,7 +263,7 @@ Arguments:
 
 Options:
       --config <CONFIG>            电磁配置 TOML/JSON：端口、材料来源、损耗、频段、网格、天线净空
-      --no-drc                     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                     改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>                  模型、日志、S11/阻抗 CSV、远场和图的目录
       --run                        实际求解；省略时只导出，不报告仿真成功
       --solver-root <SOLVER_ROOT>  完整原生运行库目录；默认自动查找随包安装的 runtime/openems，无需 Python
@@ -286,7 +280,7 @@ Usage: easyedatool em-native [OPTIONS] --model <MODEL> --geometry <GEOMETRY> --o
 
 Options:
       --model <MODEL>
-      --no-drc                     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                     改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --geometry <GEOMETRY>
   -o, --out <OUT>
       --audit <AUDIT>              模型/XML对应的导体清单；默认取XML旁的 property-audit.json
@@ -306,7 +300,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹（原理图在同一工程的 sch 文件夹里）
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>  板子规则（TOML，和布线共用）：[check] allow_outside 放行伸出板外的连接器
       --json <JSON>    把完整结果写成 JSON
   -h, --help           Print help
@@ -323,7 +317,7 @@ Arguments:
   <INPUT>  .eprj3 工程索引、工程文件夹或工程里的 .epcb2
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>  规则文件（TOML，和布线共用）的 [erc] 表：levels 改级别（"ignore" 关掉）、pins 打开引脚类型冲突、pin_levels 改冲突表
       --pins           再查引脚类型冲突（同一网络上两个输出、电源接地……，照嘉立创的冲突表；它默认关）
       --top <TOP>      每条规则最多列几条（默认 10，0 全列） [default: 10]
@@ -343,7 +337,7 @@ Arguments:
 
 Options:
       --lib <LIB>    元件库文件夹（不给就按 lib 的找法：环境变量、工程旁边的 easyedatool.toml、本机配置）
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --json <JSON>  把完整结果写成 JSON
   -h, --help         Print help
 ```
@@ -359,7 +353,7 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 工程索引或工程里的任一文件
 
 Options:
-      --no-drc  改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc  改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help    Print help
 ```
 
@@ -374,7 +368,7 @@ Arguments:
   <DESIGN>  设计文件（.toml 或 .json），见 examples/
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --out <OUT>        工程文件夹：sch、pcb 整个换掉，索引文件就地覆盖
       --keep-fills       保留 EDA 算好的铺铜填充（不自己算）：EDA 里重建铺铜并保存后再跑一次，除填充外 EDA 的 PCB 必须和生成的一模一样
       --no-pour          不算铺铜填充（默认照 EDA 的规则算好写进工程）
@@ -394,7 +388,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>        输出文件（默认 <板名>_<视图>.png）
       --view <VIEW>      top 正面实物；bottom 背面实物（左右镜像）；layers 分层线路图；sch 原理图（每页一张） [default: top] [possible values: top, bottom, layers, sch]
       --ppmm <PPMM>      每毫米像素数 [default: 20]
@@ -417,7 +411,7 @@ Arguments:
   <INPUT>  工程、板子文件；元件模型从工程配置的元件库读取
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>        输出 .png、.glb 或 .stl（默认 <板名>_3d.png）；STL无颜色，导入时选择毫米
       --json <JSON>      同时输出供查看器读取的3D场景JSON
       --lib <LIB>        元件库路径，默认按工程 easyedatool.toml 查找
@@ -440,7 +434,7 @@ Arguments:
   <INPUT>  .eprj3 工程索引、工程文件夹或 .epcb2 文件（原理图在同一工程的 sch 文件夹里）
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>    输出文件（默认 <工程名>_sch.pdf）
       --font <FONT>  TrueType 字体文件（默认用系统里带中文的：微软雅黑、黑体……）
   -h, --help         Print help
@@ -457,7 +451,7 @@ Arguments:
   <INPUT>  .eprj3 工程索引、工程文件夹或 .epcb2 文件
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>        输出文件（默认 <工程名>.net；扩展名 .csv 时写 CSV）
       --format <FORMAT>  格式（不给就看扩展名） [possible values: protel, csv]
   -h, --help             Print help
@@ -474,7 +468,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹
 
 Options:
-      --no-drc                         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>                  规则文件（TOML，和 drc 的同一份）：元件间距、网格取 [drc.placement]（工程文件 OTHER 规则的器件间距不为 0 时用它）
       --grid <GRID>                    网格（mm；默认 [drc.placement] 的 0.5；0 = 不吸附）
       --spacing <SPACING>              元件间距（mm；默认规则里的）
@@ -498,7 +492,7 @@ Arguments:
   <INPUT>  gen 生成的工程文件夹（工程里的 .easyedatool/source.toml 记着设计文件）
 
 Options:
-      --no-drc      改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc      改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --save        把工程现在的几何记进布局文件（没有就建）
       --forget      删掉布局文件
       --forget-sch  只删布局文件里记的原理图画法（[sch]）：下次 gen 重新自动排原理图，人在窗口里拖的、画的都不留
@@ -517,7 +511,7 @@ Arguments:
 
 Options:
       --answer <编号> <怎么改的>  回复一条审核意见：编号和怎么改的，如 --answer 3 "新加 R2，U1.3 改接 EN"
-      --no-drc              改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc              改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --json <JSON>         另存 JSON（已审的器件、改了要重看的、全部意见、人还没确认的改动）
   -h, --help                Print help
 ```
@@ -533,11 +527,30 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>      输出文件夹（默认 <工程名>_kicad）
       --drc            写完用 KiCad 自己的命令行查一遍 DRC（kicad-cli：环境变量 KICAD_CLI、PATH，或各盘 Program Files\KiCad 下最新的）
-      --rules <RULES>  规则文件（TOML，和 drc 的同一份）：[drc.fab] 工艺、[drc.placement] 元件间距、[[drc.class]] 网络类规则也写进 KiCad 的规则
+      --rules <RULES>  追加规则文件（TOML，和 drc 的同一份）；未指定且工程未配置时，自动导出原工程规则，不叠加工艺默认值
   -h, --help           Print help
+```
+
+## pads-export
+
+```
+导出 PADS 9.5 可编辑设计（Logic 原理图 .txt、Layout PCB .asc）
+
+Usage: easyedatool pads-export [OPTIONS] <INPUT>
+
+Arguments:
+  <INPUT>  嘉立创文件夹工程、.eprj3、.epcb2 或 .esch2；导出所选板和关联的原理图
+
+Options:
+      --no-drc          改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -o, --out <OUT>       输出文件夹（默认 <工程名>_pads）
+      --pcb-only        只导出 PCB
+      --schematic-only  只导出原理图
+      --native          另存原生 .pcb / .sch（Windows，需已安装并授权对应的 PADS 9.5）
+  -h, --help            Print help
 ```
 
 ## assembly
@@ -551,7 +564,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>    输出文件（默认 <工程名>_assembly.pdf）
       --value        位号下面再写元件值
       --font <FONT>  TrueType 字体（默认用系统里带中文的）
@@ -569,11 +582,12 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-  -o, --out <OUT>    输出文件夹（默认 <工程名>_fab）
-      --font <FONT>  丝印文字用的 TrueType 字体（默认用系统里带中文的）
-      --files        压缩包之外也把每个 Gerber / 钻孔文件单独写出来（默认只出压缩包和贴片坐标）
-  -h, --help         Print help
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+  -o, --out <OUT>      输出文件夹（默认 <工程名>_fab）
+      --font <FONT>    丝印文字用的 TrueType 字体（默认用系统里带中文的）
+      --rules <RULES>  焊盘散热收工规则文件，默认跟随项目的 [checks].rules
+      --files          压缩包之外也把每个 Gerber / 钻孔文件单独写出来（默认只出压缩包和贴片坐标）
+  -h, --help           Print help
 ```
 
 ## pour
@@ -587,7 +601,7 @@ Arguments:
   <INPUT>  .epcb2 文件、.eprj3 工程索引或工程文件夹
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --write            把算出的填充写回 .epcb2（会改写输入：先 git 提交）
       --gerber <GERBER>  用算出的填充出铜层 Gerber 到这个文件夹（和 EDA 的比）
       --svg <SVG>        查差别用：每块铺铜画一张 SVG 到这个文件夹（红 EDA 的、蓝这里的、灰 避让、黄 热焊盘间隙），要给 --window
@@ -607,7 +621,7 @@ Arguments:
 
 Options:
       --name <NAME>  设计文件里只看这一个封装
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>    出预览图（PNG，第一个封装）
       --ppmm <PPMM>  预览图每毫米像素 [default: 60]
   -h, --help         Print help
@@ -624,7 +638,7 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 工程索引或 .epcb2 文件；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --page <PAGE>  先显示原理图第几页（从 1 数；不给就先显示 PCB）
       --find <FIND>  打开后找这个位号或网络给人看：在 PCB 上（器件框出焊盘、网络高亮），带 --page 时在原理图上
       --3d           直接打开整板 3D 视图
@@ -642,7 +656,7 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 工程索引或 .epcb2 文件；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --port <PORT>      端口（0 = 挑一个空闲的） [default: 0]
       --exit-with-stdin  标准输入关掉就退出（窗口起它时用：窗口没了它也跟着走）
       --rules <RULES>    自动 DRC / ERC 用的规则文件（和 drc、erc 的同一份；PCB、原理图一改就查，问题点标在窗口里；全局 --no-drc 关掉）
@@ -652,16 +666,16 @@ Options:
 ## import
 
 ```
-导入 PADS 板子（ASCII .asc；原生 .pcb 在 Windows 调用本机已授权 PADS 转换）或 Altium .PcbDoc：转成嘉立创EDA工程，保留PCB数据并读回自检；--sch 连同 OrCAD .DSN 或 Altium .SchDoc 合成工程
+导入嘉立创专业版 V2/V3 工程（.epro / .epro2 / .epru，PCB 和全部原理图）、PADS 板子（.asc / .pcb）或 Altium .PcbDoc，转成文件夹工程并读回自检；嘉立创导入后自动 DRC
 
 Usage: easyedatool import [OPTIONS] --out <OUT> <INPUT>
 
 Arguments:
-  <INPUT>  PADS .asc / 原生 .pcb（原生需本机 PADS Layout），或 Altium .PcbDoc
+  <INPUT>  嘉立创专业版 .epro / .epro2 / .epru；PADS .asc / 原生 .pcb（需本机 PADS Layout）；Altium .PcbDoc
 
 Options:
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
-      --out <OUT>    写到这个文件夹（要空文件夹，或上次导入的同名工程）；文件夹名就是工程名
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --out <OUT>    输出文件夹；嘉立创旧工程须为空，其他格式也可用上次导入的同名工程；文件夹名就是工程名
       --name <NAME>  工程名（默认用 --out 文件夹的名字：嘉立创按文件夹名认工程，两者最好一致）
       --sch <SCH>    同一块板的原理图（PADS 板配 OrCAD .DSN，Altium 板配 .SchDoc）：和 PCB 合成一个工程，两边的器件按位号配对（同一个 Unique ID 和器件，器件用 PCB 的封装），写完逐脚比原理图和 PCB 的网络
   -h, --help         Print help
@@ -678,12 +692,30 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 或 .epcb2
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --plan <PLAN>    JSON计划：有序lanes、两端焊盘或坐标、主干角点与网格
       --json <JSON>    输出整束预览（线路、过孔、实际长度与未通过项），不修改计划
       --rules <RULES>  项目工艺/布线规则；省略时读取easyedatool.toml的checks.rules
       --write          校验通过后一次写入整束线路和过孔
   -h, --help           Print help
+```
+
+## memory
+
+```
+内存总线实验：按字节组、DQS 和 CLK 审计实际路径；--route 在内存中拆掉所选参考线后重新求解，输出候选报告，不修改 PCB
+
+Usage: easyedatool memory [OPTIONS] --plan <PLAN> <INPUT>
+
+Arguments:
+  <INPUT>
+
+Options:
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --plan <PLAN>  JSON 计划：控制器 / 内存、逐字节 DQ/DM/DQS、CLK、地址控制及长度规则
+      --route        从焊盘重新布线；不给时只审计当前线路
+      --json <JSON>  结果 JSON；重布时同时包含所选网络的候选线路和过孔
+  -h, --help         Print help
 ```
 
 ## pair
@@ -697,7 +729,7 @@ Arguments:
   <INPUT>  工程（文件夹、.eprj3 或 .epcb2）
 
 Options:
-      --no-drc                       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --pair <PAIR>                  差分对（名字，可以给几次）
       --layer <LAYER>                走哪层：1 顶层、2 底层、15 内层1…… [default: 1]
       --width <WIDTH>                线宽（mm；默认差分对规则这一层的默认线宽）
@@ -724,7 +756,7 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 工程索引或 .epcb2；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc                   改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                   改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>            规则文件（TOML，和布线共用）的 [thermal] 表：环境温度 ta、允许温升 rise、[thermal.nets] 各网络的电流、[thermal.parts.位号] 器件的工况和参数
       --lib <LIB>                公司元件库（器件的 [thermal] 参数从这里补）；不给就照常找（环境变量、工程旁的 easyedatool.toml、本机配置），找不到也能算
       --top <TOP>                每个网络列几段最热的走线和过孔（超的全列） [default: 5]
@@ -732,6 +764,32 @@ Options:
       --map-layers <MAP_LAYERS>  热分布图画哪些层：outer 顶层和底层（默认），all 每一层 [default: outer]
       --json <JSON>              把完整结果写成 JSON（每段走线、每个过孔的电流和温升）
   -h, --help                     Print help
+```
+
+## si-burst
+
+```
+实际叠层与 IBIS 的 PRBS7 单端通道眼图筛查；必须指定驱动端、位周期和模型，不等于 DDR 接口时序验收
+
+Usage: easyedatool si-burst [OPTIONS] --net <NET> --rules <RULES> --driver <DRIVER> --ui <UI> <INPUT>
+
+Arguments:
+  <INPUT>
+
+Options:
+      --net <NET>
+      --no-drc               改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --rules <RULES>
+      --driver <DRIVER>
+      --ui <UI>              一个数据位的周期，例如 1.875ns；不是时钟周期
+      --bits <BITS>          [default: 127]
+      --seed <SEED>          [default: 127]
+      --corner <CORNER>      [default: typ]
+      --model <MODEL>        发端 IBIS 驱动强度；多选模型必须明确指定
+      --rx-model <RX_MODEL>  收端 IBIS 模型 / ODT
+      --json <JSON>
+      --spice <SPICE>        导出同一次仿真的网表和波形供独立复算
+  -h, --help                 Print help
 ```
 
 ## si
@@ -746,7 +804,7 @@ Arguments:
 
 Options:
       --net <NET>        网络，逗号分隔，可用 * 和 ? 通配：LPDDR4_DQ*,SDIO_CLK（不写就仿规则文件 [[si.group]] 里的网络）
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>    规则文件（TOML，和布线共用）的 [si] 表：默认驱动参数和限值，[[si.group]] 按网络分组各写驱动脚、上升时间、输出阻抗、脚电容、端接；有 [stackup] 就按它的板厂叠层算
       --driver <DRIVER>  驱动的器件或脚（U1 / U1.A5）；不写按原理图引脚名（TXD / SDO 是输出，RXD / MOSI / CS 是输入），再不行取引脚最多的芯片
       --rise <RISE>      驱动的上升时间（10–90 %），默认 0.5ns
@@ -776,7 +834,7 @@ Arguments:
 
 Options:
       --component <COMPONENT>  只看这个器件（[Component] 名）
-      --no-drc                 改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                 改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --model <MODEL>          只看这个模型（[Model] 名）
       --corner <CORNER>        用哪一列：typ（默认）、min（慢、弱）、max（快、强） [default: typ]
       --json <JSON>            把波形复算结果写成 JSON
@@ -794,7 +852,7 @@ Arguments:
   <INPUT>  工程文件夹、.eprj3 工程索引或 .epcb2；PADS .asc、Altium .PcbDoc 直接读
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>  规则文件的[smps]表；省略时读取easyedatool.toml的checks.rules，profile专项规则及required_profiles也在此表中
       --suggest        把自动认出的电源按规则文件的写法打出来（核对后贴进规则文件）
       --png <PNG>      出 PNG：分层图上画热回路（面积着色）、开关节点和安静网络高亮；每路电源再出一张放大图（<名>_1.png …）
@@ -814,7 +872,7 @@ Arguments:
 
 Options:
       --from <FROM>  标注文件（TOML，毫米）：size、min_size、rename，[[text]]、[[part]]、[[pins]]，[designators]（size、min_size、stroke、hide、reach、skip、only 只印哪些如 U*、J*、min_body 元件够大才印）
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --write        写回 .epcb2（先 git 提交；嘉立创开着这个工程时先关掉这块 PCB 的页面）
   -h, --help         Print help
 ```
@@ -830,7 +888,7 @@ Arguments:
   <INPUT>  工程（文件夹、.eprj3 或 .epcb2）
 
 Options:
-      --no-drc                       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>                布线规则（TOML）：[nets] power 是要加粗的网络，power_track 是目标线宽
       --net <NET>                    要加粗的网络（可以给几次；给了就不用规则里的 power）
       --width <WIDTH>                目标线宽（mm；默认规则的 power_track，没给规则 0.5）
@@ -852,7 +910,7 @@ Arguments:
   <INPUT>
 
 Options:
-      --no-drc         改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc         改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>  规则文件；[drc.quality] corner_angle / corner_cut 为 0 时不修改
       --net <NET>      指定网络，可以给多次；默认检查全部普通网络
       --center-vias    在过孔铜环内把偏心引线接到孔中心；不移动过孔、不改变铜环外形
@@ -871,7 +929,7 @@ Arguments:
   <INPUT>
 
 Options:
-      --no-drc           改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc           改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --rules <RULES>
       --radius <RADIUS>  局部找孔半径（毫米），0 不修改 [default: 2]
       --net <NET>
@@ -890,7 +948,7 @@ Arguments:
   <INPUT>  工程（文件夹、.eprj3 或 .epcb2）
 
 Options:
-      --no-drc                 改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                 改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --pair <PAIR>            差分对（名字，可以给几次）：短的那根补到和另一根一样长
       --group <GROUP>          等长组（名字，可以给几次）：比最长那根短过容差的网络补到最长那根减去容差的四分之一
       --net <NET>              一根网络，补到 --length
@@ -916,7 +974,7 @@ Arguments:
 
 Options:
       --layer <LAYER>            只算这一层：1 顶层、2 底层、15 内层1……
-      --no-drc                   改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc                   改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --z0 <Z0>                  单端目标阻抗（Ω），算每层的线宽 [default: 50]
       --zdiff <ZDIFF>            差分目标阻抗（Ω），和 --gap 一起算每层的线宽；也用来标出差分对偏了多少
       --gap <GAP>                差分线距（mm）
@@ -941,7 +999,7 @@ Arguments:
 
 Options:
       --auto         按网络名认差分对（DP/DM、P/N、+/-，后面可以跟 _A、数字这类短后缀），规则按已布走线量出的线宽和间距
-      --no-drc       改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc       改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --from <FROM>  约束文件（TOML，mm）：[[pair_rule]] [[pair]] [[length_rule]] [[group]] [classes]，同名的替换工程里的
       --write        写进工程的 .epcb2（会改写文件：先 git 提交；嘉立创开着这个工程时先关掉这块 PCB 的页面，写完再打开，工程索引里这一页的版本号会跟着更新，嘉立创才重新读）
       --json <JSON>  按嘉立创 DRC 口径检查的全部结果写成 JSON（线宽、间距、对内长度差、等长，mm）
@@ -960,7 +1018,7 @@ Arguments:
 
 Options:
       --json <JSON>        读到的全部内容写成 JSON（包括还没弄懂的字节，十六进制）
-      --no-drc             改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc             改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --netlist <NETLIST>  网表写成 CSV（网络、位号、脚号）
       --out <OUT>          转成嘉立创EDA工程（文件夹工程 .eprj3，只有原理图），写到这个文件夹（要空文件夹，或上次导入的同名工程）
       --name <NAME>        工程名（默认用 --out 文件夹的名字：嘉立创按文件夹名认工程，两者最好一致）
@@ -979,7 +1037,7 @@ Arguments:
 
 Options:
       --netlist <NETLIST>  网表写成 CSV（网络、位号、脚号）
-      --no-drc             改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc             改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
       --out <OUT>          转成嘉立创EDA工程（文件夹工程 .eprj3，只有原理图），写到这个文件夹（要空文件夹，或上次导入的同名工程）
       --name <NAME>        工程名（默认用 --out 文件夹的名字：嘉立创按文件夹名认工程，两者最好一致）
   -h, --help               Print help
@@ -1011,7 +1069,7 @@ Commands:
 
 Options:
       --lib <LIB>  元件库文件夹（只这一次；默认依次看环境变量 EASYEDATOOL_LIB、工程旁边的 easyedatool.toml、本机配置）
-      --no-drc     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc     改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -h, --help       Print help
 ```
 
@@ -1026,7 +1084,7 @@ Arguments:
   <INPUT>  .eprj3 工程索引、工程文件夹或 .epcb2 文件
 
 Options:
-      --no-drc     改板子的命令（gen、route、pour --write、widen、tune、pair/bundle --write）跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
+      --no-drc     改板子的命令和嘉立创旧工程导入跑完不自动查 DRC（gen 也不查原理图 ERC 和接法）
   -o, --out <OUT>  输出文件（默认 <工程名>_bom.csv）
   -h, --help       Print help
 ```

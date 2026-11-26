@@ -4,20 +4,20 @@
 
 Offline command-line tool for EasyEDA Pro folder projects. It builds the schematic and PCB from a design file, autoroutes, pours copper with the EDA rules, runs DRC and a pin-by-pin net check, and exports a schematic PDF, netlist, BOM, Gerber, drill files, and a pick-and-place file. EasyEDA projects and exported PADS ASCII files need neither a browser nor an EDA client. Native PADS binary `.pcb` import requires Windows and a locally licensed PADS Layout installation.
 
-Version 0.3.0 adds bundled native antenna EM simulation, frozen multiport model solving, PFC/LLC layout checks. Candidate placement search, local routing repair, multi-board editing, FPC stiffener outputs, local 3D inspection and the complete MP157 example remain included.
+Version 0.3.1 improves the 3D preview and fixes known issues. Export EasyEDA Pro projects as editable PADS 9.5 schematics and PCBs.
 
 Run antenna simulations with `em <project> --config antenna.toml -o output/em --run`. Solver completion, matching targets and mesh convergence are separate results: see the [EM guide](skill/references/antenna-em.md). CAD, dimensioned simplified models and placeholders remain labelled; see the [3D guide](skill/references/models-and-pads.md) for provenance and bare-board views.
 
 ## Install
 
-The current version is **0.3.0**. Download it from [GitHub Release v0.3.0](https://github.com/cc38324/PcbCliTool/releases/tag/v0.3.0), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
+The current version is **0.3.1**. Download it from [GitHub Release v0.3.1](https://github.com/cc38324/PcbCliTool/releases/tag/v0.3.1), and see the [release notes](https://github.com/cc38324/PcbCliTool/blob/main/CHANGELOG.md). This repository contains installation instructions, the AI manual, and examples; it does not contain the tool's source code.
 
-| System | 0.3.0 package | PCB / schematic viewer |
+| System | 0.3.1 package | PCB / schematic viewer |
 |---|---|---|
-| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-windows-x64-setup.exe) | Included |
-| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-macos-arm64.zip) | Included |
-| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool-0.3.0-macos-arm64.tar.gz) / Homebrew | Not included |
-| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.0/easyedatool_0.3.0-1_amd64.deb) | Included |
+| Windows x64 | [ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-windows-x64.zip) / [installer](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-windows-x64-setup.exe) | Included |
+| macOS (Apple silicon) | [Full ZIP](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-macos-arm64.zip) | Included |
+| macOS (Apple silicon), CLI | [CLI tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-macos-arm64.tar.gz) / Homebrew | Not included |
+| Ubuntu / Debian amd64 | [DEB](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool_0.3.1-1_amd64.deb) / [tar.gz](https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-linux-x64.tar.gz) | Included |
 | Intel Mac / HarmonyOS PC | No package in this version | — |
 
 Full packages include the CLI and desktop viewer; run `easyedatool view <project>` to open a board. Track widths, clearances, via sizes, and length constraints come from the design or rules file. Upgrading does not establish electrical correctness or manufacturing readiness for a project.
@@ -60,7 +60,7 @@ For an existing installation, run `brew upgrade cc38324/pcbclitool/easyedatool`.
 Download the DEB and install it from your download directory. `apt` resolves the viewer's system dependencies:
 
 ```bash
-sudo apt install ./easyedatool_0.3.0-1_amd64.deb
+sudo apt install ./easyedatool_0.3.1-1_amd64.deb
 easyedatool --version
 easyedatool view <project>
 ```
@@ -75,11 +75,11 @@ curl -fsSL https://www.miyue.asia/apt/miyue.gpg | sudo tee /usr/share/keyrings/m
 echo "deb [signed-by=/usr/share/keyrings/miyue.gpg] https://www.miyue.asia/apt stable main" | sudo tee /etc/apt/sources.list.d/miyue.list
 sudo apt-get update
 apt-cache policy easyedatool
-sudo apt-get install easyedatool=0.3.0-1
+sudo apt-get install easyedatool=0.3.1-1
 easyedatool --version
 ```
 
-If `0.3.0-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
+If `0.3.1-1` is not listed, use the Release DEB. Successfully installing an older package does not confirm that this release is available through APT.
 
 ## Multiple boards, 3D navigation and FPC
 
