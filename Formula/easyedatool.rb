@@ -7,7 +7,7 @@ class Easyedatool < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/cc38324/PcbCliTool/releases/download/v0.3.1/easyedatool-0.3.1-macos-arm64.tar.gz"
-      sha256 "3c15fd7a1d29957964152c3bad8102ee58582931d9a5e8bce4653d963b8719d1"
+      sha256 "47c351aebd914d25880c53eafdc069284c636eac3e8aaae92c86df6332a082c7"
     end
   end
 
