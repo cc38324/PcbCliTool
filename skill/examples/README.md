@@ -27,7 +27,9 @@ easyedatool constraints MP157Demo
 easyedatool drc MP157Demo --rules examples/mp157demo.rules.toml --json MP157Demo/output/drc.json
 ```
 
-`gen` 恢复已保存的布局、走线和铺铜。修改设计后须重做电气核对，不能重新下载参考设计覆盖当前布局。命令全通过以后，分别运行 `pdf`、`bom`、`netlist`、`render --view top`、`fab --files` 导出对应资料。
+`gen` 恢复已保存的布局、走线和铺铜。修改设计后须重做电气核对，不能重新下载参考设计覆盖当前布局。可以用 `pdf`、`bom`、`netlist`、`render --view top` 查看恢复结果。
+
+用 0.3.1 版复查这份旧布局，间距、板边和网络连通通过，但禁布区、走线质量和焊盘散热仍有待处理项，`drc` 返回非零并保留 JSON 报告。处理报告中的问题后再用 `fab --files` 导出生产文件，不把这份示例当成可直接投板的设计。
 
 以上通用命令不替代显示与供电专项验收：逐项核对原始屏幕PDF的SHA256、30针接法、1脚坐标、计入LFBGA354封装内部长度差的MIPI配对长度、显示电源器件位置，以及唯一获准的U5.N2短出线。记录实际执行的项目，不能把未附带的专项自动检查宣称为通过。工艺警告和质量提示仍按DRC JSON逐项处理。
 
